@@ -1,0 +1,51 @@
+import home from "../pages/Home";
+import store from "../pages/Store";
+import news from "../pages/News";
+import help from "../pages/Help";
+import contact from "../pages/Contact";
+import notfound from "../pages/NotFound";
+
+export const routes = [
+  {
+    path: "/",
+    page: home,
+    title: "Next In",
+    isShowNavbar: true,
+    isShowFooter: false,
+  },
+  {
+    path: "/store",
+    page: store,
+    title: "Store | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
+  },
+  {
+    path: "/news",
+    page: news,
+    title: "News | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
+  },
+  {
+    path: "/help",
+    page: help,
+    title: "Help | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
+  },
+  {
+    path: "/contact",
+    page: contact,
+    title: "Contact | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
+  },
+  {
+    path: "*",
+    page: notfound,
+    title: "404 Not Found",
+    isShowNavbar: false,
+    isShowFooter: false,
+  },
+];

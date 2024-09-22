@@ -1,0 +1,48 @@
+@import "../../styles/common/root.scss";
+
+/* Tool Bar */
+
+.tool-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    font-size: 30px;
+    margin-right: 30px;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:nth-child(2) {
+      font-size: 32px;
+      margin-right: 35px;
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .sign-in-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: $primary-color;
+    border-radius: 50px;
+    color: $text-color;
+    font-family: $open-sans;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 100;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
