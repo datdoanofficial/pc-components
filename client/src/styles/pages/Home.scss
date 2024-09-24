@@ -16,7 +16,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  overflow-x: hidden;
+  overflow: hidden;
   overscroll-behavior: none;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -29,7 +29,7 @@ body {
   height: 100vh;
   padding-top: 110px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 50px;
   overflow: hidden;
 
@@ -41,28 +41,43 @@ body {
     padding-top: 80px;
 
     // Title styling
-    .title {
-      font-size: 85px;
+    .heading {
+      font-size: 83px;
       font-weight: 500;
       line-height: 110px;
       text-transform: uppercase;
       font-family: $roboto;
       margin-bottom: 30px;
-    }
 
-    // Paragraph styling
-    p {
-      font-size: 20px;
-      font-weight: 300;
-      max-width: 95%;
-      line-height: 32px;
-      font-family: $open-sans;
-      margin-bottom: 50px;
+      .character {
+        font-family: $the-nautigal;
+      }
+
+      &.headingBottomToTop {
+        animation: bottomToTop 0.5s ease forwards;
+        pointer-events: none;
+      }
+
+      &.headingTopToBottom {
+        animation: topToBottom 0.5s ease forwards;
+        pointer-events: none;
+      }
+
+      // Paragraph styling
+      .description {
+        font-size: 20px;
+        font-weight: 300;
+        text-transform: none;
+        max-width: 85%;
+        line-height: 32px;
+        font-family: $open-sans;
+        margin-bottom: 60px;
+        margin-top: 30px;
+      }
     }
 
     // Shop Now button styling
     .shopnow-btn {
-      margin-top: 20px;
       width: 180px;
       height: 60px;
       background-color: $primary-color;
@@ -111,30 +126,61 @@ body {
       transform: translate(-50%, -50%);
       z-index: 101;
 
-      // image items
-      img {
+      .item-img {
         position: absolute;
-        top: 48%;
-        left: 48%;
-        transform: translate(-50%, -50%);
-        width: 480px;
-        z-index: 1;
-        -webkit-animation: img 5s infinite;
-        animation: img 5s infinite;
-        pointer-events: none;
+        top: 0;
+        left: -40px;
+        width: 500px;
+
+        &.imgFly {
+          animation: img 5s infinite;
+          pointer-events: none;
+        }
+
+        &.imgBottomToTop {
+          animation: bottomToTop 0.5s ease forwards, img 5s infinite;
+          pointer-events: none;
+        }
+
+        &.imgTopToBottom {
+          animation: topToBottom 0.5s ease forwards, img 5s infinite;
+          pointer-events: none;
+        }
       }
 
       @keyframes img {
         0% {
-          top: 52%;
+          top: -40px;
         }
 
         50% {
-          top: 48%;
+          top: 0px;
         }
 
         100% {
-          top: 52%;
+          top: -40px;
+        }
+      }
+
+      @keyframes bottomToTop {
+        from {
+          transform: translateY(10%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes topToBottom {
+        from {
+          transform: translateY(-10%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
         }
       }
 
@@ -275,6 +321,11 @@ body {
       overflow: hidden;
       z-index: 100;
 
+      .number p {
+        position: relative;
+        z-index: 1000;
+      }
+
       .number {
         font-family: $open-sans;
         font-weight: 300;
@@ -288,6 +339,14 @@ body {
       .number:nth-child(2),
       .number:nth-child(4) {
         font-size: 14px;
+      }
+
+      .number:nth-child(2) {
+        margin-bottom: 20px;
+      }
+
+      .number:nth-child(4) {
+        margin-top: 20px;
       }
 
       .number.active {
@@ -312,7 +371,7 @@ body {
 
         @keyframes number01 {
           from {
-            transform: translateY(150%);
+            transform: translateY(140%);
             font-size: 14px;
           }
           to {
@@ -323,7 +382,6 @@ body {
       }
 
       &.up .number:nth-child(2) p {
-        margin-bottom: 20px;
         animation: number02 0.5s ease;
 
         @keyframes number02 {
@@ -332,7 +390,7 @@ body {
             font-size: 18px;
           }
           to {
-            transform: translateY(-20%);
+            transform: translateY(-25%);
             font-size: 14px;
           }
         }
@@ -343,7 +401,7 @@ body {
 
         @keyframes number03 {
           from {
-            transform: translateY(170%);
+            transform: translateY(175%);
             font-size: 14px;
           }
           to {
@@ -354,7 +412,6 @@ body {
       }
 
       &.up .number:nth-child(4) p {
-        margin-top: 20px;
         animation: number04 0.5s ease;
 
         @keyframes number04 {
@@ -363,7 +420,7 @@ body {
             font-size: 10px;
           }
           to {
-            transform: translateY(-50%);
+            transform: translateY(-45%);
             font-size: 14px;
           }
         }
@@ -418,7 +475,6 @@ body {
       }
 
       &.down .number:nth-child(2) p {
-        margin-bottom: 20px;
         animation: number02Down 0.5s ease;
 
         @keyframes number02Down {
@@ -427,7 +483,7 @@ body {
             font-size: 10px;
           }
           to {
-            transform: translateY(50%);
+            transform: translateY(45%);
             font-size: 14px;
           }
         }
@@ -438,7 +494,7 @@ body {
 
         @keyframes number03Down {
           from {
-            transform: translateY(-170%);
+            transform: translateY(-175%);
             font-size: 14px;
           }
           to {
@@ -449,7 +505,6 @@ body {
       }
 
       &.down .number:nth-child(4) p {
-        margin-top: 20px;
         animation: number04Down 0.5s ease;
 
         @keyframes number04Down {
@@ -458,7 +513,7 @@ body {
             font-size: 18px;
           }
           to {
-            transform: translateY(20%);
+            transform: translateY(25%);
             font-size: 14px;
           }
         }
@@ -469,7 +524,7 @@ body {
 
         @keyframes number05Down {
           from {
-            transform: translateY(-150%);
+            transform: translateY(-140%);
             font-size: 14px;
           }
           to {
@@ -497,9 +552,15 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-right: 2px;
         border-radius: 50%;
-        border: 1px solid #2a2a2a;
+        border: 2px solid #2a2a2a;
+        transition: 0.5s;
         cursor: pointer;
+
+        &:hover {
+          border: 2px solid #4a4a4a;
+        }
 
         .icon {
           color: $text-color;
@@ -510,12 +571,18 @@ body {
       .right-arrow {
         width: 50px;
         height: 50px;
+        padding-left: 2px;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        border: 1px solid #2a2a2a;
+        border: 2px solid #2a2a2a;
+        transition: 0.5s;
         cursor: pointer;
+
+        &:hover {
+          border: 2px solid #4a4a4a;
+        }
 
         .icon {
           color: $text-color;
