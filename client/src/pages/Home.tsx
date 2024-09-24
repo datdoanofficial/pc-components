@@ -15,7 +15,6 @@ const Home = (props: Props) => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [imageKey, setImageKey] = useState(0);
   const [textKey, setTextKey] = useState(0);
-  const [desKey, setDesKey] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const images = [itemPC, itemLaptop, itemKeyboard, itemPS, itemChair];
@@ -31,7 +30,6 @@ const Home = (props: Props) => {
       setIsFirstLoad(false);
       setImageKey((prevKey) => prevKey + 1);
       setTextKey((prevKey) => prevKey + 1);
-      setDesKey((prevKey) => prevKey + 1);
     }, 10000); // Change active number every 5 seconds
   };
 
@@ -56,7 +54,6 @@ const Home = (props: Props) => {
     setIsFirstLoad(false);
     setImageKey((prevKey) => prevKey + 1);
     setTextKey((prevKey) => prevKey + 1);
-    setDesKey((prevKey) => prevKey + 1);
     startInterval(); // Reset the interval
   };
 
@@ -66,7 +63,6 @@ const Home = (props: Props) => {
     setIsFirstLoad(false);
     setImageKey((prevKey) => prevKey + 1);
     setTextKey((prevKey) => prevKey + 1);
-    setDesKey((prevKey) => prevKey + 1);
     startInterval(); // Reset the interval
   };
 

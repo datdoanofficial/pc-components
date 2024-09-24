@@ -1,0 +1,159 @@
+@import "../common/root.scss";
+
+.store-page {
+  width: 100%;
+  height: fit-content;
+  position: relative;
+
+  .text-information {
+    position: absolute;
+    top: 0px;
+    height: 650px;
+    width: 100%;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 15%,
+      rgba(20, 20, 20, 0.55) 100%
+    );
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 98;
+    overflow: hidden;
+
+    span {
+      position: absolute;
+      top: 52%;
+      left: 106px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 200;
+      font-size: 24px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .title {
+      position: absolute;
+      top: 62%;
+      left: 100px;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-size: 100px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+  }
+
+  // navbar background
+  .navbar-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 110px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(30px);
+    z-index: 100;
+  }
+
+  // section 01
+  .section-01 {
+    position: relative;
+    width: 100%;
+    height: 180vh;
+    left: 0px;
+    background: #000000;
+    background-image: none;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+    z-index: 1;
+
+    /* Product Showcase */
+
+    .products_showcase {
+      position: fixed;
+      top: -9%;
+      left: -10%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: fit-content;
+      overflow: hidden;
+      transform: rotate(-8deg);
+
+      //   line showcase
+      .line-showcase {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+        padding: 25px 60px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+
+        //   item showcase
+        .item_showcase {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 2 / 1.18;
+          background-size: cover;
+          border-radius: 20px;
+          border: 7px solid #2a2a2a;
+        }
+      }
+
+      //   line showcase 01
+      .products_showcase_01 {
+        // item 01
+        .item_01 {
+          background-image: url(../../assets/images/store-page/parallax_01.png);
+        }
+        // item 02
+        .item_02 {
+          background-image: url(../../assets/images/store-page/parallax_02.png);
+        }
+        // item 03
+        .item_03 {
+          background-image: url(../../assets/images/store-page/parallax_03.png);
+        }
+      }
+
+      .products_showcase_02 {
+        .item_04 {
+          background-image: url(../../assets/images/store-page/parallax_04.png);
+        }
+
+        .item_05 {
+          background-image: url(../../assets/images/store-page/parallax_05.png);
+        }
+
+        .item_06 {
+          background-image: url(../../assets/images/store-page/parallax_06.png);
+        }
+      }
+
+      .products_showcase_03 {
+        .item_07 {
+          background-image: url(../../assets/images/store-page/parallax_07.png);
+        }
+
+        .item_08 {
+          background-image: url(../../assets/images/store-page/parallax_08.png);
+        }
+
+        .item_09 {
+          background-image: url(../../assets/images/store-page/parallax_09.png);
+        }
+      }
+    }
+  }
+
+  //   section 02
+  .section-02 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #000000;
+    z-index: 1;
+  }
+}
