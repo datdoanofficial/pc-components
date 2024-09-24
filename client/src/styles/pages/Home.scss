@@ -99,6 +99,7 @@ body {
       background-color: #101010;
       width: 1500px;
       height: 1500px;
+      overflow: hidden;
       border-radius: 50%;
       z-index: 100;
     }
@@ -290,7 +291,10 @@ body {
       }
 
       .number.active {
-        position: relative;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         height: 30px;
         font-size: 18px;
@@ -304,121 +308,175 @@ body {
       // up number animation
 
       &.up .number:nth-child(1) p {
-        animation: number01 0.5s ease, numberReappear 0.5s ease;
+        animation: number01 0.5s ease;
 
-        // @keyframes number01 {
-        //   0% {
-        //     transform: translateY(0);
-        //     font-size: 10px;
-        //     opacity: 1;
-        //   }
-        //   to {
-        //     transform: translateY(-100%);
-        //     font-size: 0px;
-        //     opacity: 0;
-        //   }
-        // }
-
-        // @keyframes numberReappear {
-        //   from {
-        //     position: absolute;
-        //     bottom: -20px;
-        //     left: 50%;
-        //     transform: translateX(-50%);
-        //     font-size: 0;
-        //     opacity: 0;
-        //   }
-        //   to {
-        //     position: absolute;
-        //     bottom: 0px;
-        //     left: 50%;
-        //     transform: translateX(-50%);
-        //     font-size: 10px;
-        //     opacity: 1;
-        //   }
-        // }
+        @keyframes number01 {
+          from {
+            transform: translateY(150%);
+            font-size: 14px;
+          }
+          to {
+            transform: translateY(0%);
+            font-size: 10px;
+          }
+        }
       }
 
       &.up .number:nth-child(2) p {
+        margin-bottom: 20px;
         animation: number02 0.5s ease;
 
-        // @keyframes number02 {
-        //   from {
-        //     transform: translateY(0);
-        //     font-size: 14px;
-        //   }
-        //   to {
-        //     transform: translateY(-100%);
-        //     font-size: 10px;
-        //   }
-        // }
+        @keyframes number02 {
+          from {
+            transform: translateY(100%);
+            font-size: 18px;
+          }
+          to {
+            transform: translateY(-20%);
+            font-size: 14px;
+          }
+        }
       }
 
       &.up .number:nth-child(3) p {
         animation: number03 0.5s ease;
 
-        // @keyframes number03 {
-        //   from {
-        //     transform: translateY(0);
-        //     font-size: 18px;
-        //   }
-        //   to {
-        //     transform: translateY(-170%);
-        //     font-size: 14px;
-        //   }
-        // }
+        @keyframes number03 {
+          from {
+            transform: translateY(170%);
+            font-size: 14px;
+          }
+          to {
+            transform: translateY(0%);
+            font-size: 18px;
+          }
+        }
       }
 
       &.up .number:nth-child(4) p {
+        margin-top: 20px;
         animation: number04 0.5s ease;
 
-        // @keyframes number04 {
-        //   from {
-        //     transform: translateY(0%);
-        //     font-size: 14px;
-        //   }
-        //   to {
-        //     transform: translateY(-100%);
-        //     font-size: 18px;
-        //   }
-        // }
+        @keyframes number04 {
+          from {
+            transform: translateY(100%);
+            font-size: 10px;
+          }
+          to {
+            transform: translateY(-50%);
+            font-size: 14px;
+          }
+        }
       }
 
       &.up .number:nth-child(5) p {
-        animation: number05 0.5s ease forwards;
+        animation: number05 0.5s ease;
 
-        // @keyframes number05 {
-        //   from {
-        //     transform: translateY(0);
-        //     font-size: 10px;
-        //   }
-        //   to {
-        //     transform: translateY(-100%);
-        //     font-size: 14px;
-        //   }
-        // }
+        @keyframes number05 {
+          from {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0;
+            opacity: 0;
+          }
+          to {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            opacity: 1;
+          }
+        }
       }
 
       // down number animation
 
       &.down .number:nth-child(1) p {
-        animation: number01Down 0.5s ease forwards;
+        animation: number01Down 0.5s ease;
+
+        @keyframes number01Down {
+          from {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0;
+            opacity: 0;
+          }
+          to {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            opacity: 1;
+          }
+        }
       }
 
       &.down .number:nth-child(2) p {
-        animation: number02Down 0.5s ease forwards;
+        margin-bottom: 20px;
+        animation: number02Down 0.5s ease;
+
+        @keyframes number02Down {
+          from {
+            transform: translateY(-100%);
+            font-size: 10px;
+          }
+          to {
+            transform: translateY(50%);
+            font-size: 14px;
+          }
+        }
       }
 
       &.down .number:nth-child(3) p {
-        animation: number03Down 0.5s ease forwards;
+        animation: number03Down 0.5s ease;
+
+        @keyframes number03Down {
+          from {
+            transform: translateY(-170%);
+            font-size: 14px;
+          }
+          to {
+            transform: translateY(0%);
+            font-size: 18px;
+          }
+        }
       }
 
       &.down .number:nth-child(4) p {
-        animation: number04Down 0.5s ease forwards;
+        margin-top: 20px;
+        animation: number04Down 0.5s ease;
+
+        @keyframes number04Down {
+          from {
+            transform: translateY(-100%);
+            font-size: 18px;
+          }
+          to {
+            transform: translateY(20%);
+            font-size: 14px;
+          }
+        }
       }
 
       &.down .number:nth-child(5) p {
-        animation: number05Down 0.5s ease forwards;
+        animation: number05Down 0.5s ease;
+
+        @keyframes number05Down {
+          from {
+            transform: translateY(-150%);
+            font-size: 14px;
+          }
+          to {
+            transform: translateY(0%);
+            font-size: 10px;
+          }
+        }
       }
     }
 
