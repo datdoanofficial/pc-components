@@ -4,6 +4,7 @@ import "../styles/pages/Store.scss";
 type Props = {};
 
 const Store = (props: Props) => {
+  const items = Array.from({ length: 14 });
   const productsShowcase01Ref = useRef<HTMLDivElement>(null);
   const productsShowcase02Ref = useRef<HTMLDivElement>(null);
   const productsShowcase03Ref = useRef<HTMLDivElement>(null);
@@ -72,7 +73,24 @@ const Store = (props: Props) => {
         </div>
       </section>
       {/* section 02 */}
-      <div className="section-02"></div>
+      <div className="section-02">
+        <div className="product-list">
+          <div className="sort-wrapper">
+            <span>Show:</span>
+            <div className="sort">
+              New Release<span className="tabler--chevron-down icon"></span>
+            </div>
+          </div>
+          <div className="product-items">
+            {items.map((_, index) => (
+              <div key={index} className="item">
+                Product
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="product-filter"></div>
+      </div>
     </div>
   );
 };
