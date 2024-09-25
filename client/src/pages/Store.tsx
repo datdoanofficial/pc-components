@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { Range, getTrackBackground } from "react-range";
 import "../styles/pages/Store.scss";
 
 import prdImg_Demo from "../assets/images/products/aorus_geforce_rtx4080_xtreme_waterforce.png";
+import prdLogo_Demo from "../assets/images/products/prd_logo_demo.png";
 
 type Props = {};
 
@@ -32,6 +34,34 @@ const Store = (props: Props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // price range
+
+  const [values, setValues] = useState([10, 9990]); // Initial values
+
+  const handleRangeChange = (values: number[]) => {
+    if (values[1] - values[0] >= 100) {
+      setValues(values);
+    }
+  };
+
+  const handleMinInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const minValue = Number(event.target.value);
+    if (minValue <= values[1] - 100) {
+      setValues([minValue, values[1]]);
+    } else {
+      setValues([minValue, minValue + 100]);
+    }
+  };
+
+  const handleMaxInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const maxValue = Number(event.target.value);
+    if (maxValue >= values[0] + 100) {
+      setValues([values[0], maxValue]);
+    } else {
+      setValues([maxValue - 100, maxValue]);
+    }
+  };
 
   return (
     <div className="store-page">
@@ -90,7 +120,9 @@ const Store = (props: Props) => {
                 <div className="product-card">
                   <div className="header-wrapper">
                     {/* logo */}
-                    <div className="logo"></div>
+                    <div className="logo">
+                      <img src={prdLogo_Demo} alt="" />
+                    </div>
                     {/* wishlist icon */}
                     <button className="wishlist-btn">
                       <span className="solar--heart-outline icon"></span>
@@ -114,7 +146,106 @@ const Store = (props: Props) => {
             ))}
           </div>
         </div>
-        <div className="product-filter"></div>
+        {/* product filter */}
+        <div className="product-filter">
+          {/* Categories */}
+          <div className="categories">
+            <div className="title">Categories</div>
+            {/* filter list */}
+            <div className="filter-list">
+              <div className="filter-item">Desktop Computer</div>
+              <div className="filter-item">PC Components</div>
+              <div className="filter-item">Gaming Peripherals</div>
+              <div className="filter-item">Ergonomic & Gaming Chairs</div>
+              <div className="filter-item">PlayStation & Xbox Consoles</div>
+              <div className="filter-item">Laptops & Notebook</div>
+              <div className="filter-item">Monitors</div>
+            </div>
+          </div>
+          {/* Filter By */}
+          <div className="filter-by">
+            <div className="title">Filter By</div>
+            {/* price range */}
+            <div className="price-range">
+              <span className="sub-title">Price</span>
+              <Range
+                values={values}
+                step={10}
+                min={10}
+                max={9990}
+                onChange={handleRangeChange}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: "4px",
+                      width: "100%",
+                      position: "relative",
+                      left: "2%",
+                      borderRadius: "4px",
+                      transition: "0.5s",
+                      background: getTrackBackground({
+                        values,
+                        colors: ["#fff", "#eb7e63", "#fff"],
+                        min: 10,
+                        max: 9990,
+                      }),
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
+                renderThumb={({ props }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: "18px",
+                      width: "18px",
+                      backgroundColor: "#fff",
+
+                      outline: "1px solid #eb7e63",
+                      borderRadius: "50%",
+                    }}
+                  />
+                )}
+              />
+              <div className="price-change">
+                <div className="numb-min">
+                  <span className="dollar">$</span>
+                  <input
+                    type="number"
+                    className="input-min"
+                    value={values[0]}
+                    onChange={handleMinInputChange}
+                    readOnly
+                  />
+                </div>
+                <div className="numb-max">
+                  <span className="dollar">$</span>
+                  <input
+                    type="number"
+                    className="input-max"
+                    value={values[1]}
+                    onChange={handleMaxInputChange}
+                    readOnly
+                  />
+                </div>
+              </div>
+            </div>
+            {/* filter list */}
+            <div className="filter-list">
+              <div className="filter-item">Desktop Computer</div>
+              <div className="filter-item">PC Components</div>
+              <div className="filter-item">Gaming Peripherals</div>
+              <div className="filter-item">Ergonomic & Gaming Chairs</div>
+              <div className="filter-item">PlayStation & Xbox Consoles</div>
+              <div className="filter-item">Laptops & Notebook</div>
+              <div className="filter-item">Monitors</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
