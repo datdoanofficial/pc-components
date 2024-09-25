@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import "../styles/pages/Store.scss";
 
+import prdImg_Demo from "../assets/images/products/aorus_geforce_rtx4080_xtreme_waterforce.png";
+
 type Props = {};
 
 const Store = (props: Props) => {
@@ -83,8 +85,31 @@ const Store = (props: Props) => {
           </div>
           <div className="product-items">
             {items.map((_, index) => (
-              <div key={index} className="item">
-                Product
+              <div key={index} className="product-card-wrapper">
+                {/* product card */}
+                <div className="product-card">
+                  <div className="header-wrapper">
+                    {/* logo */}
+                    <div className="logo"></div>
+                    {/* wishlist icon */}
+                    <button className="wishlist-btn">
+                      <span className="solar--heart-outline icon"></span>
+                    </button>
+                  </div>
+                  {/* image */}
+                  <div className="product-image">
+                    <img src={prdImg_Demo} alt="" />
+                  </div>
+                  {/* add to cart btn */}
+                  <button className="add-to-cart">Add to cart</button>
+                </div>
+                {/* product information */}
+                <div className="product-information">
+                  <a href="/" className="product-name">
+                    AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE
+                  </a>
+                  <div className="product-price">$1499.00</div>
+                </div>
               </div>
             ))}
           </div>
