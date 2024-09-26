@@ -8,7 +8,7 @@ import prdLogo_Demo from "../assets/images/products/prd_logo_demo.png";
 type Props = {};
 
 const Store = (props: Props) => {
-  const items = Array.from({ length: 50 });
+  const items = Array.from({ length: 8 });
   const productsShowcase01Ref = useRef<HTMLDivElement>(null);
   const productsShowcase02Ref = useRef<HTMLDivElement>(null);
   const productsShowcase03Ref = useRef<HTMLDivElement>(null);

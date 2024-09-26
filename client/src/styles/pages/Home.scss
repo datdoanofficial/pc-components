@@ -37,16 +37,15 @@ body {
     width: 100%;
     height: 100%;
     padding-left: 100px;
-    padding-top: 80px;
+    padding-top: 90px;
 
     // Title styling
     .heading {
-      font-size: 83px;
+      font-size: 85px;
       font-weight: 500;
       line-height: 110px;
       text-transform: uppercase;
       font-family: $roboto;
-      margin-bottom: 30px;
 
       .character {
         font-family: $the-nautigal;
@@ -70,7 +69,7 @@ body {
         max-width: 85%;
         line-height: 32px;
         font-family: $open-sans;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
         margin-top: 30px;
       }
     }
