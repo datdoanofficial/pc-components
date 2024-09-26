@@ -8,10 +8,17 @@ import prdLogo_Demo from "../assets/images/products/prd_logo_demo.png";
 type Props = {};
 
 const Store = (props: Props) => {
-  const items = Array.from({ length: 14 });
+  const items = Array.from({ length: 50 });
   const productsShowcase01Ref = useRef<HTMLDivElement>(null);
   const productsShowcase02Ref = useRef<HTMLDivElement>(null);
   const productsShowcase03Ref = useRef<HTMLDivElement>(null);
+  const [activeFilterList1, setActiveFilterList1] = useState<string | null>(
+    null
+  );
+  const [activeFilterList2, setActiveFilterList2] = useState<string | null>(
+    null
+  );
+  const [displayedItems, setDisplayedItems] = useState<number>(9);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +70,25 @@ const Store = (props: Props) => {
     }
   };
 
+  // handle filter click for list 1
+  const handleFilterClickList1 = (filter: string) => {
+    setActiveFilterList1((prevFilter) =>
+      prevFilter === filter ? null : filter
+    );
+  };
+
+  // handle filter click for list 2
+  const handleFilterClickList2 = (filter: string) => {
+    setActiveFilterList2((prevFilter) =>
+      prevFilter === filter ? null : filter
+    );
+  };
+
+  // handle load more items
+  const handleLoadMore = () => {
+    setDisplayedItems((prevCount) => prevCount + 9);
+  };
+
   return (
     <div className="store-page">
       {/* text information */}
@@ -106,15 +132,18 @@ const Store = (props: Props) => {
       </section>
       {/* section 02 */}
       <div className="section-02">
+        {/* product list */}
         <div className="product-list">
+          {/* sort */}
           <div className="sort-wrapper">
             <span>Show:</span>
             <div className="sort">
               New Release<span className="tabler--chevron-down icon"></span>
             </div>
           </div>
+          {/* product items */}
           <div className="product-items">
-            {items.map((_, index) => (
+            {items.slice(0, displayedItems).map((_, index) => (
               <div key={index} className="product-card-wrapper">
                 {/* product card */}
                 <div className="product-card">
@@ -145,6 +174,12 @@ const Store = (props: Props) => {
               </div>
             ))}
           </div>
+          {/* load more button */}
+          {displayedItems < items.length && (
+            <button className="load-more-btn" onClick={handleLoadMore}>
+              Load more
+            </button>
+          )}
         </div>
         {/* product filter */}
         <div className="product-filter">
@@ -153,13 +188,31 @@ const Store = (props: Props) => {
             <div className="title">Categories</div>
             {/* filter list */}
             <div className="filter-list">
-              <div className="filter-item">Desktop Computer</div>
-              <div className="filter-item">PC Components</div>
-              <div className="filter-item">Gaming Peripherals</div>
-              <div className="filter-item">Ergonomic & Gaming Chairs</div>
-              <div className="filter-item">PlayStation & Xbox Consoles</div>
-              <div className="filter-item">Laptops & Notebook</div>
-              <div className="filter-item">Monitors</div>
+              {[
+                "Desktop Computer",
+                "PC Components",
+                "Gaming Peripherals",
+                "Ergonomic & Gaming Chairs",
+                "PlayStation & Xbox Consoles",
+                "Laptops & Notebook",
+                "Monitors",
+              ].map((filter) => (
+                <div
+                  key={filter}
+                  className={`filter-item ${
+                    activeFilterList1 === filter ? "active" : ""
+                  }`}
+                  onClick={() => handleFilterClickList1(filter)}
+                  style={{
+                    color: activeFilterList1 === filter ? "#eb7e63" : "#8a8a8a",
+                  }}
+                >
+                  <p>{filter}</p>
+                  {activeFilterList1 === filter && (
+                    <span className="tabler--check"></span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
           {/* Filter By */}
@@ -236,13 +289,33 @@ const Store = (props: Props) => {
             </div>
             {/* filter list */}
             <div className="filter-list">
-              <div className="filter-item">Desktop Computer</div>
-              <div className="filter-item">PC Components</div>
-              <div className="filter-item">Gaming Peripherals</div>
-              <div className="filter-item">Ergonomic & Gaming Chairs</div>
-              <div className="filter-item">PlayStation & Xbox Consoles</div>
-              <div className="filter-item">Laptops & Notebook</div>
-              <div className="filter-item">Monitors</div>
+              {[
+                "CPUs / Processors",
+                "Motherboards",
+                "GPUs / Graphics Cards",
+                "Memory / RAM",
+                "Hard Drives & SSDs",
+                "Cases",
+                "Power Supplies",
+                "Fans & Cooling",
+                "Custom Liquid Cooling",
+              ].map((filter) => (
+                <div
+                  key={filter}
+                  className={`filter-item ${
+                    activeFilterList2 === filter ? "active" : ""
+                  }`}
+                  onClick={() => handleFilterClickList2(filter)}
+                  style={{
+                    color: activeFilterList2 === filter ? "#eb7e63" : "#8a8a8a",
+                  }}
+                >
+                  <p>{filter}</p>
+                  {activeFilterList2 === filter && (
+                    <span className="tabler--check"></span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

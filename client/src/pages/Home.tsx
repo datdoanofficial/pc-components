@@ -30,7 +30,7 @@ const Home = (props: Props) => {
       setIsFirstLoad(false);
       setImageKey((prevKey) => prevKey + 1);
       setTextKey((prevKey) => prevKey + 1);
-    }, 10000); // Change active number every 5 seconds
+    }, 8000); // Change active number every 8 seconds
   };
 
   useEffect(() => {
