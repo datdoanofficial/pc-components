@@ -44,10 +44,10 @@ const Store = (props: Props) => {
 
   // price range
 
-  const [values, setValues] = useState([10, 9990]); // Initial values
+  const [values, setValues] = useState([100, 9900]); // Initial values
 
   const handleRangeChange = (values: number[]) => {
-    if (values[1] - values[0] >= 100) {
+    if (values[1] - values[0] >= 1000) {
       setValues(values);
     }
   };
@@ -96,8 +96,6 @@ const Store = (props: Props) => {
         <span>Accessories for the PC - upgrade or assemble yourself</span>
         <div className="title">Explore Our Catalog</div>
       </div>
-      {/* navbar background */}
-      <div className="navbar-background"></div>
       {/* section 01 */}
       <section className="section-01" id="parallax">
         <div className="products_showcase">
@@ -223,8 +221,8 @@ const Store = (props: Props) => {
               <span className="sub-title">Price</span>
               <Range
                 values={values}
-                step={10}
-                min={10}
+                step={50}
+                min={100}
                 max={9990}
                 onChange={handleRangeChange}
                 renderTrack={({ props, children }) => (
@@ -235,13 +233,13 @@ const Store = (props: Props) => {
                       height: "4px",
                       width: "100%",
                       position: "relative",
-                      left: "2%",
+                      left: "0%",
                       borderRadius: "4px",
                       transition: "0.5s",
                       background: getTrackBackground({
                         values,
                         colors: ["#fff", "#eb7e63", "#fff"],
-                        min: 10,
+                        min: 100,
                         max: 9990,
                       }),
                     }}
@@ -257,7 +255,6 @@ const Store = (props: Props) => {
                       height: "18px",
                       width: "18px",
                       backgroundColor: "#fff",
-
                       outline: "1px solid #eb7e63",
                       borderRadius: "50%",
                     }}

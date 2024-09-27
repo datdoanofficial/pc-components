@@ -1,7 +1,7 @@
 @import "../../styles/common/root.scss";
 
 .footer {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: fit-content;
   background-color: #000;
@@ -45,7 +45,8 @@
       // author
       .author {
         color: #fff;
-        font-size: 18px;
+        font-size: 16px;
+        font-family: $open-sans;
         font-weight: 300;
         margin-top: 20px;
         display: flex;

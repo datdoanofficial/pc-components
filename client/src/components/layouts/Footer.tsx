@@ -1,5 +1,5 @@
+import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 import "./Footer.scss";
 
 import logo from "../../assets/images/logo.png";
@@ -10,6 +10,7 @@ type Props = {};
 const Footer = (props: Props) => {
   const footerRef = useRef<HTMLDivElement>(null);
   const headerFooterRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +26,17 @@ const Footer = (props: Props) => {
             (scrollPosition + windowHeight - footerOffsetTop) / maxScroll,
             1
           );
-          const height = 800 * scrollRatio;
+
+          // Adjust height calculation based on the current page
+          let height;
+          if (location.pathname === "/store") {
+            height = 800 * scrollRatio;
+          } else if (location.pathname === "/news") {
+            height = 400 * scrollRatio;
+          } else {
+            height = 800 * scrollRatio; // Default height for other pages
+          }
+
           headerFooterRef.current.style.height = `${height}px`;
         } else {
           headerFooterRef.current.style.height = `0px`;
@@ -38,7 +49,7 @@ const Footer = (props: Props) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [location]);
 
   return (
     <div className="footer" ref={footerRef}>
@@ -46,7 +57,7 @@ const Footer = (props: Props) => {
         className="header-footer"
         ref={headerFooterRef}
         style={{
-          transition: "height .1s ease",
+          transition: "height 0.1s ease",
         }}
       ></div>
       <div className="footer-contain">
