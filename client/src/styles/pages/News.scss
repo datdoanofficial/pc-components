@@ -96,18 +96,20 @@
         }
 
         .readmore-btn {
+          position: relative;
           width: fit-content;
           display: block;
           font-family: $open-sans;
           font-weight: 300;
           font-size: 16px;
           text-transform: capitalize;
-          text-decoration-thickness: 0.8px;
-          text-underline-offset: 2px;
+          text-decoration-thickness: 0.7px;
+          text-underline-offset: 3px;
           color: #fff;
           margin-top: 20px;
           border-radius: 50px;
           transition: 0.5s;
+          z-index: 1;
 
           &:hover {
             text-decoration: none;
@@ -177,8 +179,8 @@
           aspect-ratio: 3 / 1.8;
           margin-right: 40px;
           border-radius: 10px;
+          border: 1px solid #4a4a4a;
           background: #2a2a2a;
-          cursor: pointer;
         }
 
         .content-wrapper {
@@ -210,7 +212,7 @@
             font-size: 15px;
             text-transform: capitalize;
             text-decoration-thickness: 0.6px;
-            text-underline-offset: 2px;
+            text-underline-offset: 3px;
             color: #fff;
             margin-top: 15px;
             border-radius: 50px;
