@@ -138,6 +138,20 @@ const Help = (props: Props) => {
       {/* system support center */}
       <div className="system-support-center">
         <div className="title">System support</div>
+        <div className="card-inline">
+          <div className="line-01">
+            <div className="item"></div>
+            <div className="item"></div>
+            <div className="item"></div>
+          </div>
+          <div className="line-02">
+            <div className="item"></div>
+            <div className="item"></div>
+            <div className="item"></div>
+            <div className="item"></div>
+            <div className="item"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
