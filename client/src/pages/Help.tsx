@@ -10,6 +10,43 @@ import systemSupport from "../assets/images/help-page/system-sp.png";
 type Props = {};
 
 const Help = (props: Props) => {
+  const line01_items = [
+    {
+      title: "Service & repair",
+      iconClass: "mdi--account-service",
+    },
+    {
+      title: "Security Issue",
+      iconClass: "ic--round-report",
+    },
+    {
+      title: "Ordering",
+      iconClass: "solar--bill-list-bold",
+    },
+  ];
+  const line02_items = [
+    {
+      title: "Shipping",
+      iconClass: "ic--round-local-shipping",
+    },
+    {
+      title: "Products",
+      iconClass: "solar--box-bold",
+    },
+    {
+      title: "Returns (RMA)",
+      iconClass: "material-symbols--autorenew-rounded",
+    },
+    {
+      title: "Promotions",
+      iconClass: "iconamoon--discount-fill",
+    },
+    {
+      title: "Website",
+      iconClass: "iconoir--www",
+    },
+  ];
+
   return (
     <div className="help-page">
       <MouseMoveHandler />
@@ -138,18 +175,37 @@ const Help = (props: Props) => {
       {/* system support center */}
       <div className="system-support-center">
         <div className="title">System support</div>
+        {/* card inline */}
         <div className="card-inline">
+          {/* line 01 */}
           <div className="line-01">
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
+            {/* item */}
+            {line01_items.map((item, index) => (
+              <div className="item" key={index}>
+                <div className="title">
+                  <span className={`icon ${item.iconClass}`}></span>
+                  <p>{item.title}</p>
+                </div>
+                <button className="browse-btn">
+                  <div className="overlay"></div>
+                  <span className="tabler--arrow-up icon"></span>
+                </button>
+              </div>
+            ))}
           </div>
           <div className="line-02">
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
+            {line02_items.map((item, index) => (
+              <div className="item" key={index}>
+                <div className="title">
+                  <span className={`icon ${item.iconClass}`}></span>
+                  <p>{item.title}</p>
+                </div>
+                <button className="browse-btn">
+                  <div className="overlay"></div>
+                  <span className="tabler--arrow-up icon"></span>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>
