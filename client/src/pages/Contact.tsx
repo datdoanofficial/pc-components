@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../styles/pages/Contact.scss";
 import MouseMoveHandler from "../components/common/MouseMoveHandler";
 import VanillaTilt from "../styles/common/tilt";
+import mapImg from "../assets/images/contact-page/map.png";
 
 type Props = {};
 
@@ -59,28 +60,44 @@ const Contact = (props: Props) => {
       {/* information */}
       <div className="information">
         <div className="in4-wrapper">
+          <div className="line"></div>
           {/* in4 */}
           <div className="in4">
-            <p>
-              <span>Company Name:</span> Next In
-            </p>
-            <p>
-              <span>Reg Nr:</span> 19888668 (DEMO)
-            </p>
-            <p>
-              <span>VAT Nr:</span> EE108687329 (DEMO)
-            </p>
-            <p>
-              <span>IBAN Nr:</span> EE27220022108668 (DEMO)
-            </p>
-          </div>
-          {/* social links */}
-          <div className="social-links">
-            <a href="/">Facebook</a>
-            <a href="/">Instagram</a>
-            <a href="/">LinkedIn</a>
+            <div className="subtitle">
+              <p>Company Name:</p>
+              <p>Reg Nr:</p>
+              <p>VAT Nr:</p>
+              <p>IBAN Nr:</p>
+            </div>
+            <div className="content">
+              <p>Next In</p>
+              <p>19888668 (DEMO)</p>
+              <p>EE108687329 (DEMO)</p>
+              <p>EE27220022108668 (DEMO)</p>
+            </div>
           </div>
         </div>
+        {/* social links */}
+        <div className="social-links">
+          <div className="line"></div>
+          <a href="/">Facebook</a>
+          <a href="/">Instagram</a>
+          <a href="/">LinkedIn</a>
+        </div>
+      </div>
+      <div className="map">
+        <img src={mapImg} alt="" className="map-img" />
+        <p>
+          Find us at{" "}
+          <a
+            href="https://www.google.com/maps/place/Flags+of+ASEAN+Nations/10.7721534,106.7055294,18z/data=!4m6!3m5!1s0x31752f43e5fe043f:0x3bfe49efa7dcf98!8m2!3d10.7713821!4d106.7065387!16s%2Fg%2F11f40t03jq?entry=ttu"
+            className="address"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Map
+          </a>
+        </p>
       </div>
     </div>
   );
