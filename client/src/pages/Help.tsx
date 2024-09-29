@@ -16,7 +16,7 @@ const Help = (props: Props) => {
       iconClass: "mdi--account-service",
     },
     {
-      title: "Security Issue",
+      title: "Report Issue",
       iconClass: "ic--round-report",
     },
     {
@@ -186,10 +186,10 @@ const Help = (props: Props) => {
                   <span className={`icon ${item.iconClass}`}></span>
                   <p>{item.title}</p>
                 </div>
-                <button className="browse-btn">
+                <div className="browse-btn">
                   <div className="overlay"></div>
                   <span className="tabler--arrow-up icon"></span>
-                </button>
+                </div>
               </div>
             ))}
           </div>
@@ -200,10 +200,10 @@ const Help = (props: Props) => {
                   <span className={`icon ${item.iconClass}`}></span>
                   <p>{item.title}</p>
                 </div>
-                <button className="browse-btn">
+                <div className="browse-btn">
                   <div className="overlay"></div>
                   <span className="tabler--arrow-up icon"></span>
-                </button>
+                </div>
               </div>
             ))}
           </div>

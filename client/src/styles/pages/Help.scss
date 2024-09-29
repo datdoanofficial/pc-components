@@ -329,6 +329,7 @@
         .item:nth-child(1) {
           background-image: url(../../assets/images/help-page/service_repair.png);
           background-size: cover;
+          background-position: center;
 
           .title {
             font-family: $open-sans;
@@ -348,6 +349,7 @@
         .item:nth-child(2) {
           background-image: url(../../assets/images/help-page/report_issue.png);
           background-size: cover;
+          background-position: center;
 
           .title {
             .icon {
@@ -360,6 +362,7 @@
         .item:nth-child(3) {
           background-image: url(../../assets/images/help-page/ordering.png);
           background-size: cover;
+          background-position: center;
         }
 
         .item {
@@ -421,20 +424,16 @@
 
           .browse-btn {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             right: 10px;
             bottom: 10px;
-            border-radius: 50%;
-            color: $text-color;
+            width: 40px;
+            height: 40px;
             font-size: 1.5em;
-            backdrop-filter: brightness(50%);
-            background: none;
-            outline: none;
-            border: none;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
 
             .overlay {
               position: absolute;
@@ -477,30 +476,35 @@
         .item:nth-child(1) {
           background-image: url(../../assets/images/help-page/shipping.png);
           background-size: cover;
+          background-position: center;
         }
 
         // item 02
         .item:nth-child(2) {
           background-image: url(../../assets/images/help-page/product.png);
           background-size: cover;
+          background-position: center;
         }
 
         // item 03
         .item:nth-child(3) {
           background-image: url(../../assets/images/help-page/returns.png);
           background-size: cover;
+          background-position: center;
         }
 
         // item 04
         .item:nth-child(4) {
           background-image: url(../../assets/images/help-page/discount.png);
           background-size: cover;
+          background-position: center;
         }
 
         // item 05
         .item:nth-child(5) {
           background-image: url(../../assets/images/help-page/website.png);
           background-size: cover;
+          background-position: center;
         }
 
         .item {
@@ -525,8 +529,8 @@
           }
 
           &:hover .browse-btn .overlay {
-            transform: scale(50);
-            opacity: 0.6;
+            transform: scale(35);
+            opacity: 0.7;
           }
 
           .title {
@@ -562,27 +566,23 @@
 
           .browse-btn {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             right: 10px;
             bottom: 10px;
-            border-radius: 50%;
-            color: $text-color;
+            width: 40px;
+            height: 40px;
             font-size: 1.5em;
-            backdrop-filter: brightness(50%);
-            background: none;
-            outline: none;
-            border: none;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
 
             .overlay {
-              position: absolute;
+              position: relative;
               width: 100%;
               height: 100%;
               background: black;
-              opacity: 0.4;
+              opacity: 0.5;
               border-radius: 50%;
               transform: scale(1);
               transition: all 0.4s ease-in-out;
@@ -600,6 +600,7 @@
             }
 
             .icon {
+              position: absolute;
               transform: rotate(135deg);
             }
           }
