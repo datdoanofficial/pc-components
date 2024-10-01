@@ -8,6 +8,12 @@ import ggIcon from "../assets/images/login-page/gg-icon.png";
 import wechatIcon from "../assets/images/login-page/wechat-icon.png";
 import twitchIcon from "../assets/images/login-page/twitch-icon.png";
 
+import nextinOption from "../assets/images/login-page/nextin-option.png";
+import fbOption from "../assets/images/login-page/fb-option.png";
+import ggOption from "../assets/images/login-page/gg-option.png";
+import wechatOption from "../assets/images/login-page/wechat-option.png";
+import twitchOption from "../assets/images/login-page/twitch-option.png";
+
 const Login: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
@@ -188,39 +194,24 @@ const Login: React.FC = () => {
                     className="email-regis regis-link"
                     id="email-signup"
                   >
-                    <img
-                      src="../assets/images/login-page/nextin-option.png"
-                      alt="Next In"
-                    />
-                    <span>Sign up with Next In</span>
+                    <img src={nextinOption} alt="Next In" />
+                    <p>Sign up with Next In</p>
                   </a>
                   <a href="/" className="fb-regis regis-link">
-                    <img
-                      src="../assets/images/login-page/fb-option.png"
-                      alt="Facebook"
-                    />
-                    <span>Sign up with Facebook</span>
+                    <img src={fbOption} alt="Facebook" />
+                    <p>Sign up with Facebook</p>
                   </a>
                   <a href="/" className="gg-regis regis-link">
-                    <img
-                      src="../assets/images/login-page/gg-option.png"
-                      alt="Google"
-                    />
-                    <span>Sign up with Google</span>
+                    <img src={ggOption} alt="Google" />
+                    <p>Sign up with Google</p>
                   </a>
                   <a href="/" className="wechat-regis regis-link">
-                    <img
-                      src="../assets/images/login-page/wechat-option.png"
-                      alt="WeChat"
-                    />
-                    <span>Sign up with WeChat</span>
+                    <img src={wechatOption} alt="WeChat" />
+                    <p>Sign up with WeChat</p>
                   </a>
                   <a href="/" className="twitch-regis regis-link">
-                    <img
-                      src="../assets/images/login-page/twitch-option.png"
-                      alt="Twitch"
-                    />
-                    <span>Sign up with Twitch</span>
+                    <img src={twitchOption} alt="Twitch" />
+                    <p>Sign up with Twitch</p>
                   </a>
                   <span className="sign-in-link">
                     Already have a Next In account?&nbsp;
@@ -230,7 +221,7 @@ const Login: React.FC = () => {
                   </span>
                 </div>
               </div>
-              {/* next in regis form */}
+              {/* registration form */}
               <form action="#" className="sign-up-form" id="regis-frm">
                 <div className="regis-form-contain" id="regis-contain">
                   {/* input fields */}
