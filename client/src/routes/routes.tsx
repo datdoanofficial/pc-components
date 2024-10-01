@@ -3,6 +3,7 @@ import store from "../pages/Store";
 import news from "../pages/News";
 import help from "../pages/Help";
 import contact from "../pages/Contact";
+import login from "../pages/Login";
 import notfound from "../pages/NotFound";
 
 export const routes = [
@@ -40,6 +41,13 @@ export const routes = [
     title: "Contact | Next In",
     isShowNavbar: true,
     isShowFooter: true,
+  },
+  {
+    path: "/login",
+    page: login,
+    title: "Login | Next In",
+    isShowNavbar: false,
+    isShowFooter: false,
   },
   {
     path: "*",
