@@ -16,9 +16,17 @@ import twitchOption from "../assets/images/login-page/twitch-option.png";
 
 const Login: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
 
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
+    setShowRegistrationForm(false); // Reset registration form visibility when toggling forms
+  };
+
+  // Handle email signup click
+  const handleEmailSignupClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setShowRegistrationForm(true);
   };
 
   return (
@@ -187,133 +195,136 @@ const Login: React.FC = () => {
           ) : (
             <section className="sign-up" id="regis">
               {/* Method Regis */}
-              <div className="regis-options" id="regisOp">
-                <div className="method-contain" id="method-contain">
-                  <a
-                    href="/"
-                    className="email-regis regis-link"
-                    id="email-signup"
-                  >
-                    <img src={nextinOption} alt="Next In" />
-                    <p>Sign up with Next In</p>
-                  </a>
-                  <a href="/" className="fb-regis regis-link">
-                    <img src={fbOption} alt="Facebook" />
-                    <p>Sign up with Facebook</p>
-                  </a>
-                  <a href="/" className="gg-regis regis-link">
-                    <img src={ggOption} alt="Google" />
-                    <p>Sign up with Google</p>
-                  </a>
-                  <a href="/" className="wechat-regis regis-link">
-                    <img src={wechatOption} alt="WeChat" />
-                    <p>Sign up with WeChat</p>
-                  </a>
-                  <a href="/" className="twitch-regis regis-link">
-                    <img src={twitchOption} alt="Twitch" />
-                    <p>Sign up with Twitch</p>
-                  </a>
-                  <span className="sign-in-link">
-                    Already have a Next In account?&nbsp;
-                    <a href="/" id="signin-link" onClick={toggleForm}>
-                      Sign In
-                    </a>
-                  </span>
-                </div>
-              </div>
-              {/* registration form */}
-              <form action="#" className="sign-up-form" id="regis-frm">
-                <div className="regis-form-contain" id="regis-contain">
-                  {/* input fields */}
-                  <div className="input-fields">
-                    <div className="fields-name">
-                      <input
-                        type="text"
-                        name="fname"
-                        placeholder="First Name"
-                        required
-                        className="fname"
-                      />
-                      <input
-                        type="text"
-                        name="lname"
-                        placeholder="Last Name"
-                        required
-                      />
+              {!showRegistrationForm && (
+                <div className="regis-options" id="regisOp">
+                  <div className="method-contain" id="method-contain">
+                    <div
+                      className="email-regis regis-link"
+                      id="email-signup"
+                      onClick={handleEmailSignupClick}
+                    >
+                      <img src={nextinOption} alt="Next In" />
+                      <p>Sign up with Next In</p>
                     </div>
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      required
-                    />
-                    <div className="input-box">
-                      <input
-                        type="password"
-                        name="pwd"
-                        placeholder="Password"
-                        required
-                      />
-                      <span
-                        className="iconify"
-                        id="hide-pwd"
-                        data-icon="ph:eye-slash-light"
-                        data-width="26"
-                        data-height="26"
-                      ></span>
-                      <span
-                        className="iconify"
-                        id="unhide-pwd"
-                        data-icon="ph:eye-light"
-                        data-width="26"
-                        data-height="26"
-                      ></span>
-                      <span
-                        className="iconify"
-                        id="in4-pwd"
-                        data-icon="mdi-light:information"
-                        data-width="26"
-                        data-height="26"
-                      ></span>
-                    </div>
-                  </div>
-                  {/* terms */}
-                  <div className="argeeTerms">
-                    <label className="terms">
-                      <input
-                        type="checkbox"
-                        checked
-                        name="terms"
-                        id="termsofservice"
-                      />
-                      <span className="checkmark"></span>I have read and agree
-                      to the&nbsp;
-                      <a href="/" className="terms-link">
-                        terms of service
-                      </a>
-                    </label>
-                  </div>
-                  {/* regis button */}
-                  <input
-                    type="submit"
-                    name="regisbtn"
-                    value="continue"
-                    className="regis-btn"
-                  />
-                  {/* privacy & link sign up */}
-                  <div className="link-wrapper">
-                    <a href="/" className="privacy">
-                      Privacy Policy
+                    <a href="/" className="fb-regis regis-link">
+                      <img src={fbOption} alt="Facebook" />
+                      <p>Sign up with Facebook</p>
                     </a>
-                    <span className="sign-up-link">
+                    <a href="/" className="gg-regis regis-link">
+                      <img src={ggOption} alt="Google" />
+                      <p>Sign up with Google</p>
+                    </a>
+                    <a href="/" className="wechat-regis regis-link">
+                      <img src={wechatOption} alt="WeChat" />
+                      <p>Sign up with WeChat</p>
+                    </a>
+                    <a href="/" className="twitch-regis regis-link">
+                      <img src={twitchOption} alt="Twitch" />
+                      <p>Sign up with Twitch</p>
+                    </a>
+                    <span className="sign-in-link">
                       Already have a Next In account?&nbsp;
-                      <a href="/" id="signin-link-1" onClick={toggleForm}>
+                      <a href="/" id="signin-link" onClick={toggleForm}>
                         Sign In
                       </a>
                     </span>
                   </div>
                 </div>
-              </form>
+              )}
+              {/* registration form */}
+              {showRegistrationForm && (
+                <form action="#" className="sign-up-form" id="regis-frm">
+                  <div className="regis-form-contain" id="regis-contain">
+                    {/* input fields */}
+                    <div className="input-fields">
+                      <div className="fields-name">
+                        <input
+                          type="text"
+                          name="fname"
+                          placeholder="First Name"
+                          required
+                          className="fname"
+                        />
+                        <input
+                          type="text"
+                          name="lname"
+                          placeholder="Last Name"
+                          required
+                        />
+                      </div>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        required
+                      />
+                      <div className="input-box">
+                        <input
+                          type="password"
+                          name="pwd"
+                          placeholder="Password"
+                          required
+                        />
+                        <span
+                          className="iconify"
+                          id="hide-pwd"
+                          data-icon="ph:eye-slash-light"
+                          data-width="26"
+                          data-height="26"
+                        ></span>
+                        <span
+                          className="iconify"
+                          id="unhide-pwd"
+                          data-icon="ph:eye-light"
+                          data-width="26"
+                          data-height="26"
+                        ></span>
+                        <span
+                          className="iconify"
+                          id="in4-pwd"
+                          data-icon="mdi-light:information"
+                          data-width="26"
+                          data-height="26"
+                        ></span>
+                      </div>
+                    </div>
+                    {/* terms */}
+                    <div className="argeeTerms">
+                      <label className="terms">
+                        <input
+                          type="checkbox"
+                          name="terms"
+                          id="termsofservice"
+                        />
+                        <span className="checkmark"></span>I have read and agree
+                        to the&nbsp;
+                        <a href="/" className="terms-link">
+                          terms of service
+                        </a>
+                      </label>
+                    </div>
+                    {/* regis button */}
+                    <input
+                      type="submit"
+                      name="regisbtn"
+                      value="continue"
+                      className="regis-btn"
+                    />
+                    {/* privacy & link sign up */}
+                    <div className="link-wrapper">
+                      <a href="/" className="privacy">
+                        Privacy Policy
+                      </a>
+                      <span className="sign-up-link">
+                        Already have a Next In account?&nbsp;
+                        <a href="/" id="signin-link-1" onClick={toggleForm}>
+                          Sign In
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              )}
               {/* banner */}
               <div className="banner" id="banner-regis text-banner">
                 <div className="text">

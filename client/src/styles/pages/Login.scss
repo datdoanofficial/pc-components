@@ -138,7 +138,7 @@
               height: 60px;
               outline: none;
               color: #fff;
-              font-size: 16px;
+              font-size: 14px;
               border: 1px solid #5a5a5a;
               background: none;
               border-radius: 10px;
@@ -235,56 +235,6 @@
         &:hover {
           color: #fff;
         }
-
-        input[type="checkbox"] {
-          position: relative;
-          opacity: 1;
-          cursor: pointer;
-          height: 0;
-          width: 0;
-
-          &:checked ~ .checkmark {
-            background-color: $primary-color;
-            border: none;
-          }
-
-          &:checked ~ .checkmark::after {
-            content: "";
-            position: absolute;
-            display: block;
-            color: #fff;
-          }
-        }
-
-        /* check mark */
-        .checkmark {
-          position: relative;
-          margin-right: 10px;
-          height: 18px;
-          width: 18px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: none;
-          border: 1px solid #e2e2e2;
-          border-radius: 3px;
-          transition: 0.2s all;
-        }
-
-        .checkmark::after {
-          content: "";
-          position: absolute;
-          top: 10%;
-          transform: translateY(-50%);
-          width: 4px;
-          height: 8px;
-          border: solid #fff;
-          display: none;
-          border-width: 0 1px 1px 0;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
       }
 
       .rmbMe::after {
@@ -321,7 +271,7 @@
         background: $primary-color;
         outline: none;
         border: none;
-        font-size: 16px;
+        font-size: 14px;
         border-radius: 10px;
         text-transform: uppercase;
         color: #fff;
@@ -370,6 +320,57 @@
         }
       }
 
+      /* check box */
+      input[type="checkbox"] {
+        position: relative;
+        opacity: 1;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+          background-color: $primary-color;
+          border: none;
+        }
+
+        &:checked ~ .checkmark::after {
+          content: "";
+          position: absolute;
+          display: block;
+          color: #fff;
+        }
+      }
+
+      /* check mark */
+      .checkmark {
+        position: relative;
+        margin-right: 10px;
+        height: 18px;
+        width: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: none;
+        border: 1px solid #e2e2e2;
+        border-radius: 3px;
+        transition: 0.2s all;
+      }
+
+      .checkmark::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 8px;
+        border: solid #fff;
+        display: none;
+        border-width: 0 1px 1px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
       //   sign up form
       .regis-options {
         position: absolute;
@@ -413,6 +414,7 @@
           font-family: $open-sans;
           font-weight: 300;
           font-size: 14px;
+          cursor: pointer;
 
           &:hover {
             outline: 1px solid #5a5a5a;
@@ -437,6 +439,135 @@
 
             &:hover {
               text-decoration: none;
+            }
+          }
+        }
+      }
+
+      /* sign up form */
+      .sign-up-form {
+        position: absolute;
+        right: 0;
+        width: 43%;
+        height: 85%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        /* form contain */
+
+        .regis-form-contain {
+          position: absolute;
+          width: 100%;
+          height: fit-content;
+          padding: 0px 40px;
+          animation: loginfrm 0.7s ease;
+          z-index: 99;
+
+          // input fields
+          .input-fields {
+            position: relative;
+            top: 0%;
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 30px;
+
+            .fields-name {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 10px;
+              width: 100%;
+              height: fit-content;
+            }
+
+            // input
+            input {
+              box-sizing: border-box;
+              position: relative;
+              left: 0;
+              top: 0;
+              font-family: $open-sans;
+              font-weight: 300;
+              padding: 0 30px;
+              width: 100%;
+              height: 60px;
+              outline: none;
+              color: #fff;
+              font-size: 14px;
+              border: 1px solid #5a5a5a;
+              background: none;
+              transition: 0.5s;
+              border-radius: 10px;
+              margin-bottom: 20px;
+
+              &:focus {
+                border: 1px solid #8a8a8a;
+              }
+            }
+
+            input[type="password"] {
+              margin-bottom: 0;
+            }
+          }
+          /* terms of service */
+
+          .argeeTerms {
+            position: relative;
+            top: 0;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 30px;
+          }
+
+          .terms {
+            position: relative;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            color: #a1a1a1;
+            font-family: $open-sans;
+            font-weight: 300;
+
+            a {
+              color: #fff;
+              text-decoration-thickness: 0.7px;
+              text-underline-offset: 3px;
+
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          }
+
+          /* Regis Button */
+
+          .regis-btn {
+            position: relative;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            font-family: $open-sans;
+            font-weight: 300;
+            background: $primary-color;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            text-transform: uppercase;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.5s;
+            margin-bottom: 30px;
+
+            &:hover {
+              background: $hover-color;
             }
           }
         }
