@@ -65,8 +65,9 @@
             }
 
             a {
+              margin-top: -5px;
               text-align: center;
-              color: $text-color;
+              color: #8a8a8a;
               font-family: $open-sans;
               font-weight: 300;
               font-size: 16px;
@@ -74,51 +75,111 @@
               text-decoration: none;
 
               &:hover {
-                color: #8a8a8a;
+                color: $text-color;
               }
             }
 
             .line {
               position: absolute;
+              transform: translateY(0);
               left: 0;
               width: 4px;
               height: 80%;
               border-radius: 50px;
+              display: none;
               background-color: $primary-light;
+            }
+
+            &.active a {
+              color: $text-color;
+            }
+
+            &.active .line {
+              display: block;
+            }
+          }
+
+          // sign in bar
+          .sign-in-bar {
+            &.animate .line {
+              animation: line-up 0.5s ease forwards;
+            }
+
+            @keyframes line-up {
+              from {
+                transform: translateY(100%);
+              }
+              to {
+                transform: translateY(0%);
+              }
+            }
+          }
+
+          // sign up bar
+          .sign-up-bar {
+            &.animate .line {
+              animation: line-down 0.5s ease forwards;
+            }
+
+            @keyframes line-down {
+              from {
+                transform: translateY(-100%);
+              }
+              to {
+                transform: translateY(0%);
+              }
             }
           }
         }
       }
 
-      //   sign in form
-      .sign-in-form {
-        position: absolute;
-        right: 0;
-        width: 43%;
-        height: 85%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 30px;
+      //   forgot password
+
+      .forgot-password {
+        .forgot-password-form {
+          position: absolute;
+          right: 0;
+          width: 43%;
+          height: 85%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          border-top-right-radius: 30px;
+          border-bottom-right-radius: 30px;
+        }
+
+        .forgot-password-active {
+          .text {
+            animation: forgotPassword 0.5s ease;
+          }
+
+          @keyframes forgotPassword {
+            0% {
+              transform: translateY(30%);
+            }
+            100% {
+              transform: translateY(0%);
+            }
+          }
+        }
 
         .form-contain {
-          position: relative;
+          position: absolute;
           width: 100%;
-          padding: 0 40px;
           height: fit-content;
-          animation: loginfrm 0.7s ease;
+          padding: 20px 40px;
+          animation: loginForm 0.5s ease;
 
-          //   @keyframes loginfrm {
-          //     0% {
-          //       left: 0;
-          //     }
+          @keyframes loginForm {
+            0% {
+              transform: translateX(-10%);
+            }
 
-          //     100% {
-          //       left: 10%;
-          //     }
-          //   }
+            100% {
+              transform: translateX(0%);
+            }
+          }
 
           .input-fields {
             position: relative;
@@ -139,7 +200,7 @@
               outline: none;
               color: #fff;
               font-size: 14px;
-              border: 1px solid #5a5a5a;
+              border: 1px solid #3a3a3a;
               background: none;
               border-radius: 10px;
               margin-bottom: 20px;
@@ -147,6 +208,115 @@
 
               &:focus {
                 border: 1px solid #8a8a8a;
+              }
+
+              &::placeholder {
+                color: #6a6a6a;
+              }
+            }
+          }
+
+          .reset-password-btn {
+            position: relative;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            font-family: $open-sans;
+            font-weight: 300;
+            background: $primary-color;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 25px;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              background: $hover-color;
+            }
+
+            &:disabled {
+              background-color: $hover-color;
+              cursor: not-allowed;
+            }
+          }
+
+          .remember-link a {
+            color: $text-color;
+            text-decoration-thickness: 0.7px;
+            text-underline-offset: 3px;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+
+      //   sign in form
+      .sign-in-form {
+        position: absolute;
+        right: 0;
+        width: 43%;
+        height: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+
+        .form-contain {
+          position: absolute;
+          width: 100%;
+          height: fit-content;
+          padding: 20px 40px;
+          animation: methodForm 0.5s ease;
+
+          @keyframes loginForm {
+            0% {
+              transform: translateX(-10%);
+            }
+
+            100% {
+              transform: translateX(0%);
+            }
+          }
+
+          .input-fields {
+            position: relative;
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 5px;
+
+            input {
+              font-family: $open-sans;
+              font-weight: 300;
+              box-sizing: border-box;
+              position: relative;
+              left: 0;
+              top: 0;
+              padding: 0 30px;
+              width: 100%;
+              height: 60px;
+              outline: none;
+              color: #fff;
+              font-size: 14px;
+              border: 1px solid #3a3a3a;
+              background: none;
+              border-radius: 10px;
+              margin-bottom: 20px;
+              transition: 0.5s;
+
+              &:focus {
+                border: 1px solid #8a8a8a;
+              }
+
+              &::placeholder {
+                color: #6a6a6a;
               }
             }
           }
@@ -282,6 +452,11 @@
         &:hover {
           background: $hover-color;
         }
+
+        &:disabled {
+          background-color: $hover-color;
+          cursor: not-allowed;
+        }
       }
 
       /* privacy & link sign up */
@@ -376,7 +551,6 @@
         position: absolute;
         top: 0;
         right: 0;
-        padding-top: 20px;
         width: 43%;
         height: 100%;
         display: flex;
@@ -394,9 +568,20 @@
 
         .method-contain {
           position: absolute;
-          width: 80%;
+          width: 100%;
           height: fit-content;
-          animation: loginfrm 0.7s ease;
+          padding: 20px 40px;
+          animation: methodForm 0.5s ease;
+        }
+
+        @keyframes methodForm {
+          0% {
+            transform: translateX(-10%);
+          }
+
+          100% {
+            transform: translateX(0%);
+          }
         }
 
         /* regis link*/
@@ -462,8 +647,17 @@
           width: 100%;
           height: fit-content;
           padding: 0px 40px;
-          animation: loginfrm 0.7s ease;
-          z-index: 99;
+          animation: regisForm 0.5s ease;
+
+          @keyframes regisForm {
+            0% {
+              transform: translateX(-10%);
+            }
+
+            100% {
+              transform: translateX(0%);
+            }
+          }
 
           // input fields
           .input-fields {
@@ -495,7 +689,7 @@
               outline: none;
               color: #fff;
               font-size: 14px;
-              border: 1px solid #5a5a5a;
+              border: 1px solid #3a3a3a;
               background: none;
               transition: 0.5s;
               border-radius: 10px;
@@ -504,12 +698,17 @@
               &:focus {
                 border: 1px solid #8a8a8a;
               }
+
+              &::placeholder {
+                color: #6a6a6a;
+              }
             }
 
             input[type="password"] {
               margin-bottom: 0;
             }
           }
+
           /* terms of service */
 
           .argeeTerms {
@@ -547,6 +746,18 @@
             }
           }
 
+          //   sign in link
+
+          .sign-in-link a {
+            color: #fff;
+            text-decoration-thickness: 0.5px;
+            text-underline-offset: 3px;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
           /* Regis Button */
 
           .regis-btn {
@@ -569,6 +780,11 @@
             &:hover {
               background: $hover-color;
             }
+
+            &:disabled {
+              background-color: $hover-color;
+              cursor: not-allowed;
+            }
           }
         }
       }
@@ -589,6 +805,34 @@
       height: 100%;
       border-radius: 20px;
 
+      &.sign-in-active .text {
+        animation: banner-sign-in 0.5s ease;
+      }
+
+      @keyframes banner-sign-in {
+        0% {
+          transform: translateY(30%);
+        }
+
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
+      &.sign-up-active .text {
+        animation: banner-sign-up 0.5s ease;
+      }
+
+      @keyframes banner-sign-up {
+        0% {
+          transform: translateY(-30%);
+        }
+
+        100% {
+          transform: translateY(0%);
+        }
+      }
+
       .text {
         position: absolute;
         left: 10%;
@@ -597,14 +841,49 @@
         color: #fff;
         font-family: $open-sans;
         font-weight: 300;
-        font-size: 18px;
-        animation: banner-h2 0.7s ease;
+        font-size: 16px;
 
         h2 {
           font-family: $open-sans;
           font-weight: 500;
           margin-bottom: 20px;
-          font-size: 30px;
+          font-size: 25px;
+        }
+
+        p {
+          max-width: 100%;
+        }
+      }
+
+      .back-to-method-regis {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        background: $text-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        outline: none;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        animation: backToMethod 0.5s ease;
+
+        @keyframes backToMethod {
+          0% {
+            transform: scale(0);
+          }
+
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        .icon {
+          font-size: 24px;
+          color: #5a5a5a;
         }
       }
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/pages/Login.scss";
 import { Link } from "react-router-dom";
 
@@ -17,16 +17,82 @@ import twitchOption from "../assets/images/login-page/twitch-option.png";
 const Login: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [showForgotPasswordForm, setShowForgotPasswordForm] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
+  const [isSignInFormValid, setIsSignInFormValid] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [isResetEmailValid, setIsResetEmailValid] = useState(false);
 
-  const toggleForm = () => {
-    setIsSignIn(!isSignIn);
-    setShowRegistrationForm(false); // Reset registration form visibility when toggling forms
+  const [signInValues, setSignInValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [isRegisFormValid, setIsRegisFormValid] = useState(false);
+  const [isAgree, setIsAgree] = useState(false);
+  const [regisValues, setRegisValues] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    pwd: "",
+  });
+
+  useEffect(() => {
+    setFirstLoad(false);
+  }, []);
+
+  useEffect(() => {
+    const { email, password } = signInValues;
+    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+      email
+    );
+    const passwordValid = password.length >= 8; // Example: Password must be at least 6 characters
+    setIsSignInFormValid(emailValid && passwordValid);
+  }, [signInValues]);
+
+  useEffect(() => {
+    const { fname, lname, email, pwd } = regisValues;
+    const nameValid = /^[a-zA-Z]+$/.test(fname) && /^[a-zA-Z]+$/.test(lname); // Only letters
+    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+      email
+    );
+    const passwordValid = pwd.length >= 8; // Example: Password must be at least 6 characters
+    setIsRegisFormValid(nameValid && emailValid && passwordValid && isAgree);
+  }, [regisValues, isAgree]);
+
+  useEffect(() => {
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(resetEmail);
+    setIsResetEmailValid(emailValid);
+  }, [resetEmail]);
+
+  const toggleForm = (isSignInForm: boolean) => {
+    setIsSignIn(isSignInForm);
+    setShowRegistrationForm(false); // Hide registration form when toggling forms
+    setShowForgotPasswordForm(false);
   };
 
-  // Handle email signup click
-  const handleEmailSignupClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleSignInInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignInValues({ ...signInValues, [name]: value });
+  };
+
+  const handleRegisInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRegisValues({ ...regisValues, [name]: value });
+  };
+
+  const handleResetEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setResetEmail(e.target.value);
+  };
+
+  // Handle email sign up click
+  const handleEmailSignUpClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setShowRegistrationForm(true);
+  };
+
+  // Handle back to method login click
+  const handleBackToMethodRegisClick = () => {
+    setShowRegistrationForm(false);
   };
 
   return (
@@ -44,7 +110,9 @@ const Login: React.FC = () => {
             {/* bar */}
             <ul>
               <li
-                className={`sign-in-bar ${isSignIn ? "active" : ""}`}
+                className={`sign-in-bar ${
+                  isSignIn || showForgotPasswordForm ? "active" : ""
+                } ${!firstLoad ? "animate" : ""}`}
                 id="signInBtn"
               >
                 <a
@@ -61,14 +129,16 @@ const Login: React.FC = () => {
                 <div className="line"></div>
               </li>
               <li
-                className={`sign-up-bar ${!isSignIn ? "active" : ""}`}
+                className={`sign-up-bar ${
+                  !isSignIn && !showForgotPasswordForm ? "active" : ""
+                } ${!firstLoad ? "animate" : ""}`}
                 id="signUpBtn"
               >
                 <a
                   href="#regis"
                   className="regis-icon"
                   id="regis-ic"
-                  onClick={() => setIsSignIn(false)}
+                  onClick={() => toggleForm(false)}
                 >
                   <div className="icon">
                     <span className="solar--user-plus-bold-duotone"></span>
@@ -88,7 +158,7 @@ const Login: React.FC = () => {
             </ul>
           </div>
           {/* form input login */}
-          {isSignIn ? (
+          {isSignIn && !showForgotPasswordForm ? (
             <section className="sign-in" id="login">
               {/* form login action */}
               <form
@@ -105,6 +175,7 @@ const Login: React.FC = () => {
                       name="email"
                       placeholder="Email Address"
                       required
+                      onChange={handleSignInInputChange}
                     />
                     <div className="input-box">
                       <input
@@ -112,6 +183,7 @@ const Login: React.FC = () => {
                         name="password"
                         placeholder="Password"
                         required
+                        onChange={handleSignInInputChange}
                       />
                       <span
                         className="iconify"
@@ -159,7 +231,14 @@ const Login: React.FC = () => {
                       <span className="checkmark"></span>
                       Remember Me
                     </label>
-                    <a href="/" className="forgot-link">
+                    <a
+                      href="/"
+                      className="forgot-link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowForgotPasswordForm(true);
+                      }}
+                    >
                       Forgot Your Password
                     </a>
                   </div>
@@ -169,6 +248,7 @@ const Login: React.FC = () => {
                     name="login"
                     value="sign in"
                     className="signin-btn"
+                    disabled={!isSignInFormValid}
                   />
                   {/* privacy & link sign up */}
                   <div className="link-wrapper">
@@ -177,7 +257,14 @@ const Login: React.FC = () => {
                     </a>
                     <span className="sign-up-link">
                       Don&rsquo;t you have an account yet?&nbsp;
-                      <a href="/" id="signup-link" onClick={toggleForm}>
+                      <a
+                        href="/"
+                        id="signup-link"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleForm(false);
+                        }}
+                      >
                         Sign Up
                       </a>
                     </span>
@@ -185,10 +272,77 @@ const Login: React.FC = () => {
                 </div>
               </form>
               {/* banner */}
-              <div className="banner" id="banner-login text-banner">
+              <div
+                className={`banner text-banner ${
+                  isSignIn ? "sign-in-active" : "sign-up-active"
+                }`}
+                id="banner-login"
+              >
                 <div className="text">
                   <h2>Start Your Journey.</h2>
                   <p>Sign in with a Next In account</p>
+                </div>
+              </div>
+            </section>
+          ) : showForgotPasswordForm ? (
+            <section className="forgot-password" id="forgot-password">
+              {/* form forgot password action */}
+              <form
+                action=""
+                className="forgot-password-form form-input"
+                id="forgot-password-frm"
+                method="post"
+              >
+                <div className="form-contain">
+                  {/* input fields */}
+                  <div className="input-fields">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      required
+                      onChange={handleResetEmailChange}
+                    />
+                  </div>
+                  {/* button reset password */}
+                  <input
+                    type="submit"
+                    name="reset-password"
+                    value="Reset Password"
+                    className="reset-password-btn"
+                    disabled={!isResetEmailValid}
+                  />
+                  {/* privacy & link sign in */}
+                  <div className="link-wrapper">
+                    <a href="/" className="privacy">
+                      Privacy Policy
+                    </a>
+                    <span className="remember-link">
+                      Remembered your password?&nbsp;
+                      <a
+                        href="/"
+                        id="remember-link"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleForm(true);
+                        }}
+                      >
+                        Sign In
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </form>
+              {/* banner */}
+              <div
+                className="banner text-banner forgot-password-active"
+                id="banner-forgot-password"
+              >
+                <div className="text">
+                  <h2>Forgot Your Password?</h2>
+                  <p id="txt-reset-password">
+                    Enter your email to reset your password
+                  </p>
                 </div>
               </div>
             </section>
@@ -201,7 +355,7 @@ const Login: React.FC = () => {
                     <div
                       className="email-regis regis-link"
                       id="email-signup"
-                      onClick={handleEmailSignupClick}
+                      onClick={handleEmailSignUpClick}
                     >
                       <img src={nextinOption} alt="Next In" />
                       <p>Sign up with Next In</p>
@@ -224,7 +378,14 @@ const Login: React.FC = () => {
                     </a>
                     <span className="sign-in-link">
                       Already have a Next In account?&nbsp;
-                      <a href="/" id="signin-link" onClick={toggleForm}>
+                      <a
+                        href="/"
+                        id="signin-link"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleForm(true);
+                        }}
+                      >
                         Sign In
                       </a>
                     </span>
@@ -243,13 +404,14 @@ const Login: React.FC = () => {
                           name="fname"
                           placeholder="First Name"
                           required
-                          className="fname"
+                          onChange={handleRegisInputChange}
                         />
                         <input
                           type="text"
                           name="lname"
                           placeholder="Last Name"
                           required
+                          onChange={handleRegisInputChange}
                         />
                       </div>
                       <input
@@ -257,6 +419,7 @@ const Login: React.FC = () => {
                         name="email"
                         placeholder="Email Address"
                         required
+                        onChange={handleRegisInputChange}
                       />
                       <div className="input-box">
                         <input
@@ -264,6 +427,7 @@ const Login: React.FC = () => {
                           name="pwd"
                           placeholder="Password"
                           required
+                          onChange={handleRegisInputChange}
                         />
                         <span
                           className="iconify"
@@ -295,6 +459,7 @@ const Login: React.FC = () => {
                           type="checkbox"
                           name="terms"
                           id="termsofservice"
+                          onChange={() => setIsAgree(!isAgree)}
                         />
                         <span className="checkmark"></span>I have read and agree
                         to the&nbsp;
@@ -309,15 +474,23 @@ const Login: React.FC = () => {
                       name="regisbtn"
                       value="continue"
                       className="regis-btn"
+                      disabled={!isRegisFormValid}
                     />
                     {/* privacy & link sign up */}
                     <div className="link-wrapper">
                       <a href="/" className="privacy">
                         Privacy Policy
                       </a>
-                      <span className="sign-up-link">
+                      <span className="sign-in-link">
                         Already have a Next In account?&nbsp;
-                        <a href="/" id="signin-link-1" onClick={toggleForm}>
+                        <a
+                          href="/"
+                          id="signin-link"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            toggleForm(true);
+                          }}
+                        >
                           Sign In
                         </a>
                       </span>
@@ -326,11 +499,30 @@ const Login: React.FC = () => {
                 </form>
               )}
               {/* banner */}
-              <div className="banner" id="banner-regis text-banner">
+              <div
+                className={`banner text-banner ${
+                  isSignIn ? "sign-in-active" : "sign-up-active"
+                }`}
+                id="banner-login"
+              >
                 <div className="text">
-                  <h2>Create New Account.</h2>
-                  <p id="txt-choose-method">Choose your sign up method</p>
+                  <h2>
+                    {isSignIn ? "Start Your Journey." : "Create New Account."}
+                  </h2>
+                  <p id="txt-choose-method">
+                    {showRegistrationForm
+                      ? "Fill in your personal details"
+                      : "Choose your sign up method"}
+                  </p>
                 </div>
+                {showRegistrationForm && (
+                  <button
+                    className="back-to-method-regis"
+                    onClick={handleBackToMethodRegisClick}
+                  >
+                    <span className="ph--arrow-left-thin icon"></span>
+                  </button>
+                )}
               </div>
             </section>
           )}

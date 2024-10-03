@@ -45,14 +45,14 @@ export const routes = [
   {
     path: "/login",
     page: login,
-    title: "Login | Next In",
+    title: "Sign In | Next In",
     isShowNavbar: false,
     isShowFooter: false,
   },
   {
     path: "*",
     page: notfound,
-    title: "404 Not Found",
+    title: "404 Not Found | Next In",
     isShowNavbar: false,
     isShowFooter: false,
   },
