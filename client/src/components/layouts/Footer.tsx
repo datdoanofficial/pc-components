@@ -38,7 +38,7 @@ const Footer = (props: Props) => {
           } else if (location.pathname === "/contact") {
             height = 310 * scrollRatio;
           } else {
-            height = 800 * scrollRatio; // Default height for other pages
+            height = 300 * scrollRatio; // Default height for other pages
           }
 
           headerFooterRef.current.style.height = `${height}px`;

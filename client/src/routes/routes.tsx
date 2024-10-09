@@ -4,6 +4,8 @@ import news from "../pages/News";
 import help from "../pages/Help";
 import contact from "../pages/Contact";
 import login from "../pages/Login";
+import productdetails from "../pages/ProductDetails";
+
 import notfound from "../pages/NotFound";
 
 export const routes = [
@@ -18,6 +20,13 @@ export const routes = [
     path: "/store",
     page: store,
     title: "Store | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
+  },
+  {
+    path: "/product-details",
+    page: productdetails,
+    title: "Product | Next In",
     isShowNavbar: true,
     isShowFooter: true,
   },

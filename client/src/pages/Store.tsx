@@ -164,7 +164,7 @@ const Store = (props: Props) => {
                 </div>
                 {/* product information */}
                 <div className="product-information">
-                  <a href="/" className="product-name">
+                  <a href="/product-details" className="product-name">
                     AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE
                   </a>
                   <div className="product-price">$1499.00</div>
