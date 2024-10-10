@@ -6,6 +6,9 @@ import product_demo_2 from "../assets/images/products/product_demo_02.png";
 import product_demo_3 from "../assets/images/products/product_demo_03.png";
 import product_demo_4 from "../assets/images/products/product_demo_04.png";
 
+import product_des from "../assets/images/product-details/product-demo-01.png";
+import product_bg from "../assets/images/product-details/bg-kv.png";
+import feature_img from "../assets/images/product-details/geforce-rtx-40.png";
 type Props = {};
 
 const ProductDetails = (props: Props) => {
@@ -66,7 +69,9 @@ const ProductDetails = (props: Props) => {
 
   return (
     <div className="product-details-page">
-      <section className="section-01">
+      {/* section 01 */}
+      <div className="section-01">
+        {/* thumbnails */}
         <div className="thumbnails">
           <div className="image-items">{items}</div>
           <div className={`main-item ${animationDirection}`}>
@@ -136,8 +141,57 @@ const ProductDetails = (props: Props) => {
           {/* buy now */}
           <div className="buy-now">Buy now</div>
         </div>
-      </section>
-      <section className="section-02"></section>
+      </div>
+      {/* section 02 */}
+      <div className="section-02">
+        {/* product description */}
+        <div className="product-description">
+          {/* feature image */}
+          <div className="feature-image">
+            <h4 className="title-heading">Flow Your Victory...</h4>
+            <img src={product_des} alt="" className="product_des_img" />
+            <img src={product_bg} className="background" alt="" />
+          </div>
+          {/* description wrapper */}
+          <div className="des-wrapper">
+            <h4>WITH THE INCREDIBLE SUM OF ITS PARTS</h4>
+            The ROG Strix GeForce RTX™ 4090 BTF Edition brings a whole new
+            meaning to going with the flow. Inside and out, every element of the
+            card gives the monstrous GPU headroom to breathe freely and achieve
+            ultimate performance. The unleashed reign of the NVIDIA Ada Lovelace
+            architecture is here.
+          </div>
+          {/* feature description */}
+          <div className="feature-description">
+            <div className="title">
+              <h4>The Ultimate Platform for Gamers and Creators</h4>
+              <h1>Powered by GeForce RTX 40 Series and DLSS 3</h1>
+            </div>
+            {/* feature wrapper */}
+            <div className="feature-wrapper">
+              <img src={feature_img} alt="" className="feature-img" />
+              <div className="feature">
+                <div className="phrase">
+                  <label className="title">New Streaming Multiprocessors</label>
+                  <p>Up to 2X performance and power efficiency</p>
+                </div>
+                <div className="phrase">
+                  <label className="title">Fourth-Gen Tensor Cores</label>
+                  <p>
+                    Up to 4X performance with DLSS 3<br />
+                    vs. brute-force rendering
+                  </p>
+                </div>
+                <div className="phrase">
+                  <label className="title">Third-Gen RT Cores</label>
+                  <p>Up to 2X ray tracing performance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="product-bar"></div>
+      </div>
     </div>
   );
 };
