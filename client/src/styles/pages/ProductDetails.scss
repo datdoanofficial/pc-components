@@ -303,7 +303,7 @@
       width: 100%;
       height: 100%;
 
-      .feature-image {
+      .feature-heading {
         position: relative;
         width: 100%;
         display: flex;
@@ -311,16 +311,42 @@
         align-items: center;
         overflow: hidden;
 
-        // title
-        .title-heading {
+        .header-wrapper {
           position: relative;
-          margin-top: 3vw;
+          width: 100%;
+          margin-top: 2vw;
+          display: flex;
+          justify-content: flex-start;
           font-family: $open-sans;
-          font-weight: 500;
-          text-align: center;
-          text-transform: uppercase;
-          font-size: 2.5vw;
+          font-weight: 300;
+          font-size: 1vw;
+          line-height: 1.8vw;
+          color: $text-color;
           z-index: 1;
+
+          .chbar {
+            border: 1px solid #2a2a2a;
+            padding: 5px 20px;
+            border-radius: 20px;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &.active {
+              background-color: #2a2a2a;
+            }
+
+            &:not(.active) {
+              background-color: transparent;
+
+              &:hover {
+                background-color: #2a2a2a;
+              }
+            }
+          }
+
+          .key-feature {
+            margin-right: 10px;
+          }
         }
 
         // background
@@ -352,7 +378,7 @@
         font-family: $open-sans;
         font-weight: 300;
         font-size: 1.1vw;
-        line-height: 1.6vw;
+        line-height: 1.8vw;
         text-align: center;
 
         h4 {
@@ -368,7 +394,8 @@
         width: 100%;
         margin-top: 6vw;
         background-image: url(../../assets/images/product-details/bg-nv.jpg);
-        background-size: cover;
+        background-size: contain;
+        background-repeat: no-repeat;
         overflow: hidden;
 
         .title {
@@ -425,6 +452,92 @@
               p {
                 margin-top: 0.5vw;
               }
+            }
+          }
+        }
+
+        .all-features-wrapper {
+          margin-top: 2vw;
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, auto);
+          gap: 1.3vw;
+
+          .feature-items {
+            width: 100%;
+            text-align: center;
+
+            img {
+              width: 36%;
+              object-fit: cover;
+            }
+
+            .phrase {
+              .title {
+                font-size: 1vw;
+                font-weight: 700;
+              }
+
+              p {
+                margin-top: 0.5vw;
+                font-size: 0.8vw;
+                font-weight: 300;
+              }
+            }
+          }
+        }
+
+        .end-description {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: start;
+          width: 100%;
+          font-family: $open-sans;
+          margin-top: 6vw;
+          padding: 1vw 2vw;
+          background-image: url(../../assets/images/product-details/nvidia-ai.jpg);
+          background-size: contain;
+          background-repeat: no-repeat;
+
+          .title {
+            margin-top: 0;
+            max-width: 60%;
+            font-weight: 700;
+            font-size: 1.8vw;
+          }
+
+          .sub-title {
+            max-width: 50%;
+            font-weight: 400;
+            font-size: 1.3vw;
+            margin-top: 1.5vw;
+          }
+
+          .paragraph {
+            max-width: 60%;
+            font-weight: 300;
+            font-size: 1.1vw;
+            margin-top: 1.5vw;
+          }
+
+          .learn-more {
+            margin-top: 1.5vw;
+            width: 8.5vw;
+            height: 2.8vw;
+            color: $text-color;
+            border: 1px solid #2a2a2a;
+            border-radius: 50px;
+            font-size: 0.85vw;
+            font-family: $open-sans;
+            font-weight: 300;
+            background: none;
+            outline: none;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #2a2a2a;
             }
           }
         }

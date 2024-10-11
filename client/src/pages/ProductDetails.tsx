@@ -7,8 +7,18 @@ import product_demo_3 from "../assets/images/products/product_demo_03.png";
 import product_demo_4 from "../assets/images/products/product_demo_04.png";
 
 import product_des from "../assets/images/product-details/product-demo-01.png";
-import product_bg from "../assets/images/product-details/bg-kv.png";
+import product_bg from "../assets/images/product-details/bg-demo.png";
 import feature_img from "../assets/images/product-details/geforce-rtx-40.png";
+
+import feature_icon_1 from "../assets/images/product-details/icon-1.svg";
+import feature_icon_2 from "../assets/images/product-details/icon-2.svg";
+import feature_icon_3 from "../assets/images/product-details/icon-3.svg";
+import feature_icon_4 from "../assets/images/product-details/icon-4.svg";
+import feature_icon_5 from "../assets/images/product-details/icon-5.svg";
+import feature_icon_6 from "../assets/images/product-details/icon-6.svg";
+import feature_icon_7 from "../assets/images/product-details/icon-7.svg";
+import feature_icon_8 from "../assets/images/product-details/icon-8.svg";
+
 type Props = {};
 
 const ProductDetails = (props: Props) => {
@@ -16,6 +26,7 @@ const ProductDetails = (props: Props) => {
   const [animationDirection, setAnimationDirection] = useState("");
   const [rating, setRating] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [activeTab, setActiveTab] = useState("key-feature");
 
   const imageSources = [
     product_demo_1,
@@ -23,6 +34,53 @@ const ProductDetails = (props: Props) => {
     product_demo_3,
     product_demo_4,
   ];
+
+  const features = [
+    {
+      img: feature_icon_1,
+      title: "Cutting-Edge GPUs",
+      description: "NVIDIA Ada Lovelace Architecture",
+    },
+    {
+      img: feature_icon_2,
+      title: "Realistic and Immersive Graphics",
+      description: "Dedicated Ray Tracing Cores",
+    },
+    {
+      img: feature_icon_3,
+      title: "AI-Accelerated Performance",
+      description: "NVIDIA DLSS 3",
+    },
+    {
+      img: feature_icon_4,
+      title: "Game-Winning Responsiveness",
+      description: "NVIDIA Reflex low-latency platform",
+    },
+    {
+      img: feature_icon_5,
+      title: "Built for Live Streaming",
+      description: "NVIDIA Encoder",
+    },
+    {
+      img: feature_icon_6,
+      title: "AI-Enhanced Voice and Video",
+      description: "RTX Video Super Resolution and NVIDIA Broadcast",
+    },
+    {
+      img: feature_icon_7,
+      title: "Fast-Track Your Creativity",
+      description: "NVIDIA Studio",
+    },
+    {
+      img: feature_icon_8,
+      title: "Performance and Reliability",
+      description: "Game Ready and Studio Drivers",
+    },
+  ];
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
 
   const handleItemClick = (index: number) => {
     if (index === activeIndex) {
@@ -147,48 +205,103 @@ const ProductDetails = (props: Props) => {
         {/* product description */}
         <div className="product-description">
           {/* feature image */}
-          <div className="feature-image">
-            <h4 className="title-heading">Flow Your Victory...</h4>
-            <img src={product_des} alt="" className="product_des_img" />
-            <img src={product_bg} className="background" alt="" />
-          </div>
-          {/* description wrapper */}
-          <div className="des-wrapper">
-            <h4>WITH THE INCREDIBLE SUM OF ITS PARTS</h4>
-            The ROG Strix GeForce RTX™ 4090 BTF Edition brings a whole new
-            meaning to going with the flow. Inside and out, every element of the
-            card gives the monstrous GPU headroom to breathe freely and achieve
-            ultimate performance. The unleashed reign of the NVIDIA Ada Lovelace
-            architecture is here.
-          </div>
-          {/* feature description */}
-          <div className="feature-description">
-            <div className="title">
-              <h4>The Ultimate Platform for Gamers and Creators</h4>
-              <h1>Powered by GeForce RTX 40 Series and DLSS 3</h1>
-            </div>
-            {/* feature wrapper */}
-            <div className="feature-wrapper">
-              <img src={feature_img} alt="" className="feature-img" />
-              <div className="feature">
-                <div className="phrase">
-                  <label className="title">New Streaming Multiprocessors</label>
-                  <p>Up to 2X performance and power efficiency</p>
-                </div>
-                <div className="phrase">
-                  <label className="title">Fourth-Gen Tensor Cores</label>
-                  <p>
-                    Up to 4X performance with DLSS 3<br />
-                    vs. brute-force rendering
-                  </p>
-                </div>
-                <div className="phrase">
-                  <label className="title">Third-Gen RT Cores</label>
-                  <p>Up to 2X ray tracing performance</p>
-                </div>
+          <div className="feature-heading">
+            <div className="header-wrapper">
+              <div
+                className={`key-feature chbar ${
+                  activeTab === "key-feature" ? "active" : ""
+                }`}
+                onClick={() => handleTabClick("key-feature")}
+              >
+                Key Feature
+              </div>
+              <div
+                className={`specifications chbar ${
+                  activeTab === "specifications" ? "active" : ""
+                }`}
+                onClick={() => handleTabClick("specifications")}
+              >
+                Specifications
               </div>
             </div>
+            {activeTab === "key-feature" && (
+              <>
+                <img src={product_des} alt="" className="product_des_img" />
+                <img src={product_bg} className="background" alt="" />
+              </>
+            )}
           </div>
+          {activeTab === "specifications" && (
+            <div className="all-specifications">Specification</div>
+          )}
+          {/* description wrapper */}
+          {activeTab === "key-feature" && (
+            <>
+              <div className="des-wrapper">
+                <h4>WATERFORCE COOLING SYSTEM</h4>
+                Designed for DIY PC enthusiasts who aim to create unique custom
+                loop builds while achieving the highest possible performance in
+                silence. AORUS provides an all-round cooling solution that
+                actively cools critical parts, such as the GPU, VRAM, and
+                MOSFET, to ensure system stability during high overclocking.
+              </div>
+              <div className="feature-description">
+                <div className="title">
+                  <h4>The Ultimate Platform for Gamers and Creators</h4>
+                  <h1>Powered by GeForce RTX 40 Series and DLSS 3</h1>
+                </div>
+                {/* feature wrapper */}
+                <div className="feature-wrapper">
+                  <img src={feature_img} alt="" className="feature-img" />
+                  <div className="feature">
+                    <div className="phrase">
+                      <label className="title">
+                        New Streaming Multiprocessors
+                      </label>
+                      <p>Up to 2X performance and power efficiency</p>
+                    </div>
+                    <div className="phrase">
+                      <label className="title">Fourth-Gen Tensor Cores</label>
+                      <p>
+                        Up to 4X performance with DLSS 3<br />
+                        vs. brute-force rendering
+                      </p>
+                    </div>
+                    <div className="phrase">
+                      <label className="title">Third-Gen RT Cores</label>
+                      <p>Up to 2X ray tracing performance</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="all-features-wrapper">
+                  {features.map((feature, index) => (
+                    <div className="feature-items" key={index}>
+                      <img src={feature.img} alt={feature.title} />
+                      <div className="phrase">
+                        <label className="title">{feature.title}</label>
+                        <p>{feature.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="end-description">
+                  <p className="title">Further With AI, Faster on RTX</p>
+                  <p className="sub-title">
+                    Get next-level AI performance on GeForce RTX.
+                  </p>
+                  <p className="paragraph">
+                    Discover the RTX AI advantage. Built for the era of AI,
+                    GeForce RTX™ GPUs feature specialized AI Tensor Cores that
+                    deliver cutting-edge performance and revolutionary
+                    capabilities. From enhanced creativity and ultra-efficient
+                    productivity to blisteringly fast gaming, the ultimate in AI
+                    power on Windows PCs is on RTX.
+                  </p>
+                  <button className="learn-more">Learn More</button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
         <div className="product-bar"></div>
       </div>
