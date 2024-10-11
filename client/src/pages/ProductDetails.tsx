@@ -27,6 +27,7 @@ const ProductDetails = (props: Props) => {
   const [rating, setRating] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("key-feature");
+  const products = Array.from({ length: 5 });
 
   const imageSources = [
     product_demo_1,
@@ -303,7 +304,47 @@ const ProductDetails = (props: Props) => {
             </>
           )}
         </div>
-        <div className="product-bar"></div>
+        <div className="product-bar">
+          {/* gift */}
+          <div className="gift">
+            <div className="title">Free Gift with Purchase</div>
+            <div className="gift-item"></div>
+          </div>
+          {/* ratings and reviews */}
+          <div className="ratings-and-reviews">
+            {/* total ratings */}
+            <div className="total-ratings">
+              <div className="title">Product Ratings &amp; Reviews</div>
+              <div className="overview-board"></div>
+            </div>
+            {/* user reviews */}
+            <div className="user-reviews">
+              <div className="heading">
+                <div className="title">
+                  User reviews<span>(329)</span>
+                </div>
+                <div className="view-all-reviews">
+                  See all reviews<span className="ci--external-link"></span>
+                </div>
+              </div>
+              <div className="all-reviews">
+                <div className="review"></div>
+                <div className="review"></div>
+                <div className="review"></div>
+              </div>
+            </div>
+            {/* related products */}
+            <div className="related-products">
+              <div className="title">Related Products</div>
+              {/* product items */}
+              <div className="all-related-products">
+                {products.map((_, index) => (
+                  <div className="product-item" key={index}></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
