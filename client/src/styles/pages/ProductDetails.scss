@@ -376,6 +376,59 @@
         }
       }
 
+      // specifications
+      .sp-section {
+        margin-top: 3vw;
+        width: 100%;
+        font-family: $open-sans;
+        font-weight: 300;
+
+        .display-table {
+          margin-top: 3vw;
+
+          .item {
+            width: 35%;
+            height: 3vw;
+            display: flex;
+            align-items: center;
+          }
+
+          .display-table-row {
+            width: 100%;
+            height: fit-content;
+            padding: 0.8vw 0.8vw;
+            font-size: 1vw;
+            line-height: 1.8vw;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+
+            &:hover {
+              background-color: #2a2a2a;
+            }
+          }
+        }
+      }
+
+      // model page memo
+      .model-page-memo {
+        margin-top: 2vw;
+        width: 100%;
+
+        img {
+          width: 20%;
+          object-fit: cover;
+          margin-bottom: 0.8vw;
+        }
+
+        p {
+          font-family: $open-sans;
+          font-weight: 300;
+          font-size: 1vw;
+          margin-top: 0.8vw;
+        }
+      }
+
       // description wrapper
       .des-wrapper {
         position: relative;

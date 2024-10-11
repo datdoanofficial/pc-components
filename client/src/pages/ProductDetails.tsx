@@ -19,6 +19,8 @@ import feature_icon_6 from "../assets/images/product-details/icon-6.svg";
 import feature_icon_7 from "../assets/images/product-details/icon-7.svg";
 import feature_icon_8 from "../assets/images/product-details/icon-8.svg";
 
+import hdmi_logo from "../assets/images/product-details/hdmi_logo.png";
+
 type Props = {};
 
 const ProductDetails = (props: Props) => {
@@ -34,6 +36,42 @@ const ProductDetails = (props: Props) => {
     product_demo_2,
     product_demo_3,
     product_demo_4,
+  ];
+
+  const tableData = [
+    { item: "Graphics Processing", value: "GeForce RTX™ 4080" },
+    { item: "Core Clock", value: "2565 MHz (Reference Card: 2505 MHz)" },
+    { item: "CUDA Cores", value: "9728" },
+    { item: "Memory Clock", value: "22.4 Gbps" },
+    { item: "Memory Size", value: "16 GB" },
+    { item: "Memory Type", value: "GDDR6X" },
+    { item: "Memory Bus", value: "256 bit" },
+    { item: "Card Bus", value: "PCI-E 4.0" },
+    { item: "Digital max resolution", value: "7680x4320" },
+    { item: "Multi-view", value: "4" },
+    { item: "Card size", value: "L=235 W=169 H=29 mm" },
+    { item: "PCB Form", value: "ATX" },
+    { item: "DirectX", value: "12 Ultimate" },
+    { item: "OpenGL", value: "4.6" },
+    { item: "Recommended PSU", value: "850W" },
+    { item: "Power Connectors", value: "16 pin * 1" },
+    {
+      item: "Output",
+      value: `DisplayPort 1.4a *3
+      HDMI 2.1a *1`,
+    },
+    { item: "Fitting type", value: "G1/4" },
+    {
+      item: "Accessories",
+      value: `1. Quick guide
+      2. Warranty registration
+      3. WATERFORCE water block installation guide
+      4. AORUS Metal sticker
+      5. Xtreme Robot Limited Edition with AORUS flag
+      6. One 16 pin to triple 8-pin power adaptor
+      7. Thermal grease`,
+    },
+    { item: "Note", value: "*Please use non-corrosive coolant." },
   ];
 
   const features = [
@@ -232,8 +270,56 @@ const ProductDetails = (props: Props) => {
               </>
             )}
           </div>
+          {/* specs */}
           {activeTab === "specifications" && (
-            <div className="all-specifications">Specification</div>
+            <div className="sp-section">
+              {/* display table */}
+              <ul className="display-table">
+                {/* row */}
+                {tableData.map((data, index) => (
+                  <li className="display-table-row" key={index}>
+                    {/* cell */}
+                    <span className="display-table-cell item">{data.item}</span>
+                    <span className="display-table-cell">
+                      {data.value.split("\n").map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="model-page-memo">
+                <img src={hdmi_logo} alt="" />
+                <p>
+                  * The terms HDMI, HDMI High-Definition Multimedia Interface,
+                  HDMI Trade dress and the HDMI Logos are trademarks or
+                  registered trademarks of HDMI Licensing Administrator, Inc.
+                </p>
+                <p>
+                  * The entire materials provided herein are for reference only.
+                  GIGABYTE reserves the right to modify or revise the content at
+                  anytime without prior notice.
+                </p>
+                <p>
+                  * Advertised performance is based on maximum theoretical
+                  interface values from respective Chipset vendors or
+                  organization who defined the interface specification. Actual
+                  performance may vary by system configuration.
+                </p>
+                <p>
+                  * All trademarks and logos are the properties of their
+                  respective holders.
+                </p>
+                <p>
+                  * Due to standard PC architecture, a certain amount of memory
+                  is reserved for system usage and therefore the actual memory
+                  size is less than the stated amount.
+                </p>
+              </div>
+            </div>
           )}
           {/* description wrapper */}
           {activeTab === "key-feature" && (
