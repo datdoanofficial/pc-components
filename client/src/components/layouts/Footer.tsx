@@ -15,37 +15,26 @@ const Footer = (props: Props) => {
   useEffect(() => {
     const handleScroll = () => {
       if (footerRef.current && headerFooterRef.current) {
-        const windowHeight = window.innerHeight;
         const scrollPosition = window.scrollY;
         const footerOffsetTop = footerRef.current.offsetTop;
+        const windowHeight = window.innerHeight;
 
-        // Calculate the height based on the scroll position
+        // Set a fixed value for maxScroll to ensure consistent scrollRatio across all pages
+        const maxScroll = 600; // Fixed value for maxScroll
+
+        // Calculate the height based on the scroll position and a sine wave function
         if (scrollPosition + windowHeight >= footerOffsetTop) {
-          const maxScroll = footerOffsetTop - windowHeight;
           const scrollRatio = Math.min(
             (scrollPosition + windowHeight - footerOffsetTop) / maxScroll,
             1
           );
 
-          // Adjust height calculation based on the current page
-          let height;
-          if (location.pathname === "/store") {
-            height = 800 * scrollRatio;
-          } else if (location.pathname === "/news") {
-            height = 370 * scrollRatio;
-          } else if (location.pathname === "/help") {
-            height = 700 * scrollRatio;
-          } else if (location.pathname === "/contact") {
-            height = 310 * scrollRatio;
-          } else if (location.pathname === "/product-details") {
-            height = 750 * scrollRatio;
-          } else {
-            height = 300 * scrollRatio; // Default height for other pages
-          }
+          // Use a sine wave function to create a curved effect
+          const height = 200 * scrollRatio;
 
           headerFooterRef.current.style.height = `${height}px`;
         } else {
-          headerFooterRef.current.style.height = `0px`;
+          headerFooterRef.current.style.height = "0px";
         }
       }
     };

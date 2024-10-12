@@ -410,7 +410,8 @@ const ProductDetails = (props: Props) => {
                   User reviews<span>(329)</span>
                 </div>
                 <div className="view-all-reviews">
-                  See all reviews<span className="ci--external-link"></span>
+                  See all reviews
+                  <span className="ci--external-link icon"></span>
                 </div>
               </div>
               <div className="all-reviews">

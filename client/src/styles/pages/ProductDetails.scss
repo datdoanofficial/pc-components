@@ -303,7 +303,6 @@
     grid-template-columns: 2.5fr 1.3fr;
     justify-content: space-between;
     gap: 4vw;
-    margin-bottom: 100px;
 
     // product description
     .product-description {
@@ -690,8 +689,15 @@
               font-weight: 300;
               color: #5a5a5a;
               text-transform: uppercase;
+              display: flex;
+              align-items: center;
               transition: 0.5s;
               cursor: pointer;
+
+              .icon {
+                margin-left: 5px;
+                margin-top: 1px;
+              }
 
               &:hover {
                 color: $text-color;
