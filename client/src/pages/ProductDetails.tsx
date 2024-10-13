@@ -29,8 +29,21 @@ const ProductDetails = (props: Props) => {
   const [rating, setRating] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("key-feature");
-  const products = Array.from({ length: 5 });
+  const products = Array.from({ length: 3 });
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const [expandedReviewIndex, setExpandedReviewIndex] = useState<number | null>(
+    null
+  );
 
+  // Toggle the expanded review
+  const toggleExpand = (index: number) => {
+    setExpandedReviewIndex(expandedReviewIndex === index ? null : index);
+  };
+
+  const MAX_TEXT_LENGTH = 200;
+  const MAX_TITLE_LENGTH = 20;
+
+  // Image sources
   const imageSources = [
     product_demo_1,
     product_demo_2,
@@ -38,6 +51,49 @@ const ProductDetails = (props: Props) => {
     product_demo_4,
   ];
 
+  // Ratings
+  const ratings = {
+    5: 120,
+    4: 80,
+    3: 180,
+    2: 30,
+    1: 12,
+  };
+
+  const totalRatings = Object.values(ratings).reduce((a, b) => a + b, 0);
+
+  // reviews
+  const reviews = [
+    {
+      title: "Gaming goodness",
+      datetime: "April 25, 2024",
+      username: "by DATDOAN",
+      rating: 5,
+      content: `Awesome gpu all the way around. Did not expect it to be this good, honestly. 
+                Now that I have the card I see a lot of reviews and the performance is above 
+                expectations for this card. Love the white color, it looks awesome in my case 
+                with my white wires and white power supply. This replaced a 2070 and I have to 
+                say it blows that card away in every aspect. Expect amazing 1440 gaming performance 
+                with this card. So happy with it. Don’t listen to people talking about driver issues. 
+                I haven’t had a single issue so far!`,
+    },
+    {
+      title: "Quality in Performance & Aesthetics",
+      datetime: "May 10, 2024",
+      username: "by JANE_DOE",
+      rating: 4,
+      content: `It performs better than it looks. The 7800 XT is an excellent choice for anymore looking to spend modestly on a new GPU. I'm getting over 130FPS in 1440 in most games I play with out FSR/upscaling. Driver support will make this even better over time and FSR3 just released to rave reviews. This ASrock Steel Legend variant looks stunning. All white, clean and just adds so much character to my build. The RGB is simple to control and looks gorgeous. My PC is a workstation first and foremost so when I'm not gaming the lighting adds a vibe to my room/office.`,
+    },
+    {
+      title: "Great gpu and stays cool",
+      datetime: "June 15, 2024",
+      username: "by JOHN_SMITH",
+      rating: 5,
+      content: `Great gpu big upgrade from my 6700xt and for the price to performance it’s a great value, was thing on last gen 6800xt but with the new technology built in and fsr3 on the way I went with this. Excellent performance in star field at 1440p maxed out and also mine came with starfield premium edition so a 100$ value brought this card to like 400$. Such a good card I’m happy asrock made this card. Also there is a physical switch on the card to turn off the lighting if you don’t want it, this is great no need to deal with software if you dont want to. Overall very happy with this card.`,
+    },
+  ];
+
+  // Table data
   const tableData = [
     { item: "Graphics Processing", value: "GeForce RTX™ 4080" },
     { item: "Core Clock", value: "2565 MHz (Reference Card: 2505 MHz)" },
@@ -74,6 +130,7 @@ const ProductDetails = (props: Props) => {
     { item: "Note", value: "*Please use non-corrosive coolant." },
   ];
 
+  // Features data
   const features = [
     {
       img: feature_icon_1,
@@ -117,10 +174,12 @@ const ProductDetails = (props: Props) => {
     },
   ];
 
+  // Tab handlers
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
 
+  // Thumbnail handlers
   const handleItemClick = (index: number) => {
     if (index === activeIndex) {
       return; // Do nothing if the clicked item is already active
@@ -134,6 +193,7 @@ const ProductDetails = (props: Props) => {
     setActiveIndex(index);
   };
 
+  // Reset the animation direction when the active index changes
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimationDirection("");
@@ -142,10 +202,20 @@ const ProductDetails = (props: Props) => {
     return () => clearTimeout(timer);
   }, [activeIndex]);
 
+  // Rating handlers
   const handleStarClick = (index: number) => {
-    setRating(index + 1);
+    setRating(index);
   };
 
+  const handleStarMouseEnter = (index: number) => {
+    setHoveredRating(index);
+  };
+
+  const handleStarMouseLeave = () => {
+    setHoveredRating(0);
+  };
+
+  // Quantity handlers
   const handleMinusClick = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
   };
@@ -196,7 +266,7 @@ const ProductDetails = (props: Props) => {
                 <span className="mage--star-fill"></span>
               </span>
             ))}
-            <div className="total-reviews">329 reviews</div>
+            <div className="total-reviews">({totalRatings}) reviews</div>
           </div>
           {/* general information */}
           <div className="general-in4">
@@ -392,22 +462,85 @@ const ProductDetails = (props: Props) => {
         </div>
         <div className="product-bar">
           {/* gift */}
-          <div className="gift">
+          {/* <div className="gift">
             <div className="title">Free Gift with Purchase</div>
             <div className="gift-item"></div>
-          </div>
+          </div> */}
           {/* ratings and reviews */}
           <div className="ratings-and-reviews">
             {/* total ratings */}
             <div className="total-ratings">
               <div className="title">Product Ratings &amp; Reviews</div>
-              <div className="overview-board"></div>
+              <div className="overview-board">
+                <div className="overall">
+                  <div className="overall-rating">
+                    <div className="number">
+                      <span>4.6</span>/5.0
+                    </div>
+                    <div className="star-rating">
+                      {[...Array(5)].map((_, index) => (
+                        <span className="star">
+                          <span className="mage--star-fill"></span>
+                        </span>
+                      ))}
+                    </div>
+                    <div className="total">
+                      <span>({totalRatings})</span> ratings and reviews
+                    </div>
+                  </div>
+                  {/* rating snapshot */}
+                  <div className="rating-snapshot">
+                    {Object.entries(ratings)
+                      .sort(([a], [b]) => Number(b) - Number(a)) // Sort by star rating in descending order
+                      .map(([star, count]) => (
+                        <div key={star} className="rating-row">
+                          <span className="star-label">
+                            <p>{star}</p>{" "}
+                            <span className="mage--star-fill icon"></span>
+                          </span>
+                          <div className="rating-bar">
+                            <div
+                              className="rating-fill"
+                              style={{
+                                width: `${(count / totalRatings) * 100}%`,
+                              }}
+                            >
+                              <span className="rating-count">{count}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                {/* reviews product */}
+                <div className="reviews-product">
+                  <div className="title">Review this Product</div>
+                  <div className="stars-field">
+                    {[...Array(5)].map((_, index) => (
+                      <div
+                        key={index}
+                        className={`star ${index < rating ? "selected" : ""} ${
+                          index < hoveredRating ? "hovered" : ""
+                        }`}
+                        onClick={() => handleStarClick(index + 1)}
+                        onMouseEnter={() => handleStarMouseEnter(index + 1)}
+                        onMouseLeave={handleStarMouseLeave}
+                      >
+                        <span className="mage--star-fill icon"></span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="note">
+                    Adding a review will require a valid email for verification
+                  </div>
+                </div>
+              </div>
             </div>
             {/* user reviews */}
             <div className="user-reviews">
               <div className="heading">
                 <div className="title">
-                  User reviews<span>(329)</span>
+                  User reviews<span>({totalRatings})</span>
                 </div>
                 <div className="view-all-reviews">
                   See all reviews
@@ -415,9 +548,51 @@ const ProductDetails = (props: Props) => {
                 </div>
               </div>
               <div className="all-reviews">
-                <div className="review"></div>
-                <div className="review"></div>
-                <div className="review"></div>
+                {reviews.map((review, index) => (
+                  <div className="review" key={index}>
+                    <div className="header">
+                      <div className="title" title={review.title}>
+                        {review.title.length > MAX_TITLE_LENGTH
+                          ? `${review.title.substring(0, MAX_TITLE_LENGTH)}...`
+                          : review.title}
+                      </div>
+                      <div className="datetime">{review.datetime}</div>
+                    </div>
+                    <div className="content">
+                      <div className="star-rating">
+                        {[...Array(5)].map((_, starIndex) => (
+                          <span
+                            key={starIndex}
+                            className={`star ${
+                              starIndex < review.rating ? "selected" : ""
+                            }`}
+                          >
+                            <span className="mage--star-fill"></span>
+                          </span>
+                        ))}
+                        <div className="username">{review.username}</div>
+                      </div>
+                      <p
+                        className={`compose ${
+                          expandedReviewIndex === index ? "expanded" : ""
+                        }`}
+                      >
+                        {expandedReviewIndex === index
+                          ? review.content
+                          : review.content.length > MAX_TEXT_LENGTH
+                          ? `${review.content.substring(0, MAX_TEXT_LENGTH)}...`
+                          : review.content}
+                      </p>
+                      {review.content.length > MAX_TEXT_LENGTH && (
+                        <button onClick={() => toggleExpand(index)}>
+                          {expandedReviewIndex === index
+                            ? "View Less"
+                            : "View More"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             {/* related products */}
@@ -426,7 +601,35 @@ const ProductDetails = (props: Props) => {
               {/* product items */}
               <div className="all-related-products">
                 {products.map((_, index) => (
-                  <div className="product-item" key={index}></div>
+                  <div className="product-item" key={index}>
+                    <img src={product_demo_1} alt="" className="product-img" />
+                    <div className="product-info">
+                      <div className="header">
+                        <p
+                          className="name"
+                          title="AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB"
+                        >
+                          {`AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`
+                            .length > 40
+                            ? `${`AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`.substring(
+                                0,
+                                40
+                              )}...`
+                            : `AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`}
+                        </p>
+                        <div className="wishlist-btn">
+                          <span className="solar--heart-outline"></span>
+                        </div>
+                      </div>
+                      <div className="price">
+                        <span>Price:</span>$1499
+                      </div>
+                      <div className="button">
+                        <div className="add-to-cart">Add to Cart</div>
+                        <div className="buy-now">Buy now</div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>

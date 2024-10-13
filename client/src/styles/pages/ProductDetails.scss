@@ -167,7 +167,7 @@
         .total-reviews {
           margin-left: 5px;
           font-size: 1vw;
-          color: #5a5a5a;
+          color: #8a8a8a;
           transition: 0.5s;
         }
 
@@ -199,7 +199,7 @@
           color: $text-color;
 
           span {
-            color: #5a5a5a;
+            color: #8a8a8a;
           }
         }
       }
@@ -635,7 +635,6 @@
 
       // ratings and reviews
       .ratings-and-reviews {
-        margin-top: 3vw;
         width: 100%;
 
         .total-ratings {
@@ -652,12 +651,186 @@
           .overview-board {
             margin-top: 1vw;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             width: 100%;
-            aspect-ratio: 1 / 0.4;
-            background-color: #2a2a2a;
+            aspect-ratio: 1 / 0.8;
+            background-color: #161616;
             border-radius: 1.5vw;
+
+            // overall
+            .overall {
+              display: grid;
+              grid-template-columns: 1fr 1.2fr;
+              width: 100%;
+
+              // overall rating
+              .overall-rating {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 1vw;
+                font-family: $open-sans;
+                font-weight: 500;
+                color: $text-color;
+
+                .number {
+                  display: flex;
+                  align-items: center;
+                  color: #8a8a8a;
+                  font-size: 1.2vw;
+                  font-weight: 300;
+                  margin-top: -1.5vw;
+
+                  span {
+                    color: $text-color;
+                    font-size: 2.3vw;
+                    font-weight: 500;
+                  }
+                }
+
+                .star-rating {
+                  color: $primary-light;
+                  padding: 5px;
+
+                  .star {
+                    padding: 0.1vw;
+                  }
+                }
+
+                .total {
+                  margin-top: 0.2vw;
+                  font-size: 0.8vw;
+                  font-weight: 400;
+                  color: #8a8a8a;
+
+                  span {
+                    color: $text-color;
+                  }
+                }
+              }
+
+              // rating snapshot
+              .rating-snapshot {
+                width: 100%;
+                padding: 1.5vw 1vw;
+
+                .rating-row {
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 0.5vw;
+
+                  .star-label {
+                    width: 2vw;
+                    display: flex;
+                    align-items: center;
+
+                    p {
+                      font-size: 1vw;
+                      margin-top: -0.1vw;
+                    }
+
+                    .icon {
+                      margin-left: 0.2vw;
+                      font-size: 0.8vw;
+                      color: $primary-light;
+                    }
+                  }
+
+                  .rating-bar {
+                    flex: 1;
+                    height: 0.5vw;
+                    background-color: #2a2a2a;
+                    margin: 0 0.6vw;
+                    position: relative;
+                    border-radius: 50px;
+                    cursor: pointer;
+
+                    .rating-fill {
+                      height: 100%;
+                      background-color: $primary-light;
+                      border-radius: 50px;
+                      position: relative;
+                      cursor: pointer;
+
+                      .rating-count {
+                        display: none;
+                        position: absolute;
+                        top: -1.7vw;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #333;
+                        color: #fff;
+                        padding: 2px 5px;
+                        border-radius: 3px;
+                        font-size: 12px;
+                      }
+                    }
+
+                    &:hover .rating-count {
+                      display: block;
+                    }
+                  }
+                }
+              }
+            }
+
+            // reviews product
+            .reviews-product {
+              width: 100%;
+              padding: 0 1.5vw;
+
+              .title {
+                font-size: 1vw;
+                font-family: $open-sans;
+                font-weight: 500;
+                color: $text-color;
+                margin-top: 0vw;
+              }
+
+              .stars-field {
+                width: 100%;
+                margin-top: 0.5vw;
+                display: flex;
+
+                .star {
+                  margin-top: 0.5vw;
+                  width: 3vw;
+                  aspect-ratio: 1 / 1;
+                  background-color: transparent;
+                  border: 1px solid $primary-light;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  margin-right: 0.5vw;
+                  border-radius: 0.8vw;
+                  transition: 0.5s;
+                  cursor: pointer;
+
+                  .icon {
+                    font-size: 1.2vw;
+                    color: white;
+                  }
+
+                  &.selected,
+                  &.hovered {
+                    background-color: $primary-light;
+                  }
+                }
+              }
+
+              .note {
+                margin-top: 1.2vw;
+                font-size: 0.9vw;
+                width: fit-content;
+                background-color: #2a2a2a;
+                padding: 0.3vw 1vw;
+                font-family: $open-sans;
+                font-weight: 300;
+                color: $text-color;
+                border-radius: 50px;
+              }
+            }
           }
         }
 
@@ -713,11 +886,104 @@
               margin-top: 0.8vw;
               display: flex;
               justify-content: center;
-              align-items: center;
+              flex-direction: column;
               width: 100%;
               aspect-ratio: 1 / 0.4;
-              background-color: #2a2a2a;
+              background-color: #161616;
               border-radius: 1.5vw;
+              padding: 0vw 2vw 2vw 2vw;
+
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1vw 0;
+                border-bottom: 1px solid #2a2a2a;
+
+                .title {
+                  display: inline-block;
+                  font-size: 1.1vw;
+                  max-width: 200px;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  cursor: pointer;
+                  font-family: $open-sans;
+                  font-weight: 500;
+                  color: $text-color;
+
+                  &:hover::after {
+                    content: attr(title);
+                    position: absolute;
+                    left: 0;
+                    top: 100%;
+                    white-space: normal;
+                    background-color: #fff;
+                    color: #000;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    z-index: 10;
+                    width: max-content;
+                    max-width: none;
+                  }
+                }
+
+                .datetime {
+                  font-size: 0.9vw;
+                  font-family: $open-sans;
+                  font-weight: 300;
+                  color: #8a8a8a;
+                }
+              }
+
+              .content {
+                .star-rating {
+                  display: flex;
+                  align-items: center;
+                  margin-top: 1vw;
+
+                  .star {
+                    margin-right: 0.1vw;
+                    display: flex;
+                    align-items: center;
+                    font-size: 1vw;
+                    color: $primary-light;
+                  }
+
+                  .username {
+                    margin-left: 0.5vw;
+                    font-size: 0.8vw;
+                    color: #8a8a8a;
+                  }
+                }
+
+                .compose {
+                  margin-top: 1vw;
+                  font-size: 0.9vw;
+                  overflow: hidden;
+                  font-family: $open-sans;
+                  font-weight: 300;
+                  color: $text-color;
+                }
+
+                button {
+                  background-color: $primary-light;
+                  color: white;
+                  border: none;
+                  padding: 0.3vw 1.2vw;
+                  font-family: $open-sans;
+                  font-weight: 300;
+                  font-size: 0.8vw;
+                  cursor: pointer;
+                  margin-top: 1vw;
+                  border-radius: 50px;
+                  transition: 0.5s;
+
+                  &:hover {
+                    background-color: $hover-color;
+                  }
+                }
+              }
             }
           }
         }
@@ -744,9 +1010,108 @@
               justify-content: center;
               align-items: center;
               width: 100%;
-              aspect-ratio: 1 / 0.4;
-              background-color: #2a2a2a;
+              height: 10vw;
+              background-color: #161616;
               border-radius: 1.5vw;
+              padding: 0 0.5vw;
+              overflow: hidden;
+
+              .product-info {
+                font-family: $open-sans;
+                font-weight: 300;
+                padding-right: 1vw;
+
+                .header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+
+                  .name {
+                    max-width: 80%;
+                    font-size: 0.9vw;
+                    font-weight: 500;
+                    color: $text-color;
+                    transition: 0.5s;
+                    cursor: pointer;
+
+                    &:hover {
+                      color: #8a8a8a;
+                    }
+                  }
+
+                  .wishlist-btn {
+                    font-size: 1.5vw;
+                    transition: 0.5s;
+                    cursor: pointer;
+
+                    &:hover {
+                      color: #8a8a8a;
+                    }
+                  }
+                }
+
+                .price {
+                  font-size: 1vw;
+                  font-weight: 500;
+                  margin-top: 0.5vw;
+
+                  span {
+                    font-weight: 300;
+                    margin-right: 0.5vw;
+                    color: #8a8a8a;
+                  }
+                }
+
+                .button {
+                  margin-top: 0.8vw;
+                  display: flex;
+
+                  .add-to-cart {
+                    font-size: 0.7vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 7vw;
+                    height: 2.2vw;
+                    background-color: transparent;
+                    border: 1px solid #2a2a2a;
+                    border-radius: 50px;
+                    text-transform: uppercase;
+                    transition: 0.5s;
+                    cursor: pointer;
+
+                    &:hover {
+                      background-color: #2a2a2a;
+                      color: white;
+                    }
+                  }
+
+                  .buy-now {
+                    font-size: 0.7vw;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 7vw;
+                    height: 2.2vw;
+                    background-color: $primary-color;
+                    border-radius: 50px;
+                    margin-left: 0.5vw;
+                    text-transform: uppercase;
+                    transition: 0.5s;
+                    cursor: pointer;
+
+                    &:hover {
+                      background-color: $hover-color;
+                    }
+                  }
+                }
+              }
+
+              .product-img {
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+              }
             }
           }
         }
