@@ -7,7 +7,7 @@
 
   .text-information {
     position: relative;
-    height: 83vh;
+    height: 80vh;
     width: 100%;
     background: rgb(0, 0, 0);
     background: linear-gradient(
@@ -21,79 +21,27 @@
     overflow: hidden;
 
     span {
-      position: absolute;
+      position: relative;
       width: 100%;
-      padding-left: 100px;
-      top: 60%;
+      padding-left: 8.3vw;
+      top: 58%;
       font-family: "Roboto", sans-serif;
       font-weight: 100;
-      font-size: 1.5rem;
+      font-size: 2.2vw;
       line-height: 30px;
       color: #ffffff;
       text-transform: uppercase;
-
-      /* Adjust font size for smaller screens */
-      @media (max-width: 1200px) {
-        font-size: 1.4rem;
-        padding-left: 80px;
-      }
-
-      @media (max-width: 992px) {
-        font-size: 1.3rem;
-        padding-left: 60px;
-      }
-
-      @media (max-width: 768px) {
-        font-size: 1.2rem;
-        padding-left: 50px;
-      }
-
-      @media (max-width: 576px) {
-        font-size: 1.1rem;
-        padding-left: 40px;
-      }
-
-      @media (max-width: 360px) {
-        font-size: 1rem;
-        padding-left: 20px;
-      }
     }
 
     .title {
-      position: absolute;
-      top: 55%;
-      padding: 95px;
+      position: relative;
+      top: 62%;
+      padding-left: 8vw;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
-      font-size: 6rem;
+      font-size: 7vw;
       color: #ffffff;
       text-transform: uppercase;
-
-      /* Adjust font size for smaller screens */
-      @media (max-width: 1200px) {
-        font-size: 5rem;
-        padding-left: 75px;
-      }
-
-      @media (max-width: 992px) {
-        font-size: 4.5rem;
-        padding-left: 55px;
-      }
-
-      @media (max-width: 768px) {
-        font-size: 4rem;
-        padding-left: 45px;
-      }
-
-      @media (max-width: 576px) {
-        font-size: 3rem;
-        padding-left: 35px;
-      }
-
-      @media (max-width: 360px) {
-        font-size: 2.5rem;
-        padding-left: 15px;
-      }
     }
   }
 
@@ -385,7 +333,7 @@
               margin-top: 10px;
               font-size: 16px;
               font-weight: 400;
-              color: #9a9a9a;
+              color: $text-color;
             }
           }
         }

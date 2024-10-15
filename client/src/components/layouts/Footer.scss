@@ -68,6 +68,7 @@
       padding-left: 50px;
       font-family: $open-sans;
       font-weight: 300;
+      font-size: 0.5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
 
@@ -86,6 +87,7 @@
             a {
               color: #8a8a8a;
               text-decoration: none;
+              font-size: 0.5rem;
               transition: 0.5s;
 
               &:hover {

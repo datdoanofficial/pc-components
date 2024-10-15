@@ -210,8 +210,7 @@
         align-items: center;
         margin-top: 2vw;
 
-        .price .title,
-        .quantity .title {
+        .price .title {
           font-size: 1.1vw;
           font-family: $open-sans;
           font-weight: 500;
@@ -224,27 +223,6 @@
           font-family: $open-sans;
           font-weight: 500;
           color: $text-color;
-        }
-
-        .quantity .quantity-btn {
-          margin-top: 15px;
-          font-size: 1.3vw;
-          font-family: $open-sans;
-          font-weight: 500;
-          color: $text-color;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .minus,
-          .plus {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1.3vw;
-            color: #8a8a8a;
-          }
         }
       }
 
@@ -1108,6 +1086,7 @@
               }
 
               .product-img {
+                margin-right: 5px;
                 height: 100%;
                 aspect-ratio: 1 / 1;
                 object-fit: cover;

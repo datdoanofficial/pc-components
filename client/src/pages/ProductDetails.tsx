@@ -6,6 +6,10 @@ import product_demo_2 from "../assets/images/products/product_demo_02.png";
 import product_demo_3 from "../assets/images/products/product_demo_03.png";
 import product_demo_4 from "../assets/images/products/product_demo_04.png";
 
+import rtx4070ti_demo from "../assets/images/product-details/4070ti-demo.png";
+import rtx4090_demo from "../assets/images/product-details/4090-demo.png";
+import rtx4090msi_demo from "../assets/images/product-details/4090msi-demo.png";
+
 import product_des from "../assets/images/product-details/product-demo-01.png";
 import product_bg from "../assets/images/product-details/bg-demo.png";
 import feature_img from "../assets/images/product-details/geforce-rtx-40.png";
@@ -21,15 +25,15 @@ import feature_icon_8 from "../assets/images/product-details/icon-8.svg";
 
 import hdmi_logo from "../assets/images/product-details/hdmi_logo.png";
 
+import QuantityBtn from "../components/common/QuantityBtn";
+
 type Props = {};
 
 const ProductDetails = (props: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animationDirection, setAnimationDirection] = useState("");
   const [rating, setRating] = useState(0);
-  const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState("key-feature");
-  const products = Array.from({ length: 3 });
   const [hoveredRating, setHoveredRating] = useState(0);
   const [expandedReviewIndex, setExpandedReviewIndex] = useState<number | null>(
     null
@@ -42,6 +46,7 @@ const ProductDetails = (props: Props) => {
 
   const MAX_TEXT_LENGTH = 200;
   const MAX_TITLE_LENGTH = 20;
+  const MAX_PRDNAME_LENGTH = 40;
 
   // Image sources
   const imageSources = [
@@ -90,6 +95,25 @@ const ProductDetails = (props: Props) => {
       username: "by JOHN_SMITH",
       rating: 5,
       content: `Great gpu big upgrade from my 6700xt and for the price to performance it’s a great value, was thing on last gen 6800xt but with the new technology built in and fsr3 on the way I went with this. Excellent performance in star field at 1440p maxed out and also mine came with starfield premium edition so a 100$ value brought this card to like 400$. Such a good card I’m happy asrock made this card. Also there is a physical switch on the card to turn off the lighting if you don’t want it, this is great no need to deal with software if you dont want to. Overall very happy with this card.`,
+    },
+  ];
+
+  // Related products
+  const products = [
+    {
+      name: "MSI GeForce RTX 4090 GAMING X TRIO 24G",
+      price: "$1899.99",
+      image: rtx4090msi_demo,
+    },
+    {
+      name: "ZOTAC Gaming GeForce RTX 4070 Ti Trinity OC White Edition",
+      price: "$719.99",
+      image: rtx4070ti_demo,
+    },
+    {
+      name: "ASUS ROG Strix GeForce RTX™ 4090 White OC Ed",
+      price: "$2099.99",
+      image: rtx4090_demo,
     },
   ];
 
@@ -207,21 +231,14 @@ const ProductDetails = (props: Props) => {
     setRating(index);
   };
 
+  // handle star mouse enter
   const handleStarMouseEnter = (index: number) => {
     setHoveredRating(index);
   };
 
+  // handle star mouse leave
   const handleStarMouseLeave = () => {
     setHoveredRating(0);
-  };
-
-  // Quantity handlers
-  const handleMinusClick = () => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
-  };
-
-  const handlePlusClick = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const items = imageSources.map((src, index) => (
@@ -290,18 +307,8 @@ const ProductDetails = (props: Props) => {
               <p className="title">Price:</p>
               <p className="price-value">$1499</p>
             </div>
-            <div className="quantity">
-              <p className="title">Quantity:</p>
-              <div className="quantity-btn">
-                <span className="minus" onClick={handleMinusClick}>
-                  <span className="tabler--minus"></span>
-                </span>
-                <span className="number">{quantity}</span>
-                <span className="plus" onClick={handlePlusClick}>
-                  <span className="tabler--plus"></span>
-                </span>
-              </div>
-            </div>
+            {/* quantity */}
+            <QuantityBtn showTitle={true} />
           </div>
           {/* add to cart btn */}
           <div className="add-to-cart">Add to Cart</div>
@@ -600,29 +607,30 @@ const ProductDetails = (props: Props) => {
               <div className="title">Related Products</div>
               {/* product items */}
               <div className="all-related-products">
-                {products.map((_, index) => (
+                {products.map((product, index) => (
                   <div className="product-item" key={index}>
-                    <img src={product_demo_1} alt="" className="product-img" />
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="product-img"
+                    />
                     <div className="product-info">
                       <div className="header">
-                        <p
-                          className="name"
-                          title="AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB"
-                        >
-                          {`AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`
-                            .length > 40
-                            ? `${`AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`.substring(
+                        <p className="name" title={product.name}>
+                          {product.name.length > MAX_PRDNAME_LENGTH
+                            ? `${product.name.substring(
                                 0,
-                                40
+                                MAX_PRDNAME_LENGTH
                               )}...`
-                            : `AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB`}
+                            : product.name}
                         </p>
                         <div className="wishlist-btn">
                           <span className="solar--heart-outline"></span>
                         </div>
                       </div>
                       <div className="price">
-                        <span>Price:</span>$1499
+                        <span>Price:</span>
+                        {product.price}
                       </div>
                       <div className="button">
                         <div className="add-to-cart">Add to Cart</div>
