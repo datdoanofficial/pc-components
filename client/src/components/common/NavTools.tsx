@@ -3,6 +3,8 @@ import "./NavTools.scss";
 import { Link } from "react-router-dom";
 import QuantityBtn from "./QuantityBtn";
 
+import icon_empty_cart from "../../assets/images/cart-page/aww.png";
+
 import product_demo from "../../assets/images/product-details/4070ti-demo.png";
 import product_demo2 from "../../assets/images/product-details/4090-demo.png";
 import product_demo3 from "../../assets/images/product-details/4090msi-demo.png";
@@ -46,26 +48,65 @@ const NavTools = (props: Props) => {
       guarantee: "36 Months",
       price: 1499.0,
     },
+    {
+      id: 5,
+      image: product_demo4,
+      name: "AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB",
+      brand: "AORUS",
+      guarantee: "36 Months",
+      price: 1499.0,
+    },
   ];
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [quantities, setQuantities] = useState(products.map(() => 1));
   const cartRef = useRef<HTMLDivElement>(null);
+  const [quantities, setQuantities] = useState(products.map(() => 1));
+  const [cartProducts, setCartProducts] = useState(products);
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  // Recalculate total price whenever cartProducts or quantities change
+  useEffect(() => {
+    const newTotalPrice = cartProducts.reduce((total, product, index) => {
+      return total + product.price * quantities[index];
+    }, 0);
+    setTotalPrice(newTotalPrice);
+  }, [cartProducts, quantities]);
+
+  // handle remove product
+  const handleRemoveProduct = (productId: number) => {
+    const productIndex = cartProducts.findIndex(
+      (product) => product.id === productId
+    );
+    if (productIndex !== -1) {
+      const newCartProducts = cartProducts.filter(
+        (product) => product.id !== productId
+      );
+      const newQuantities = quantities.filter(
+        (_, index) => index !== productIndex
+      );
+      setCartProducts(newCartProducts);
+      setQuantities(newQuantities);
+
+      const newTotalPrice = newCartProducts.reduce((total, product, index) => {
+        return total + product.price * newQuantities[index];
+      }, 0);
+      setTotalPrice(newTotalPrice);
+    }
+  };
+
+  // handle quantity change
   const handleQuantityChange = (index: number, newQuantity: number) => {
     const newQuantities = [...quantities];
     newQuantities[index] = newQuantity;
     setQuantities(newQuantities);
   };
 
-  const totalPrice = products.reduce((total, product, index) => {
-    return total + product.price * quantities[index];
-  }, 0);
-
+  // toggle cart
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
+  // handle click outside
   const handleClickOutside = (event: MouseEvent) => {
     if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
       setIsCartOpen(false);
@@ -76,7 +117,7 @@ const NavTools = (props: Props) => {
     if (isCartOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden"; // Disable scrolling
-      document.body.style.paddingRight = "15px"; // Adjust for scrollbar width
+      document.body.style.paddingRight = "10px"; // Adjust for scrollbar width
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "auto"; // Enable scrolling
@@ -114,48 +155,60 @@ const NavTools = (props: Props) => {
           </div>
           {/* product box */}
           <div className="product-box">
-            {/* product items */}
-            {products.map((product, index) => (
-              <div key={product.id} className="product-items">
-                {/* img */}
-                <div className="product-image">
-                  <img src={product.image} alt={product.name} />
-                </div>
-                {/* information */}
-                <div className="product-info">
-                  {/* name */}
-                  <div className="product-name" title={product.name}>
-                    {truncateName(product.name, 40)}
-                  </div>
-                  {/* details */}
-                  <div className="product-details">
-                    <div className="brand">
-                      <span>Brand:</span> {product.brand}
-                    </div>
-                    <div className="guarantee">
-                      <span>Guarantee:</span> {product.guarantee}
-                    </div>
-                  </div>
-                </div>
-                <div className="action">
-                  {/* remove btn */}
-                  <div className="remove-toggle">
-                    <span className="fluent--delete-48-regular"></span>
-                  </div>
-                  <div className="quantity-toggle">
-                    <QuantityBtn
-                      showTitle={false}
-                      onQuantityChange={(newQuantity) =>
-                        handleQuantityChange(index, newQuantity)
-                      }
-                    />
-                    <div className="price">
-                      ${(product.price * quantities[index]).toFixed(2)}
-                    </div>
-                  </div>
-                </div>
+            {/* empty cart */}
+            {cartProducts.length === 0 ? (
+              <div className="empty-cart-message">
+                <img src={icon_empty_cart} alt="" />
+                <p>Your cart is empty.</p>
+                <a href="/store">discover more</a>
               </div>
-            ))}
+            ) : (
+              cartProducts.map((product, index) => (
+                <div key={product.id} className="product-items">
+                  {/* img */}
+                  <div className="product-image">
+                    <img src={product.image} alt={product.name} />
+                  </div>
+                  {/* information */}
+                  <div className="product-info">
+                    {/* name */}
+                    <div className="product-name" title={product.name}>
+                      {truncateName(product.name, 40)}
+                    </div>
+                    {/* details */}
+                    <div className="product-details">
+                      <div className="brand">
+                        <span>Brand:</span> {product.brand}
+                      </div>
+                      <div className="guarantee">
+                        <span>Guarantee:</span> {product.guarantee}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="action">
+                    {/* remove btn */}
+                    <div
+                      className="remove-toggle"
+                      onClick={() => handleRemoveProduct(product.id)}
+                    >
+                      <span className="fluent--delete-48-regular"></span>
+                    </div>
+                    {/* quantity btn */}
+                    <div className="quantity-toggle">
+                      <QuantityBtn
+                        showTitle={false}
+                        onQuantityChange={(newQuantity) =>
+                          handleQuantityChange(index, newQuantity)
+                        }
+                      />
+                      <div className="price">
+                        ${(product.price * quantities[index]).toFixed(2)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
           {/* cart footer */}
           <div className="cart-footer">
