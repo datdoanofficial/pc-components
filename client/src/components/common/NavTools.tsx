@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./NavTools.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import QuantityBtn from "./QuantityBtn";
 
 import icon_empty_cart from "../../assets/images/cart-page/aww.png";
@@ -10,89 +10,97 @@ import product_demo2 from "../../assets/images/product-details/4090-demo.png";
 import product_demo3 from "../../assets/images/product-details/4090msi-demo.png";
 import product_demo4 from "../../assets/images/product-details/4080wf.png";
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>;
+// Define the Product interface
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  brand: string;
+  guarantee: string;
+}
 
-type Props = {};
+type Props = {
+  cartProducts: Product[];
+  quantities: number[];
+  totalPrice: number;
+  setCartProducts: (products: Product[]) => void;
+  setQuantities: (quantities: number[]) => void;
+  setTotalPrice: (price: number) => void;
+  handleRemoveProduct: (productId: number) => void;
+};
 
-const NavTools = (props: Props) => {
-  const products = [
-    {
-      id: 1,
-      image: product_demo,
-      name: "ZOTAC Gaming GeForce RTX 4070 Ti Trinity OC White Edition",
-      brand: "Gigabyte",
-      guarantee: "36 Months",
-      price: 719.99,
-    },
-    {
-      id: 2,
-      image: product_demo2,
-      name: "ASUS ROG Strix GeForce RTX™ 4090 White OC Ed",
-      brand: "ASUS ROG",
-      guarantee: "36 Months",
-      price: 2099.99,
-    },
-    {
-      id: 3,
-      image: product_demo3,
-      name: "MSI GeForce RTX 4090 GAMING X TRIO 24G",
-      brand: "MSI",
-      guarantee: "36 Months",
-      price: 1899.99,
-    },
-    {
-      id: 4,
-      image: product_demo4,
-      name: "AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB",
-      brand: "AORUS",
-      guarantee: "36 Months",
-      price: 1499.0,
-    },
-    {
-      id: 5,
-      image: product_demo4,
-      name: "AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB",
-      brand: "AORUS",
-      guarantee: "36 Months",
-      price: 1499.0,
-    },
-  ];
+// Demo products
+const demoProducts: Product[] = [
+  {
+    id: 1,
+    image: product_demo,
+    name: "ZOTAC Gaming GeForce RTX 4070 Ti Trinity OC White Edition",
+    brand: "Gigabyte",
+    guarantee: "36 Months",
+    price: 719.99,
+  },
+  {
+    id: 2,
+    image: product_demo2,
+    name: "ASUS ROG Strix GeForce RTX™ 4090 White OC Ed",
+    brand: "ASUS ROG",
+    guarantee: "36 Months",
+    price: 2099.99,
+  },
+  {
+    id: 3,
+    image: product_demo3,
+    name: "MSI GeForce RTX 4090 GAMING X TRIO 24G",
+    brand: "MSI",
+    guarantee: "36 Months",
+    price: 1899.99,
+  },
+  {
+    id: 4,
+    image: product_demo4,
+    name: "AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB",
+    brand: "AORUS",
+    guarantee: "36 Months",
+    price: 1499.0,
+  },
+  {
+    id: 5,
+    image: product_demo4,
+    name: "AORUS GeForce RTX™ 4080 16GB XTREME WATERFORCE WB",
+    brand: "AORUS",
+    guarantee: "36 Months",
+    price: 1499.0,
+  },
+];
 
+const NavTools = ({
+  cartProducts,
+  quantities,
+  totalPrice,
+  setCartProducts,
+  setQuantities,
+  setTotalPrice,
+  handleRemoveProduct,
+}: Props) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const cartRef = useRef<HTMLDivElement>(null);
-  const [quantities, setQuantities] = useState(products.map(() => 1));
-  const [cartProducts, setCartProducts] = useState(products);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
+
+  // Initialize cart with demo products
+  useEffect(() => {
+    setCartProducts(demoProducts);
+    setQuantities(demoProducts.map(() => 1));
+  }, [setCartProducts, setQuantities]);
 
   // Recalculate total price whenever cartProducts or quantities change
   useEffect(() => {
-    const newTotalPrice = cartProducts.reduce((total, product, index) => {
-      return total + product.price * quantities[index];
-    }, 0);
-    setTotalPrice(newTotalPrice);
-  }, [cartProducts, quantities]);
-
-  // handle remove product
-  const handleRemoveProduct = (productId: number) => {
-    const productIndex = cartProducts.findIndex(
-      (product) => product.id === productId
+    const newTotalPrice = cartProducts.reduce(
+      (total, product, index) => total + product.price * quantities[index],
+      0
     );
-    if (productIndex !== -1) {
-      const newCartProducts = cartProducts.filter(
-        (product) => product.id !== productId
-      );
-      const newQuantities = quantities.filter(
-        (_, index) => index !== productIndex
-      );
-      setCartProducts(newCartProducts);
-      setQuantities(newQuantities);
-
-      const newTotalPrice = newCartProducts.reduce((total, product, index) => {
-        return total + product.price * newQuantities[index];
-      }, 0);
-      setTotalPrice(newTotalPrice);
-    }
-  };
+    setTotalPrice(newTotalPrice);
+  }, [cartProducts, quantities, setTotalPrice]);
 
   // handle quantity change
   const handleQuantityChange = (index: number, newQuantity: number) => {
@@ -111,6 +119,12 @@ const NavTools = (props: Props) => {
     if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
       setIsCartOpen(false);
     }
+  };
+
+  // handle checkout
+  const handleCheckout = () => {
+    setIsCartOpen(false); // Close the cart box
+    navigate("/cart", { state: { cartProducts, quantities, totalPrice } });
   };
 
   useEffect(() => {
@@ -196,6 +210,7 @@ const NavTools = (props: Props) => {
                     {/* quantity btn */}
                     <div className="quantity-toggle">
                       <QuantityBtn
+                        initialQuantity={quantities[index]}
                         showTitle={false}
                         onQuantityChange={(newQuantity) =>
                           handleQuantityChange(index, newQuantity)
@@ -216,7 +231,13 @@ const NavTools = (props: Props) => {
               <p>Subtotal</p>
               <div className="price">${totalPrice.toFixed(2)}</div>
             </div>
-            <button className="check-out">check out</button>
+            <button
+              className="check-out"
+              onClick={handleCheckout}
+              disabled={cartProducts.length === 0}
+            >
+              check out
+            </button>
           </div>
         </div>
       </div>

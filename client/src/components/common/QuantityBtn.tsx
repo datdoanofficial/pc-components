@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./QuantityBtn.scss";
 
 type Props = {
+  initialQuantity: number;
   showTitle?: boolean; // Add a prop to control the visibility of the title
   onQuantityChange?: (quantity: number) => void; // Add a callback prop for quantity change
 };
 
-const QuantityBtn = ({ showTitle = true, onQuantityChange }: Props) => {
-  const [quantity, setQuantity] = useState(1);
+const QuantityBtn = ({
+  initialQuantity,
+  showTitle = true,
+  onQuantityChange,
+}: Props) => {
+  const [quantity, setQuantity] = useState(initialQuantity);
+
+  useEffect(() => {
+    setQuantity(initialQuantity);
+  }, [initialQuantity]);
 
   // Quantity handlers
   const handleMinusClick = () => {

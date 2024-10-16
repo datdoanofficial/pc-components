@@ -291,6 +291,11 @@
         &:hover {
           background-color: $hover-color;
         }
+
+        &:disabled {
+          background-color: $hover-color;
+          cursor: not-allowed;
+        }
       }
     }
   }

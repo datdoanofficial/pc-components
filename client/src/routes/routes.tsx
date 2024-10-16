@@ -4,8 +4,8 @@ import news from "../pages/News";
 import help from "../pages/Help";
 import contact from "../pages/Contact";
 import login from "../pages/Login";
+import cart from "../pages/Cart";
 import productdetails from "../pages/ProductDetails";
-
 import notfound from "../pages/NotFound";
 
 export const routes = [
@@ -57,6 +57,13 @@ export const routes = [
     title: "Sign In | Next In",
     isShowNavbar: false,
     isShowFooter: false,
+  },
+  {
+    path: "/cart",
+    page: cart,
+    title: "Cart | Next In",
+    isShowNavbar: true,
+    isShowFooter: true,
   },
   {
     path: "*",

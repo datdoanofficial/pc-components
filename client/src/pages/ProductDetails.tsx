@@ -308,7 +308,7 @@ const ProductDetails = (props: Props) => {
               <p className="price-value">$1499</p>
             </div>
             {/* quantity */}
-            <QuantityBtn showTitle={true} />
+            <QuantityBtn initialQuantity={1} showTitle={true} />
           </div>
           {/* add to cart btn */}
           <div className="add-to-cart">Add to Cart</div>

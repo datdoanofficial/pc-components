@@ -4,9 +4,35 @@ import "./Navbar.scss";
 import NavLinks from "../common/NavLinks";
 import NavTools from "../common/NavTools";
 
-type Props = {};
+// Define the Product interface
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  brand: string;
+  guarantee: string;
+}
 
-const Navbar = (props: Props) => {
+interface NavbarProps {
+  cartProducts: Product[];
+  quantities: number[];
+  totalPrice: number;
+  setCartProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  setQuantities: React.Dispatch<React.SetStateAction<number[]>>;
+  setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
+  handleRemoveProduct: (productId: number) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({
+  cartProducts,
+  quantities,
+  totalPrice,
+  setCartProducts,
+  setQuantities,
+  setTotalPrice,
+  handleRemoveProduct,
+}) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -19,7 +45,15 @@ const Navbar = (props: Props) => {
       }}
     >
       <NavLinks />
-      <NavTools />
+      <NavTools
+        cartProducts={cartProducts}
+        quantities={quantities}
+        totalPrice={totalPrice}
+        setCartProducts={setCartProducts}
+        setQuantities={setQuantities}
+        setTotalPrice={setTotalPrice}
+        handleRemoveProduct={handleRemoveProduct}
+      />
     </div>
   );
 };
