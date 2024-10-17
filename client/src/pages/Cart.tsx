@@ -90,11 +90,20 @@ const CartPage = ({
           )}
         </div>
         {/* checkout contain */}
-        <div className="checkout-contain">
-          <div className="total-price">
-            <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
+        {cartProducts.length > 0 && (
+          <div className="checkout-contain">
+            <div className="total-price">
+              <h2>Total:</h2>
+              <h2 className="price">${totalPrice.toFixed(2)}</h2>
+            </div>
+            <p className="total-items">{cartProducts.length} Items</p>
+            <button className="proceed-checkout">Proceed to checkout</button>
+            <div className="discount">
+              <input type="text" placeholder="Enter discount code" />
+              <button className="apply-btn">Apply</button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

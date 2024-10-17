@@ -154,7 +154,10 @@ const NavTools = ({
   return (
     <div className="tool-bar">
       <span className="carbon--search icon"></span>
-      <span className="solar--bag-4-outline icon" onClick={toggleCart}></span>
+      <div className="cart-icon-wrapper" onClick={toggleCart}>
+        <span className="solar--bag-4-outline icon"></span>
+        <span className="cart-count">{cartProducts.length}</span>
+      </div>
       <Link to="/login" className="sign-in-btn btn-ripple">
         sign in
       </Link>
