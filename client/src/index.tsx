@@ -4,8 +4,18 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { routes } from "./routes/routes";
+import { getProductsAPI } from "./Products";
 
 const AppWrapper = () => {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = getProductsAPI();
+    console.log(data);
+  };
+
   const location = useLocation();
 
   useEffect(() => {
