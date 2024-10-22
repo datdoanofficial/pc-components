@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using server.Data;
 using server.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace server.Controllers
@@ -44,7 +43,7 @@ namespace server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
-            if (id != product.Id)
+            if (id != product.ProductID)
             {
                 return BadRequest();
             }
@@ -77,7 +76,7 @@ namespace server.Controllers
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return CreatedAtAction("GetProduct", new { id = product.ProductID }, product);
         }
 
         // DELETE: api/Products/5
@@ -98,7 +97,7 @@ namespace server.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.ProductID == id);
         }
     }
 }

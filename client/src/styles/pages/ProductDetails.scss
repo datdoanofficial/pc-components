@@ -799,10 +799,11 @@
 
               .note {
                 margin-top: 1.2vw;
-                font-size: 0.9vw;
+                font-size: 0.4rem;
                 width: fit-content;
                 background-color: #2a2a2a;
-                padding: 0.3vw 1vw;
+                padding: 0.5vw 2vw;
+                margin-bottom: 1.5vw;
                 font-family: $open-sans;
                 font-weight: 300;
                 color: $text-color;
@@ -869,7 +870,7 @@
               aspect-ratio: 1 / 0.4;
               background-color: #161616;
               border-radius: 1.5vw;
-              padding: 0vw 2vw 2vw 2vw;
+              padding: 0vw 2vw 1vw 2vw;
 
               .header {
                 display: flex;
