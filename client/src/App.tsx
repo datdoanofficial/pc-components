@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { routes } from "./routes/routes";
+import { adminRoutes } from "./routes/adminRoutes";
 import ScrollToTop from "./hooks/useScrollToTop";
 import NavbarComponent from "./components/layouts/Navbar";
 import FooterComponent from "./components/layouts/Footer";
@@ -103,6 +104,17 @@ function App() {
             />
           }
         />
+        {adminRoutes.map((route, index) => (
+          <Route key={index} path={route.path} element={route.element}>
+            {route.children.map((child, childIndex) => (
+              <Route
+                key={childIndex}
+                path={child.path}
+                element={child.element}
+              />
+            ))}
+          </Route>
+        ))}
       </Routes>
     </div>
   );

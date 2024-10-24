@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace server.Models
 {
@@ -12,6 +9,6 @@ namespace server.Models
         public string Description { get; set; }
 
         // Navigation property
-        public ICollection<CategoriesList> CategoriesLists { get; set; }
+        public ICollection<CategoriesList> CategoriesList { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Services;
+using server.Services.Product; // Add this line for IProductService and ProductService
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<WebDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IProductService, ProductService>(); // Register the product service
 
 // Configure CORS
 builder.Services.AddCors(options =>

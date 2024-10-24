@@ -1,0 +1,11 @@
+@import "../../styles/common/root.scss";
+
+.sidebar {
+  ul {
+    li {
+      a.active {
+        color: $primary-color;
+      }
+    }
+  }
+}

@@ -9,9 +9,9 @@ namespace server.Models
     {
         public int ImageID { get; set; }
         public int ProductID { get; set; }
-        public required string ImagePath { get; set; }
+        public string ImagePath { get; set; }
 
         // Navigation property
-        public required Product Product { get; set; }
+        public Product Product { get; set; }
     }
 }

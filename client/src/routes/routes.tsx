@@ -6,6 +6,7 @@ import contact from "../pages/Contact";
 import login from "../pages/Login";
 import cart from "../pages/Cart";
 import productdetails from "../pages/ProductDetails";
+import admin from "../admin/AdminLayout";
 import notfound from "../pages/NotFound";
 
 export const routes = [
@@ -64,6 +65,13 @@ export const routes = [
     title: "Cart | Next In",
     isShowNavbar: true,
     isShowFooter: true,
+  },
+  {
+    path: "/admin",
+    page: admin,
+    title: "Dashboard | Next In",
+    isShowNavbar: false,
+    isShowFooter: false,
   },
   {
     path: "*",
