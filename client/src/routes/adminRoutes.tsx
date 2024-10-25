@@ -8,7 +8,8 @@ import Products from "../admin/pages/Products";
 import Systems from "../admin/pages/Systems";
 import Transports from "../admin/pages/Transports";
 import Report from "../admin/pages/Report";
-import Comment from "../admin/pages/Comment";
+import Pages from "../admin/pages/Pages";
+import Settings from "../admin/pages/Settings";
 
 export const adminRoutes = [
   {
@@ -36,6 +37,10 @@ export const adminRoutes = [
         element: <Products />,
       },
       {
+        path: "pages",
+        element: <Pages />,
+      },
+      {
         path: "systems",
         element: <Systems />,
       },
@@ -48,8 +53,8 @@ export const adminRoutes = [
         element: <Report />,
       },
       {
-        path: "comment",
-        element: <Comment />,
+        path: "settings",
+        element: <Settings />,
       },
     ],
   },
