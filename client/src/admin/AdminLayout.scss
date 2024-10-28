@@ -1,6 +1,14 @@
 @import "../styles/common/root.scss";
 
 .admin-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 230px 1fr;
   height: 100vh;
+  overflow: hidden;
+
+  .main-content {
+    width: 100%;
+    height: 100%;
+    padding: 0 2vw;
+  }
 }

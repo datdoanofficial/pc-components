@@ -22,7 +22,12 @@ export const adminRoutes = [
       },
       {
         path: "overview",
-        element: <Overview />,
+        element: (
+          <Overview
+            percentageAccountsChange={20.4}
+            percentageOrdersChange={18.2}
+          />
+        ),
       },
       {
         path: "customers",
