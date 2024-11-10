@@ -95,6 +95,12 @@
         .header-wrapper {
           .icon {
             font-size: 0.7rem;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              color: #b5b5b5;
+            }
           }
         }
 
@@ -113,11 +119,18 @@
         .header-wrapper {
           .icon {
             font-size: 0.6rem;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              color: #8a8a8a;
+            }
           }
         }
       }
     }
 
+    // second items
     .second-item {
       width: 100%;
       height: 100%;
@@ -125,18 +138,112 @@
       grid-template-columns: 2.7fr 1fr;
       gap: 1.5vw;
 
+      //   invoice statistics
       .invoice-statistics {
         width: 100%;
         height: 100%;
         background-color: #161616;
         border-radius: 0.3rem;
+        font-size: 0.55rem;
+        padding: 1.5vw 1.5vw;
+
+        .header-wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1vw;
+
+          .three-dots-btn {
+            width: fit-content;
+            height: fit-content;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              color: #8a8a8a;
+            }
+          }
+        }
       }
 
       .engaged-users {
+        position: relative;
         width: 100%;
         height: 100%;
         background-color: #161616;
         border-radius: 0.3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+
+        // header wrapper
+        .header-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 3vw;
+
+          .user-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 1.8rem;
+            height: 1.8rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 0.5rem;
+            transition: 0.5s;
+            cursor: pointer;
+
+            &:hover {
+              color: #8a8a8a;
+            }
+          }
+
+          .title {
+            padding: 0 0.5rem;
+            margin-top: 3vw;
+            font-size: 0.65rem;
+            font-weight: 400;
+            line-height: 1rem;
+            text-align: center;
+            color: #e2e2e2;
+          }
+        }
+
+        // total users
+        .total-users {
+          position: relative;
+          width: 100%;
+          height: fit-content;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0;
+
+          .value {
+            position: absolute;
+            top: 1.5rem;
+            z-index: 1;
+            font-size: 0.5rem;
+            font-weight: 700;
+            background-color: $text-color;
+            padding: 0.2rem 0.5rem;
+            color: $primary-color;
+            border-radius: 1rem;
+          }
+
+          img {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            object-fit: cover;
+            z-index: 0;
+          }
+        }
       }
     }
   }
@@ -172,11 +279,13 @@
           font-weight: 600;
         }
 
+        // total information
         .total-info {
           font-size: 0.4rem;
           display: flex;
           align-items: center;
 
+          //   total amount
           .total-amount {
             padding: 0.2vw 0.5vw;
             background-color: $primary-color;
@@ -184,9 +293,10 @@
             font-weight: 400;
           }
 
+          //   total orders
           .total-orders {
             margin-left: 0.5vw;
-            padding: 0.2vw 0.5vw;
+            padding: 0.2vw 0.6vw;
             background-color: #2a2a2a;
             border-radius: 0.1rem;
 
@@ -196,17 +306,41 @@
             }
           }
 
-          select {
-            padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+          .select-container {
+            position: relative;
+            height: 100%;
             background-color: #2a2a2a;
-            border-radius: 0.1rem;
-            color: #e2e2e2;
-            font-size: 0.4rem;
-            font-family: $open-sans;
-            font-weight: 300;
             margin-left: 0.5vw;
-            outline: none;
-            border: none;
+            display: flex;
+            align-items: center;
+            border-radius: 0.1rem;
+            overflow: hidden;
+
+            &:hover {
+              background-color: #3a3a3a;
+            }
+
+            select {
+              width: 100%;
+              height: 100%;
+              appearance: none;
+              padding: 0.2vw 1.6vw 0.2vw 0.6vw;
+              background: none;
+              color: #e2e2e2;
+              font-size: 0.4rem;
+              font-family: $open-sans;
+              font-weight: 300;
+              outline: none;
+              border: none;
+              transition: 0.5s;
+              cursor: pointer;
+            }
+
+            .icon {
+              position: absolute;
+              pointer-events: none;
+              right: 0.15rem;
+            }
           }
         }
       }

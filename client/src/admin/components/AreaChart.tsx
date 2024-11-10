@@ -14,12 +14,12 @@ import {
 
 const data = [
   { name: "Mon", value: 8053 },
-  { name: "Tue", value: 5200 },
+  { name: "Tue", value: 4200 },
   { name: "Wed", value: 6505 },
-  { name: "Thu", value: 5520 },
+  { name: "Thu", value: 5020 },
   { name: "Fri", value: 8560 },
-  { name: "Sat", value: 5290 },
-  { name: "Sun", value: 6540 },
+  { name: "Sat", value: 3290 },
+  { name: "Sun", value: 9840 },
 ];
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps<any, any>) => {
@@ -51,13 +51,12 @@ const CustomActiveDot = (props: DotProps & { chartHeight: number }) => {
       </defs>
       <g>
         {cy !== undefined && (
-          <line
-            x1={cx}
-            y1={cy}
-            x2={cx}
-            y2={adjustedChartHeight}
-            stroke="url(#lineGradient)"
-            strokeWidth={15}
+          <rect
+            x={cx !== undefined ? cx - 7.5 : 0} // Center the rect horizontally
+            y={cy}
+            width={15} // Set width to 15px
+            height={adjustedChartHeight - cy} // Set height to chartHeight
+            fill="url(#lineGradient)" // Set background color to red
           />
         )}
         <circle
@@ -79,7 +78,7 @@ interface CustomAreaChartProps {
 
 const CustomAreaChart: React.FC<CustomAreaChartProps> = ({ setTotalValue }) => {
   const chartHeight = 245; // Define the chart height
-  const margin = { top: 10, right: 20, left: -10, bottom: -10 }; // Define the chart margins
+  const margin = { top: 10, right: 10, left: 0, bottom: -10 }; // Define the chart margins
 
   // Calculate the total value
   const totalValue = data.reduce((acc, curr) => acc + curr.value, 0);
@@ -88,6 +87,15 @@ const CustomAreaChart: React.FC<CustomAreaChartProps> = ({ setTotalValue }) => {
   React.useEffect(() => {
     setTotalValue(totalValue);
   }, [totalValue, setTotalValue]);
+
+  const renderCustomYAxisTick = (props: any) => {
+    const { y, payload } = props;
+    return (
+      <text x={40} y={y} dy="0.335em" fill="#fff" textAnchor="end">
+        {payload.value}
+      </text>
+    );
+  };
 
   return (
     <ResponsiveContainer width="100%" height={chartHeight}>
@@ -123,8 +131,9 @@ const CustomAreaChart: React.FC<CustomAreaChartProps> = ({ setTotalValue }) => {
           tickFormatter={(value) => `${value}`}
           ticks={[2500, 5000, 7500, 10000]}
           domain={[0, 10000]}
-          tick={{ fill: "#fff" }}
+          tick={renderCustomYAxisTick}
           axisLine={false}
+          tickLine={false}
         />
         <Tooltip content={<CustomTooltip />} />
         <Area

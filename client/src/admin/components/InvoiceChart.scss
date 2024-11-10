@@ -1,0 +1,90 @@
+@import "../../styles/common/root.scss";
+
+.total-invoices {
+  font-weight: bold;
+  fill: #fff;
+  font-family: $inter;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .total-number {
+    font-size: 1rem;
+  }
+
+  .invoices-text {
+    font-size: 0.5rem;
+    fill: #5a5a5a;
+  }
+}
+
+.pie-label {
+  font-size: 0.4rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.4rem;
+  font-family: $open-sans;
+  font-size: 0.45rem;
+  font-weight: 300;
+  padding-left: 1.5vw;
+  cursor: pointer;
+
+  .legend-line {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0.6rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+
+    .legend-color {
+      width: 0.3rem;
+      height: 0.3rem;
+      border-radius: 50%;
+      margin-right: 0.3rem;
+    }
+  }
+}
+
+.pie-label {
+  pointer-events: none;
+}
+.pie-segment {
+  transition: opacity 0.3s;
+  outline: none;
+  border: none;
+}
+
+.pie-segment.not-hovered {
+  opacity: 0.3;
+}
+
+.recharts-sector {
+  border: none;
+  outline: none;
+}
+
+.recharts-pie {
+  border: none;
+  outline: none;
+}
+
+.recharts-pie-sector {
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

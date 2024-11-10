@@ -5,7 +5,7 @@ const axiosClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000,
+  timeout: 30000,
 });
 
 axiosClient.interceptors.response.use(
@@ -13,8 +13,27 @@ axiosClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    console.log(error);
-    return Promise.reject(error);
+    if (error.response) {
+      // Server responded with a status other than 200 range
+      console.error("Error response:", {
+        status: error.response.status,
+        data: error.response.data,
+        headers: error.response.headers,
+      });
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error("Error request:", error.request);
+    } else {
+      // Something else happened
+      console.error("Error message:", error.message);
+    }
+
+    // Return a custom error message
+    return Promise.reject(
+      new Error(
+        "An error occurred while processing your request. Please try again later."
+      )
+    );
   }
 );
 
