@@ -4,10 +4,70 @@ import CustomAreaChart from "../components/AreaChart";
 import InvoiceChart from "../components/InvoiceChart";
 import engaged_users_bg from "../../assets/images/admin-page/engaged-users-bg.png";
 
+// Import avatar images
+import datdoan_avt from "../../assets/images/admin-page/avatar.png";
+import wangkai_avt from "../../assets/images/admin-page/wangkai-avt.png";
+import zhangjie_avt from "../../assets/images/admin-page/zhangjie-avt.png";
+import zhuyilong_avt from "../../assets/images/admin-page/zhuyilong-avt.png";
+
 interface OverviewProps {
   percentageOrdersChange: number;
   percentageAccountsChange: number;
 }
+
+const data = [
+  {
+    avatar: <img src={datdoan_avt} alt="" />,
+    customerName: "dat doan",
+    orderDate: "2024-10-03",
+    transactionId: "TX123456",
+    totalPrice: "$100.00",
+    status: "Paid",
+    option: "View",
+  },
+  {
+    avatar: <img src={wangkai_avt} alt="" />,
+    customerName: "Wang Kai",
+    orderDate: "2024-10-02",
+    transactionId: "TX123457",
+    totalPrice: "$150.00",
+    status: "Unpaid",
+    option: "View",
+  },
+  {
+    avatar: <img src={zhangjie_avt} alt="" />,
+    customerName: "Zhang Jie",
+    orderDate: "2024-10-02",
+    transactionId: "TX123457",
+    totalPrice: "$150.00",
+    status: "Paid",
+    option: "View",
+  },
+  {
+    avatar: <img src={zhuyilong_avt} alt="" />,
+    customerName: "Zhu Yi Long",
+    orderDate: "2024-10-02",
+    transactionId: "TX123457",
+    totalPrice: "$150.00",
+    status: "Cancelled",
+    option: "View",
+  },
+];
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "Paid":
+      return "#A6ABFF";
+    case "Unpaid":
+      return "#FC977D";
+    case "Pending":
+      return "#B47459";
+    case "Cancelled":
+      return "#5A5A5A";
+    default:
+      return "#2a2a2a";
+  }
+};
 
 const Overview: React.FC<OverviewProps> = ({
   percentageOrdersChange,
@@ -29,6 +89,10 @@ const Overview: React.FC<OverviewProps> = ({
     if (selectRef.current) {
       selectRef.current.click();
     }
+  };
+
+  const truncateName = (name: string) => {
+    return name.length > 40 ? name.substring(0, 37) + "..." : name;
   };
 
   return (
@@ -96,7 +160,7 @@ const Overview: React.FC<OverviewProps> = ({
           <div className="invoice-statistics">
             <div className="header-wrapper">
               <div className="title">Invoice Statistics</div>
-              <div className="three-dots-btn">
+              <div className="ellipsis-btn">
                 <span className="ph--dots-three-outline-thin"></span>
               </div>
             </div>
@@ -150,7 +214,63 @@ const Overview: React.FC<OverviewProps> = ({
             <CustomAreaChart setTotalValue={setTotalValue} />
           </div>
         </div>
-        <div className="recent-orders"></div>
+        {/* recent orders */}
+        <div className="recent-orders">
+          {/* heading */}
+          <div className="heading">
+            <div className="title">Recent Orders</div>
+            {/* action */}
+            <div className="action">
+              <div className="filter">
+                <span className="bi--filter icon"></span> Filter
+              </div>
+              <div className="ellipsis-btn">
+                <span className="ph--dots-three-outline-thin"></span>
+              </div>
+            </div>
+          </div>
+          {/* table */}
+          <table className="recent-orders-tbl">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Order Date</th>
+                <th>Transaction ID</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <div className="avatar">{row.avatar}</div>
+                    <div className="tooltip">
+                      <span className="customer-name">
+                        {truncateName(row.customerName)}
+                      </span>
+                      <span className="tooltiptext">{row.customerName}</span>
+                    </div>
+                  </td>
+                  <td>{row.orderDate}</td>
+                  <td>{row.transactionId}</td>
+                  <td>{row.totalPrice}</td>
+                  <td>
+                    <span
+                      style={{ backgroundColor: getStatusColor(row.status) }}
+                    >
+                      {row.status}
+                    </span>
+                  </td>
+                  <td>
+                    <span>{row.option}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
