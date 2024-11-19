@@ -63,13 +63,13 @@ const Sidebar = () => {
           )}
         </NavLink>
         <NavLink
-          to="/admin/pages"
+          to="/admin/messages"
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           {({ isActive }) => (
             <li className={isActive ? "active" : ""}>
-              <span className="iconoir--multiple-pages-empty pages-icon icon"></span>
-              Pages
+              <span className="ant-design--message-outlined messages-icon icon"></span>
+              Messages
             </li>
           )}
         </NavLink>
@@ -85,24 +85,24 @@ const Sidebar = () => {
           )}
         </NavLink>
         <NavLink
-          to="/admin/transports"
+          to="/admin/shipments"
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           {({ isActive }) => (
             <li className={isActive ? "active" : ""}>
               <span className="la--shipping-fast transports-icon icon"></span>
-              Transports
+              Shipments
             </li>
           )}
         </NavLink>
         <NavLink
-          to="/admin/report"
+          to="/admin/pages"
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           {({ isActive }) => (
             <li className={isActive ? "active" : ""}>
-              <span className="cil--report-slash report-icon icon"></span>
-              Report
+              <span className="iconoir--multiple-pages-empty pages-icon icon"></span>
+              Pages
             </li>
           )}
         </NavLink>

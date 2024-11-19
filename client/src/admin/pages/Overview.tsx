@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "../styles/Overview.scss";
+import { format } from "date-fns";
 import CustomAreaChart from "../components/AreaChart";
 import InvoiceChart from "../components/InvoiceChart";
 import engaged_users_bg from "../../assets/images/admin-page/engaged-users-bg.png";
@@ -93,6 +94,11 @@ const Overview: React.FC<OverviewProps> = ({
 
   const truncateName = (name: string) => {
     return name.length > 40 ? name.substring(0, 37) + "..." : name;
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return format(date, "dd MMM yyyy");
   };
 
   return (
@@ -253,7 +259,7 @@ const Overview: React.FC<OverviewProps> = ({
                       <span className="tooltiptext">{row.customerName}</span>
                     </div>
                   </td>
-                  <td>{row.orderDate}</td>
+                  <td>{formatDate(row.orderDate)}</td>
                   <td>{row.transactionId}</td>
                   <td>{row.totalPrice}</td>
                   <td>

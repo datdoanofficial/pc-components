@@ -6,9 +6,9 @@ import Customers from "../admin/pages/Customers";
 import Orders from "../admin/pages/Orders";
 import Products from "../admin/pages/Products";
 import Systems from "../admin/pages/Systems";
-import Transports from "../admin/pages/Transports";
-import Report from "../admin/pages/Report";
+import Shipments from "../admin/pages/Shipments";
 import Pages from "../admin/pages/Pages";
+import Messages from "../admin/pages/Messages";
 import Settings from "../admin/pages/Settings";
 
 export const adminRoutes = [
@@ -42,20 +42,20 @@ export const adminRoutes = [
         element: <Products />,
       },
       {
-        path: "pages",
-        element: <Pages />,
+        path: "messages",
+        element: <Messages />,
       },
       {
         path: "systems",
         element: <Systems />,
       },
       {
-        path: "transports",
-        element: <Transports />,
+        path: "shipments",
+        element: <Shipments />,
       },
       {
-        path: "report",
-        element: <Report />,
+        path: "pages",
+        element: <Pages />,
       },
       {
         path: "settings",

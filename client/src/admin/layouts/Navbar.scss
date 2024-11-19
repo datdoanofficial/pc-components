@@ -70,8 +70,7 @@
     .messages,
     .notification {
       position: relative;
-      width: 3.5vw;
-      height: 3.5vw;
+      padding: 0.8vw;
       margin-right: 1vw;
       display: flex;
       justify-content: center;
@@ -83,11 +82,13 @@
       &:hover .icon {
         transition: 0.5s;
         color: #8a8a8a;
+        pointer-events: none;
       }
 
       .icon {
         font-size: 2vw;
         color: $text-color;
+        pointer-events: none;
       }
 
       .message-count,
