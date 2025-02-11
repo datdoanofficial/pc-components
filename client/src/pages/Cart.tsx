@@ -99,7 +99,7 @@ const CartPage = ({
             <p className="total-items">{cartProducts.length} Items</p>
             <button className="proceed-checkout">Proceed to checkout</button>
             <div className="discount">
-              <input type="text" placeholder="Enter discount code" />
+              <input type="text" placeholder="Discount code" />
               <button className="apply-btn">Apply</button>
             </div>
           </div>

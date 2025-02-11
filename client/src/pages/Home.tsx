@@ -120,7 +120,7 @@ const Home = (props: Props) => {
   return (
     <div className="landing-page">
       {/* main content */}
-      <div className="main-content">
+      <div className="home-main-content">
         <div
           key={textKey} // Use key to reset animation
           className={`heading ${
@@ -136,7 +136,9 @@ const Home = (props: Props) => {
           <span className="title1">{title1}</span>
           <div className="description">{description}</div>
         </div>
-        <div className="shopnow-btn">Shop Now</div>
+        <a href="/store" className="shopnow-btn">
+          Shop Now
+        </a>
       </div>
       {/* animation items */}
       <div className="animation-items">

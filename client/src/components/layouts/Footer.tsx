@@ -18,6 +18,7 @@ const Footer = (props: Props) => {
         const scrollPosition = window.scrollY;
         const footerOffsetTop = footerRef.current.offsetTop;
         const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
 
         // Set a fixed value for maxScroll to ensure consistent scrollRatio across all pages
         const maxScroll = 600; // Fixed value for maxScroll
@@ -29,12 +30,14 @@ const Footer = (props: Props) => {
             1
           );
 
-          // Use a sine wave function to create a curved effect
-          const height = 200 * scrollRatio;
+          // Use different multiplier based on screen width
+          const multiplier =
+            windowWidth <= 768 ? 6 : windowWidth <= 1024 ? 6 : 6;
+          const height = multiplier * scrollRatio;
 
-          headerFooterRef.current.style.height = `${height}px`;
+          headerFooterRef.current.style.height = `${height}rem`;
         } else {
-          headerFooterRef.current.style.height = "0px";
+          headerFooterRef.current.style.height = "0";
         }
       }
     };
@@ -55,6 +58,15 @@ const Footer = (props: Props) => {
           transition: "height 0.1s ease",
         }}
       ></div>
+      <div className="footer-heading">
+        <Link to="/">
+          <img src={logo} className="logo_nextin" alt="Logo" />
+        </Link>
+        <div className="author">
+          <span>Design and Development</span>
+          <img src={tagname} alt="" className="tagname" />
+        </div>
+      </div>
       <div className="footer-contain">
         {/* header wrapper */}
         <div className="header-wrapper">

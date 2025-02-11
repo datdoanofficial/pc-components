@@ -54,7 +54,7 @@ const Help = (props: Props) => {
       <div className="header-wrapper">
         <div className="header">
           <h1>
-            Welcome to <span>Next In</span> Support
+            <span>Next In</span> Support
           </h1>
           <p>
             Server status: <span>Operational</span>
@@ -76,7 +76,7 @@ const Help = (props: Props) => {
           <div className="content-wrapper">
             <div className="content">
               <div className="title">Purchase Support</div>
-              <p>Have a problem with the purchase from the Next In website?</p>
+              <p>Have a problem with the purchase from the website?</p>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@ const Help = (props: Props) => {
           <div className="content-wrapper">
             <div className="content">
               <div className="title">System Support</div>
-              <p>Find answers to the most common questions and issues.</p>
+              <p>Find answers to the most questions and issues.</p>
             </div>
           </div>
         </div>

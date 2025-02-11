@@ -1,0 +1,35 @@
+@import "../../styles/common/root.scss";
+
+// action buttons
+.action-btn {
+  display: flex;
+  align-items: center;
+
+  .edit-btn,
+  .delete-btn,
+  .view-btn {
+    height: fit-content;
+    padding: 0.15rem 0.4rem;
+    background-color: #2a2a2a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-family: $open-sans;
+    font-weight: 300;
+    border-radius: 0.2rem;
+    margin-right: 0.2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      color: #8a8a8a;
+    }
+
+    .icon {
+      margin-right: 0.2rem;
+      font-size: 0.5rem;
+    }
+  }
+}

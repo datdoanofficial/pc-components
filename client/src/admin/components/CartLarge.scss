@@ -1,0 +1,47 @@
+@import "../../styles/common/root.scss";
+
+// card large
+.card-large {
+  .heading {
+    margin-top: 0.7vw;
+
+    .title {
+      font-size: 0.42rem;
+    }
+  }
+
+  .value {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.7rem;
+
+    .list-vip-members {
+      position: absolute;
+      right: 3vw;
+      display: flex;
+      transition: 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      img {
+        border: 1px solid #161616;
+      }
+
+      .more-vip-members {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2a2a2a;
+      }
+    }
+  }
+}

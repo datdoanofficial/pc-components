@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Customers.scss";
+
+import CardHeader from "../components/CardHeader";
+import CardLarge from "../components/CartLarge";
+import TableHeader from "../components/TableHeader";
+import ActionButton from "../components/ActionButton";
 
 // Import avatar images
 import vip_member_01 from "../../assets/images/admin-page/avatar.png";
@@ -10,7 +15,42 @@ import vip_member_05 from "../../assets/images/admin-page/yangmi-avt.png";
 import vip_member_06 from "../../assets/images/admin-page/duchun-avt.png";
 import vip_member_07 from "../../assets/images/admin-page/zhangxinyu-avt.png";
 
+interface Customer {
+  customerID: number;
+  firstName: string;
+  lastName: string;
+  startDate: string;
+  birthday: string;
+  gender: string;
+  membership: string;
+  status: string;
+  expenditure: string;
+}
+
 const Customers = () => {
+  // Fetch customers
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const customersPerPage = 6;
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const response = await fetch("https://localhost:7058/api/customers");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Fetched customers:", data); // Debugging log
+        setCustomers(data);
+      } catch (error) {
+        console.error("Error fetching customers:", error);
+      }
+    };
+
+    fetchCustomers();
+  }, []);
+
   // vip members avatar
   const vipMembers = new Array(628).fill(0).map((_, index) => {
     const avatars = [
@@ -36,9 +76,14 @@ const Customers = () => {
   };
 
   // format currency
-  const formatBilling = (billing: string) => {
-    const number = parseFloat(billing.replace(/[^0-9.-]+/g, ""));
-    return `$${number.toLocaleString("de-DE")}`;
+  const formatCurrency = (currency: any) => {
+    if (typeof currency !== "number") {
+      currency = parseFloat(currency);
+    }
+    if (isNaN(currency)) {
+      return currency; // Return the value as is if it's not a valid number
+    }
+    return `$${currency.toLocaleString("de-DE")}`;
   };
 
   // membership class
@@ -67,134 +112,7 @@ const Customers = () => {
     }
   };
 
-  // customers data
-  const customers = [
-    {
-      id: 1,
-      name: "John Doe",
-      startDate: "2023-01-01",
-      birthday: "1990-05-15",
-      gender: "Male",
-      membership: "Basic",
-      status: "Active",
-      billing: "$18000",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      startDate: "2022-05-12",
-      birthday: "1985-07-20",
-      gender: "Female",
-      membership: "VIP",
-      status: "Inactive",
-      billing: "$320000",
-    },
-    {
-      id: 3,
-      name: "Michael Johnson",
-      startDate: "2021-11-30",
-      birthday: "1978-03-10",
-      gender: "Male",
-      membership: "Silver",
-      status: "Active",
-      billing: "$72000",
-    },
-    {
-      id: 4,
-      name: "Emily Davis",
-      startDate: "2020-09-15",
-      birthday: "1992-08-25",
-      gender: "Female",
-      membership: "Basic",
-      status: "Active",
-      billing: "$4500",
-    },
-    {
-      id: 5,
-      name: "David Wilson",
-      startDate: "2019-03-22",
-      birthday: "1988-11-05",
-      gender: "Male",
-      membership: "VIP",
-      status: "Inactive",
-      billing: "$126000",
-    },
-    {
-      id: 6,
-      name: "Sophia Brown",
-      startDate: "2021-07-18",
-      birthday: "1995-02-14",
-      gender: "Female",
-      membership: "Silver",
-      status: "Active",
-      billing: "$85000",
-    },
-    {
-      id: 7,
-      name: "Chris Evans",
-      startDate: "2020-01-10",
-      birthday: "1982-06-13",
-      gender: "Male",
-      membership: "VIP",
-      status: "Active",
-      billing: "$280000",
-    },
-    {
-      id: 8,
-      name: "Natalie Portman",
-      startDate: "2018-04-22",
-      birthday: "1981-06-09",
-      gender: "Female",
-      membership: "Silver",
-      status: "Inactive",
-      billing: "$55500",
-    },
-    {
-      id: 9,
-      name: "Robert Downey",
-      startDate: "2019-11-30",
-      birthday: "1965-04-04",
-      gender: "Male",
-      membership: "Basic",
-      status: "Active",
-      billing: "$9900",
-    },
-    {
-      id: 10,
-      name: "Scarlett Johansson",
-      startDate: "2021-03-15",
-      birthday: "1984-11-22",
-      gender: "Female",
-      membership: "VIP",
-      status: "Active",
-      billing: "$429000",
-    },
-    {
-      id: 11,
-      name: "Mark Ruffalo",
-      startDate: "2022-07-18",
-      birthday: "1967-11-22",
-      gender: "Male",
-      membership: "Silver",
-      status: "Inactive",
-      billing: "$65000",
-    },
-    {
-      id: 12,
-      name: "Chris Hemsworth",
-      startDate: "2020-05-05",
-      birthday: "1983-08-11",
-      gender: "Male",
-      membership: "Basic",
-      status: "Active",
-      billing: "$5800",
-    },
-  ];
-
   // pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const customersPerPage = 6;
-
   const indexOfLastCustomer = currentPage * customersPerPage;
   const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
   const currentCustomers = customers.slice(
@@ -211,113 +129,39 @@ const Customers = () => {
     setCurrentPage(Number(event.currentTarget.id));
   };
 
+  // sort options
+  const sortOptions = [
+    { value: "all-customers", label: "All Customers" },
+    { value: "all-basic", label: "Basic Membership" },
+    { value: "all-silver", label: "Silver Membership" },
+    { value: "all-vip", label: "V.I.P Membership" },
+  ];
+
   return (
     <div className="customers-container">
       {/* header wrapper */}
       <div className="header-wrapper">
         {/* total clients */}
-        <div className="total-clients area">
-          <div className="heading">
-            <div className="title">Total Clients</div>
-            <div className="icon">
-              <span className="ph--users-light"></span>
-            </div>
-          </div>
-          <div className="value">
-            <div className="number">1808</div>
-            <div className="percentage"></div>
-          </div>
-        </div>
+        <CardHeader
+          title="Total Clients"
+          number={1808}
+          iconClass="ph--user-light"
+        />
         {/* members */}
-        <div className="members area">
-          <div className="heading">
-            <div className="title">Members</div>
-            <div className="icon">
-              <span className="ph--user-light"></span>
-            </div>
-          </div>
-          <div className="value">
-            <div className="number">826</div>
-            <div className="percentage"></div>
-          </div>
-        </div>
+        <CardHeader title="Members" number={826} iconClass="ph--user-light" />
         {/* new members */}
-        <div className="new-members area">
-          <div className="heading">
-            <div className="title">New Members</div>
-            <div className="icon">
-              <span className="ph--user-plus-light"></span>
-            </div>
-          </div>
-          <div className="value">
-            <div className="number">206</div>
-            <div className="percentage"></div>
-          </div>
-        </div>
+        <CardHeader
+          title="New Members"
+          number={206}
+          iconClass="ph--user-plus-light"
+        />
         {/* vip members */}
-        <div className="vip-members area">
-          <div className="heading">
-            <div className="title">VIP Members</div>
-          </div>
-          <div className="value">
-            <div className="number">628</div>
-            <div className="list-vip-members">
-              {vipMembers.slice(0, 7).map((avatar, index) => (
-                <img
-                  key={index}
-                  src={avatar}
-                  alt={`VIP Member ${index + 1}`}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    margin: "0 -0.15rem",
-                  }}
-                />
-              ))}
-              {vipMembers.length > 7 && (
-                <span className="more-vip-members">+10</span>
-              )}
-            </div>
-          </div>
-        </div>
+        <CardLarge title="VIP Members" number={628} image={vipMembers} />
       </div>
       {/* customer tbl */}
       <div className="tbl-container">
         {/* header */}
-        <div className="header-wrapper">
-          {/* toolbar */}
-          <div className="toolbar">
-            <div className="title">All Customers</div>
-            {/* search box */}
-            <div className="search-box">
-              <span className="carbon--search icon"></span>
-              <input type="text" placeholder="Search..." />
-            </div>
-            {/* sort options */}
-            <div className="sort-options">
-              <select>
-                <option value="all-customers">All Customers</option>
-                <option value="all-members">All Members</option>
-                <option value="all-vip">All V.I.P</option>
-              </select>
-              <span className="tabler--chevron-down icon"></span>
-            </div>
-          </div>
-          {/* action button */}
-          <div className="action-buttons">
-            {/* export button */}
-            <button className="export-btn">
-              <span className="ant-design--export-outlined icon"></span>
-              Export
-            </button>
-            {/* add button */}
-            <button className="add-btn">
-              <span className="ic--round-plus icon"></span>
-              New Customer
-            </button>
-          </div>
-        </div>
+        <TableHeader title="All Customers" sortOptions={sortOptions} />
         {/* table */}
         <div className="table">
           <table>
@@ -336,9 +180,11 @@ const Customers = () => {
             </thead>
             <tbody>
               {currentCustomers.map((customer) => (
-                <tr key={customer.id}>
-                  <td className="id">{customer.id}</td>
-                  <td>{customer.name}</td>
+                <tr key={customer.customerID}>
+                  <td className="id">{customer.customerID}</td>
+                  <td>
+                    {customer.firstName} {customer.lastName}
+                  </td>
                   <td>{formatDate(customer.startDate)}</td>
                   <td>{formatDate(customer.birthday)}</td>
                   <td>{customer.gender}</td>
@@ -357,21 +203,21 @@ const Customers = () => {
                     </span>
                   </td>
                   <td className="expenditure">
-                    {formatBilling(customer.billing)}
+                    {formatCurrency(customer.expenditure)}
                   </td>
                   <td className="action-btn">
-                    <div className="edit-btn">
-                      <span className="fluent--edit-48-filled icon"></span>
-                      Edit
-                    </div>
-                    <div className="delete-btn">
-                      <span className="fluent--delete-48-filled icon"></span>
-                      Delete
-                    </div>
-                    <div className="view-btn">
-                      <span className="fluent--eye-48-filled icon"></span>
-                      View
-                    </div>
+                    <ActionButton
+                      type="edit"
+                      onClick={() => console.log("Edit", customer.customerID)}
+                    />
+                    <ActionButton
+                      type="delete"
+                      onClick={() => console.log("Delete", customer.customerID)}
+                    />
+                    <ActionButton
+                      type="view"
+                      onClick={() => console.log("View", customer.customerID)}
+                    />
                   </td>
                 </tr>
               ))}

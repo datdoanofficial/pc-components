@@ -2,7 +2,7 @@
 
 .contact-page {
   position: relative;
-  padding: 150px 8vw 100px 8vw;
+  padding: 4.2rem 3.5rem 3rem 3.5rem;
   width: 100%;
   height: fit-content;
 
@@ -14,15 +14,15 @@
   }
   //   main content
   .main-content {
-    margin-top: 50px;
+    margin-top: 1.2rem;
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    gap: 50px;
+    gap: 1.2rem;
 
     .main-thumbnail {
       width: 100%;
       aspect-ratio: 2 / 1.15;
-      border-radius: 30px;
+      border-radius: 1rem;
       background-image: url(../../assets/images/contact-page/main.png);
       background-size: cover;
       background-position: center;
@@ -37,11 +37,11 @@
     // content
     .content {
       .address {
-        font-size: 20px;
+        font-size: 0.6rem;
         font-family: $open-sans;
         font-weight: 300;
         color: $text-color;
-        line-height: 32px;
+        line-height: 1rem;
         text-decoration-thickness: 0.8px;
         text-underline-offset: 3px;
 
@@ -51,11 +51,11 @@
       }
 
       .email {
-        margin-top: 100px;
-        font-size: 20px;
+        margin-top: 3rem;
+        font-size: 0.6rem;
         font-family: $open-sans;
         font-weight: 300;
-        line-height: 32px;
+        line-height: 1rem;
         color: $text-color;
 
         a {
@@ -71,11 +71,11 @@
       }
 
       .phone-call {
-        margin-top: 30px;
-        font-size: 20px;
+        margin-top: 0.8rem;
+        font-size: 0.6rem;
         font-family: $open-sans;
         font-weight: 300;
-        line-height: 32px;
+        line-height: 1rem;
         color: $text-color;
 
         a {
@@ -95,9 +95,9 @@
   //   information
   .information {
     position: relative;
-    margin-top: 30px;
+    margin-top: 1rem;
     width: 100%;
-    height: 200px;
+    height: 6.5rem;
     display: flex;
 
     // information wrapper
@@ -110,7 +110,7 @@
       width: 100%;
       height: fit-content;
       display: flex;
-      padding: 20px 50px 25px 50px;
+      padding: 0.6rem 1.2rem 0.7rem 1.2rem;
       border-bottom: 1px solid #8a8a8a;
 
       &::before {
@@ -131,8 +131,8 @@
         /* mouse hover light */
         background: radial-gradient(
           circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-          #eb8971 80px,
-          transparent 50px
+          #eb8971 3rem,
+          transparent 1.5rem
         );
         background-attachment: fixed;
         mask: linear-gradient(#2a2a2a, #2a2a2a) 100% 100% / 100%
@@ -143,21 +143,21 @@
 
       // information
       .in4 {
-        font-size: 16px;
+        font-size: 0.55rem;
         font-family: $open-sans;
         font-weight: 300;
         position: relative;
-        line-height: 28px;
+        line-height: 1rem;
         display: flex;
         width: 100%;
         color: $text-color;
         display: flex;
         justify-content: flex-end;
-        margin-right: 165px;
+        margin-right: 5.6rem;
 
         .subtitle {
           color: #5a5a5a;
-          margin-right: 20px;
+          margin-right: 0.6rem;
         }
       }
     }
@@ -171,7 +171,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      padding: 25px 48px;
+      padding: 0.7rem 1.2rem;
       border-left: 1px solid #8a8a8a;
       height: 100%;
       display: flex;
@@ -196,8 +196,8 @@
         /* mouse hover light */
         background: radial-gradient(
           circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-          #eb8971 80px,
-          transparent 50px
+          #eb8971 3rem,
+          transparent 1.5rem
         );
         background-attachment: fixed;
         mask: linear-gradient(#fff, #fff) 0 0 / var(--border-width) 100%
@@ -207,13 +207,13 @@
       }
 
       a {
-        font-size: 16px;
+        font-size: 0.55rem;
         font-family: $open-sans;
         font-weight: 300;
         color: $text-color;
         text-decoration-thickness: 0.7px;
         text-underline-offset: 3px;
-        margin-bottom: 18px;
+        margin-bottom: 0.7rem;
 
         &:hover {
           text-decoration: none;
@@ -223,7 +223,7 @@
   }
 
   .map {
-    margin-top: 50px;
+    margin-top: 1.5rem;
     width: 100%;
 
     img {
@@ -231,11 +231,11 @@
     }
 
     p {
-      font-size: 16px;
+      font-size: 0.55rem;
       font-family: $open-sans;
       font-weight: 300;
       color: $text-color;
-      margin-top: 30px;
+      margin-top: 1rem;
 
       a {
         color: $text-color;
@@ -244,6 +244,419 @@
 
         &:hover {
           text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+// 1240px
+@media screen and (max-width: 1240px) {
+  .contact-page {
+    padding: 4.2rem 3rem 3rem 3rem;
+  }
+}
+
+// 1024px
+@media screen and (max-width: 1024px) {
+  .contact-page {
+    padding: 4.2rem 2.5rem 3rem 2.5rem;
+
+    .title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    //   main content
+    .main-content {
+      margin-top: 1.2rem;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.2rem;
+
+      // content
+      .content {
+        .address {
+          font-size: 0.65rem;
+          line-height: 0.8rem;
+        }
+
+        .email {
+          margin-top: 4.5rem;
+          font-size: 0.65rem;
+          line-height: 0.8rem;
+        }
+
+        .phone-call {
+          margin-top: 0.6rem;
+          font-size: 0.65rem;
+          line-height: 0.8rem;
+        }
+      }
+    }
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 7rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 1.5rem 0.8rem 1.5rem;
+
+        // information
+        .in4 {
+          font-size: 0.55rem;
+          line-height: 1rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.6rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1.5rem;
+
+        a {
+          font-size: 0.55rem;
+          margin-bottom: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+// 900px
+@media screen and (max-width: 900px) {
+  .contact-page {
+    padding: 4.2rem 2rem 3rem 2rem;
+
+    //   main content
+    .main-content {
+      margin-top: 1.2rem;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.2rem;
+
+      // content
+      .content {
+        .address {
+          font-size: 0.6rem;
+          line-height: 0.2rem;
+        }
+
+        .email {
+          margin-top: 4.5rem;
+          font-size: 0.6rem;
+          line-height: 0.8rem;
+        }
+
+        .phone-call {
+          margin-top: 0.5rem;
+          font-size: 0.6rem;
+          line-height: 0.8rem;
+        }
+      }
+    }
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 8.5rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 1.5rem 1rem 1.5rem;
+
+        // information
+        .in4 {
+          font-size: 0.6rem;
+          line-height: 1.25rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.7rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1.5rem;
+
+        a {
+          font-size: 0.65rem;
+          margin-bottom: 0.95rem;
+        }
+      }
+    }
+
+    .map {
+      margin-top: 1.5rem;
+
+      p {
+        font-size: 0.6rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+// 768px
+@media screen and (max-width: 768px) {
+  .contact-page {
+    padding: 4.2rem 2rem 3rem 2rem;
+
+    //   main content
+    .main-content {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+
+      // content
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        .address {
+          font-size: 0.7rem;
+        }
+
+        .contact-in4 {
+          .email {
+            margin-top: 0.2rem;
+            font-size: 0.7rem;
+            line-height: 1rem;
+          }
+
+          .phone-call {
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            line-height: 1rem;
+          }
+        }
+      }
+    }
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 8rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 1.5rem 1.2rem 1.5rem;
+
+        // information
+        .in4 {
+          font-size: 0.6rem;
+          line-height: 1.25rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.7rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1.5rem;
+
+        a {
+          font-size: 0.65rem;
+          margin-bottom: 0.95rem;
+        }
+      }
+    }
+
+    .map {
+      margin-top: 1.5rem;
+      width: 100%;
+
+      p {
+        font-size: 0.6rem;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+// 480px
+@media screen and (max-width: 480px) {
+  .contact-page {
+    padding: 4.2rem 1.5rem 3rem 1.5rem;
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 8rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 0.5rem 1.2rem 0.5rem;
+
+        // information
+        .in4 {
+          font-size: 0.6rem;
+          line-height: 1.25rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.7rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1.2rem;
+
+        a {
+          font-size: 0.65rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// 375px
+@media screen and (max-width: 375px) {
+  .contact-page {
+    padding: 5rem 1rem 3rem 1rem;
+
+    //   main content
+    .main-content {
+      margin-top: 1.2rem;
+
+      // content
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        .address {
+          font-size: 0.65rem;
+        }
+
+        .contact-in4 {
+          .email {
+            margin-top: 0.2rem;
+            font-size: 0.65rem;
+            line-height: 1rem;
+          }
+
+          .phone-call {
+            margin-top: 0.5rem;
+            font-size: 0.65rem;
+            line-height: 1rem;
+          }
+        }
+      }
+    }
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 8rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 0rem 1.2rem 0rem;
+
+        // information
+        .in4 {
+          font-size: 0.6rem;
+          line-height: 1.25rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.7rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1rem;
+
+        a {
+          font-size: 0.65rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// 320px
+@media screen and (max-width: 320px) {
+  .contact-page {
+    padding: 5rem 1rem 3rem 1rem;
+
+    //   main content
+    .main-content {
+      margin-top: 1.2rem;
+
+      // content
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+
+        .address {
+          font-size: 0.65rem;
+        }
+
+        .contact-in4 {
+          .email {
+            margin-top: 0.2rem;
+            font-size: 0.6rem;
+            line-height: 1rem;
+          }
+
+          .phone-call {
+            margin-top: 0.5rem;
+            font-size: 0.6rem;
+            line-height: 1rem;
+          }
+        }
+      }
+    }
+
+    //   information
+    .information {
+      margin-top: 1rem;
+      height: 8rem;
+
+      // information wrapper
+      .in4-wrapper {
+        padding: 1rem 0rem 1.2rem 0rem;
+
+        // information
+        .in4 {
+          font-size: 0.55rem;
+          line-height: 1.25rem;
+          margin-right: 6rem;
+
+          .subtitle {
+            margin-right: 0.7rem;
+          }
+        }
+      }
+
+      // social links
+      .social-links {
+        padding: 1rem 1.1rem;
+
+        a {
+          font-size: 0.6rem;
+          margin-bottom: 1.1rem;
         }
       }
     }

@@ -89,6 +89,52 @@ const Store = (props: Props) => {
     setDisplayedItems((prevCount) => prevCount + 9);
   };
 
+  // Add state at the top of component
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+
+  // Add ref for the filter container
+  const filterRef = useRef<HTMLDivElement>(null);
+
+  // Modify handleClose to check if click is outside filter
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      filterRef.current &&
+      !filterRef.current.contains(event.target as Node) &&
+      isFilterVisible
+    ) {
+      setIsFilterVisible(false);
+    }
+  };
+
+  // Add effect to handle click outside
+  useEffect(() => {
+    if (isFilterVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isFilterVisible]);
+
+  // Add inside component before return
+  useEffect(() => {
+    if (isFilterVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isFilterVisible]);
+
+  // Add toggle function
+  const toggleFilter = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
+
   return (
     <div className="store-page">
       {/* text information */}
@@ -132,12 +178,20 @@ const Store = (props: Props) => {
       <div className="section-02">
         {/* product list */}
         <div className="product-list">
-          {/* sort */}
-          <div className="sort-wrapper">
-            <span>Show:</span>
-            <div className="sort">
-              New Release<span className="tabler--chevron-down icon"></span>
+          {/* heading */}
+          <div className="heading">
+            {/* sort */}
+            <div className="sort-wrapper">
+              <span>Show:</span>
+              <div className="sort">
+                New Release<span className="tabler--chevron-down icon"></span>
+              </div>
             </div>
+            {/* Add Filter Toggle Button */}
+            <button className="filter-toggle-btn" onClick={toggleFilter}>
+              <span className="bi--filter icon"></span>
+              Filter
+            </button>
           </div>
           {/* product items */}
           <div className="product-items">
@@ -179,140 +233,166 @@ const Store = (props: Props) => {
             </button>
           )}
         </div>
+        {/* Add overlay */}
+        {isFilterVisible && (
+          <div
+            className="filter-overlay"
+            onClick={() => setIsFilterVisible(false)}
+          ></div>
+        )}
         {/* product filter */}
-        <div className="product-filter">
-          {/* Categories */}
-          <div className="categories">
-            <div className="title">Categories</div>
-            {/* filter list */}
-            <div className="filter-list">
-              {[
-                "Desktop Computer",
-                "PC Components",
-                "Gaming Peripherals",
-                "Ergonomic & Gaming Chairs",
-                "PlayStation & Xbox Consoles",
-                "Laptops & Notebook",
-                "Monitors",
-              ].map((filter) => (
-                <div
-                  key={filter}
-                  className={`filter-item ${
-                    activeFilterList1 === filter ? "active" : ""
-                  }`}
-                  onClick={() => handleFilterClickList1(filter)}
-                  style={{
-                    color: activeFilterList1 === filter ? "#eb7e63" : "#8a8a8a",
-                  }}
+        <div
+          ref={filterRef}
+          className={`product-filter ${isFilterVisible ? "show" : ""}`}
+        >
+          <div className="filter-content">
+            {/* Categories */}
+            <div className="categories">
+              {/* heading */}
+              <div className="heading">
+                {/* title */}
+                <div className="title">Categories</div>
+                {/* close button */}
+                <button
+                  className="filter-close-btn"
+                  onClick={() => setIsFilterVisible(false)}
                 >
-                  <p>{filter}</p>
-                  {activeFilterList1 === filter && (
-                    <span className="tabler--check"></span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Filter By */}
-          <div className="filter-by">
-            <div className="title">Filter By</div>
-            {/* price range */}
-            <div className="price-range">
-              <span className="sub-title">Price</span>
-              <Range
-                values={values}
-                step={50}
-                min={100}
-                max={9990}
-                onChange={handleRangeChange}
-                renderTrack={({ props, children }) => (
+                  <span className="line-md--remove icon"></span>
+                </button>
+              </div>
+
+              {/* filter list */}
+              <div className="filter-list">
+                {[
+                  "Desktop Computer",
+                  "PC Components",
+                  "Gaming Peripherals",
+                  "Ergonomic & Gaming Chairs",
+                  "PlayStation & Xbox Consoles",
+                  "Laptops & Notebook",
+                  "Monitors",
+                ].map((filter) => (
                   <div
-                    {...props}
+                    key={filter}
+                    className={`filter-item ${
+                      activeFilterList1 === filter ? "active" : ""
+                    }`}
+                    onClick={() => handleFilterClickList1(filter)}
                     style={{
-                      ...props.style,
-                      height: "4px",
-                      width: "100%",
-                      position: "relative",
-                      left: "0%",
-                      borderRadius: "4px",
-                      transition: "0.5s",
-                      background: getTrackBackground({
-                        values,
-                        colors: ["#fff", "#eb7e63", "#fff"],
-                        min: 100,
-                        max: 9990,
-                      }),
+                      color:
+                        activeFilterList1 === filter ? "#eb7e63" : "#8a8a8a",
                     }}
                   >
-                    {children}
+                    <p>{filter}</p>
+                    {activeFilterList1 === filter && (
+                      <span className="tabler--check"></span>
+                    )}
                   </div>
-                )}
-                renderThumb={({ props }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: "18px",
-                      width: "18px",
-                      backgroundColor: "#fff",
-                      outline: "1px solid #eb7e63",
-                      borderRadius: "50%",
-                    }}
-                  />
-                )}
-              />
-              <div className="price-change">
-                <div className="numb-min">
-                  <span className="dollar">$</span>
-                  <input
-                    type="number"
-                    className="input-min"
-                    value={values[0]}
-                    onChange={handleMinInputChange}
-                    readOnly
-                  />
-                </div>
-                <div className="numb-max">
-                  <span className="dollar">$</span>
-                  <input
-                    type="number"
-                    className="input-max"
-                    value={values[1]}
-                    onChange={handleMaxInputChange}
-                    readOnly
-                  />
-                </div>
+                ))}
               </div>
             </div>
-            {/* filter list */}
-            <div className="filter-list">
-              {[
-                "CPUs / Processors",
-                "Motherboards",
-                "GPUs / Graphics Cards",
-                "Memory / RAM",
-                "Hard Drives & SSDs",
-                "Cases",
-                "Power Supplies",
-                "Fans & Cooling",
-                "Custom Liquid Cooling",
-              ].map((filter) => (
-                <div
-                  key={filter}
-                  className={`filter-item ${
-                    activeFilterList2 === filter ? "active" : ""
-                  }`}
-                  onClick={() => handleFilterClickList2(filter)}
-                  style={{
-                    color: activeFilterList2 === filter ? "#eb7e63" : "#8a8a8a",
-                  }}
-                >
-                  <p>{filter}</p>
-                  {activeFilterList2 === filter && (
-                    <span className="tabler--check"></span>
+            {/* Filter By */}
+            <div className="filter-by">
+              <div className="title">Filter By</div>
+              {/* price range */}
+              <div className="price-range">
+                <span className="sub-title">Price</span>
+                <Range
+                  values={values}
+                  step={50}
+                  min={100}
+                  max={9990}
+                  onChange={handleRangeChange}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: "4px",
+                        width: "100%",
+                        position: "relative",
+                        left: "0%",
+                        borderRadius: "4px",
+                        transition: "0.5s",
+                        background: getTrackBackground({
+                          values,
+                          colors: ["#fff", "#eb7e63", "#fff"],
+                          min: 100,
+                          max: 9990,
+                        }),
+                      }}
+                    >
+                      {children}
+                    </div>
                   )}
+                  renderThumb={({ props }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: "18px",
+                        width: "18px",
+                        backgroundColor: "#fff",
+                        outline: "1px solid #eb7e63",
+                        borderRadius: "50%",
+                      }}
+                    />
+                  )}
+                />
+                <div className="price-change">
+                  <div className="numb-min">
+                    <span className="dollar">$</span>
+                    <input
+                      type="number"
+                      className="input-min"
+                      value={values[0]}
+                      onChange={handleMinInputChange}
+                      readOnly
+                    />
+                  </div>
+                  <div className="numb-max">
+                    <span className="dollar">$</span>
+                    <input
+                      type="number"
+                      className="input-max"
+                      value={values[1]}
+                      onChange={handleMaxInputChange}
+                      readOnly
+                    />
+                  </div>
                 </div>
-              ))}
+              </div>
+              {/* filter list */}
+              <div className="filter-list">
+                {[
+                  "CPUs / Processors",
+                  "Motherboards",
+                  "GPUs / Graphics Cards",
+                  "Memory / RAM",
+                  "Hard Drives & SSDs",
+                  "Cases",
+                  "Power Supplies",
+                  "Fans & Cooling",
+                  "Custom Liquid Cooling",
+                ].map((filter) => (
+                  <div
+                    key={filter}
+                    className={`filter-item ${
+                      activeFilterList2 === filter ? "active" : ""
+                    }`}
+                    onClick={() => handleFilterClickList2(filter)}
+                    style={{
+                      color:
+                        activeFilterList2 === filter ? "#eb7e63" : "#8a8a8a",
+                    }}
+                  >
+                    <p>{filter}</p>
+                    {activeFilterList2 === filter && (
+                      <span className="tabler--check"></span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

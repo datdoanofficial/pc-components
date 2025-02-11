@@ -112,6 +112,10 @@ const NavTools = ({
   // toggle cart
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+    // Close menu if it's open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
   };
 
   // handle click outside
@@ -131,7 +135,7 @@ const NavTools = ({
     if (isCartOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden"; // Disable scrolling
-      document.body.style.paddingRight = "10px"; // Adjust for scrollbar width
+      document.body.style.paddingRight = "0"; // Adjust for scrollbar width
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "auto"; // Enable scrolling
@@ -151,16 +155,52 @@ const NavTools = ({
       : name;
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="tool-bar">
+      {/* search button */}
       <span className="carbon--search icon"></span>
+      {/* cart button */}
       <div className="cart-icon-wrapper" onClick={toggleCart}>
         <span className="solar--bag-4-outline icon"></span>
         <span className="cart-count">{cartProducts.length}</span>
       </div>
+      {/* menu button */}
+      <div
+        className={`menu-btn ${isMenuOpen ? "open" : ""}`}
+        onClick={toggleMenu}
+      >
+        <span className="hamburger"></span>
+        <div className={`menu-links ${isMenuOpen ? "show" : ""}`}>
+          <ul>
+            <li>
+              <a href="/store">Store</a>
+            </li>
+            <li>
+              <a href="/news">News</a>
+            </li>
+            <li>
+              <a href="/help">Help</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
+            <li>
+              <a href="/login">Sign In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {/* sign in button */}
       <Link to="/login" className="sign-in-btn btn-ripple">
         sign in
       </Link>
+      {/* cart box */}
       <div className={`cart-box ${isCartOpen ? "open" : ""}`} ref={cartRef}>
         <div className="cart-content">
           {/* heading */}
@@ -190,7 +230,7 @@ const NavTools = ({
                   <div className="product-info">
                     {/* name */}
                     <div className="product-name" title={product.name}>
-                      {truncateName(product.name, 40)}
+                      {truncateName(product.name, 32)}
                     </div>
                     {/* details */}
                     <div className="product-details">

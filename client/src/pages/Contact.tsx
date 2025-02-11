@@ -31,29 +31,34 @@ const Contact = (props: Props) => {
         {/* content */}
         <div className="content">
           {/* address */}
-          <a
-            href="https://www.google.com/maps/place/Flags+of+ASEAN+Nations/10.7721534,106.7055294,18z/data=!4m6!3m5!1s0x31752f43e5fe043f:0x3bfe49efa7dcf98!8m2!3d10.7713821!4d106.7065387!16s%2Fg%2F11f40t03jq?entry=ttu"
-            className="address"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            01 Unknown, District 10
-            <br />
-            Ho Chi Minh City, Viet Nam
-          </a>
-          {/* email */}
-          <div className="email">
-            I'd love to hear from you
-            <br /> Drop me a line —{" "}
-            <a href="mailto:datdoanofficial@gmail.com">
-              datdoanofficial@gmail.com
+          <div>
+            <a
+              href="https://www.google.com/maps/place/Flags+of+ASEAN+Nations/10.7721534,106.7055294,18z/data=!4m6!3m5!1s0x31752f43e5fe043f:0x3bfe49efa7dcf98!8m2!3d10.7713821!4d106.7065387!16s%2Fg%2F11f40t03jq?entry=ttu"
+              target="_blank"
+              className="address"
+              rel="noopener noreferrer"
+            >
+              01 Unknown, District 10
+              <br />
+              Ho Chi Minh City, Viet Nam
             </a>
           </div>
-          {/* phone call */}
-          <div className="phone-call">
-            Or give me a call
-            <br />
-            <a href="tel:(+84)916709786">(+84) 916 709 786</a>
+
+          {/* contact in4 */}
+          <div className="contact-in4">
+            {/* email */}
+            <div className="email">
+              I'd love to hear from you — <br />
+              <a href="mailto:datdoanofficial@gmail.com">
+                datdoanofficial@gmail.com
+              </a>
+            </div>
+            {/* phone call */}
+            <div className="phone-call">
+              Or give me a call
+              <br />
+              <a href="tel:(+84)916709786">(+84) 916 709 786</a>
+            </div>
           </div>
         </div>
       </div>
@@ -71,9 +76,9 @@ const Contact = (props: Props) => {
             </div>
             <div className="content">
               <p>Next In</p>
-              <p>19888668 (DEMO)</p>
-              <p>EE108687329 (DEMO)</p>
-              <p>EE27220022108668 (DEMO)</p>
+              <p>19888668</p>
+              <p>EE108687329</p>
+              <p>EE27220022108668</p>
             </div>
           </div>
         </div>

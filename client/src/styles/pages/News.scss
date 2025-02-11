@@ -2,7 +2,7 @@
 
 .news-body {
   position: relative;
-  padding: 150px 8vw 100px 8vw;
+  padding: 4.2rem 3.5rem 3rem 3.5rem;
   width: 100%;
   height: fit-content;
 
@@ -16,7 +16,7 @@
 
   //   hot topic
   .hot-topic {
-    --border-width: 1px;
+    --border-width: 0.05rem;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -24,11 +24,11 @@
     top: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-top: 30px;
+    gap: 1.5rem;
+    margin-top: 1rem;
     width: 100%;
     height: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 1.5rem;
 
     &::before {
       content: "";
@@ -36,7 +36,7 @@
       inset: 0;
       top: 0;
       left: 0;
-      border-bottom: 1px solid #2a2a2a;
+      border-bottom: 0.03rem solid #2a2a2a;
     }
 
     // line
@@ -44,12 +44,12 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 1px;
+      height: 0.03rem;
       /* mouse hover light */
       background: radial-gradient(
         circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-        #eb8971 80px,
-        transparent 50px
+        #eb8971 3rem,
+        transparent 1.5rem
       );
       background-attachment: fixed;
       mask: linear-gradient(#2a2a2a, #2a2a2a) 100% 100% / 100%
@@ -63,36 +63,36 @@
       .card {
         width: 100%;
         aspect-ratio: 2 / 1.1;
-        border-radius: 30px;
+        border-radius: 1rem;
         background: #2a2a2a;
-        outline: 2px solid #4a4a4a;
+        outline: 0.06rem solid #4a4a4a;
       }
 
       .content-wrapper {
-        margin-top: 30px;
+        margin-top: 1rem;
 
         .create-date {
           font-family: $open-sans;
           font-weight: 300;
-          font-size: 14px;
+          font-size: 0.4rem;
           color: #8a8a8a;
         }
 
         .title {
           font-family: $open-sans;
           font-weight: 500;
-          font-size: 18px;
+          font-size: 0.6rem;
           color: #fff;
-          margin-top: 20px;
+          margin-top: 0.8rem;
         }
 
         .content {
           font-family: $open-sans;
           font-weight: 300;
-          font-size: 16px;
+          font-size: 0.5rem;
           color: #8a8a8a;
-          line-height: 25px;
-          margin-top: 20px;
+          line-height: 0.8rem;
+          margin-top: 0.7rem;
         }
 
         .readmore-btn {
@@ -101,13 +101,12 @@
           display: block;
           font-family: $open-sans;
           font-weight: 300;
-          font-size: 16px;
+          font-size: 0.5rem;
           text-transform: capitalize;
-          text-decoration-thickness: 0.7px;
-          text-underline-offset: 3px;
+          text-decoration-thickness: 0.02rem;
+          text-underline-offset: 0.06rem;
           color: #fff;
-          margin-top: 20px;
-          border-radius: 50px;
+          margin-top: 0.7rem;
           transition: 0.5s;
           z-index: 1;
 
@@ -124,16 +123,17 @@
     position: relative;
     width: 100%;
     height: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 0.8rem;
 
     .news {
-      --border-width: 1px;
+      --border-width: 0.04rem;
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
       position: relative;
       width: 100%;
-      height: 200px;
+      height: fit-content;
+      padding: 1rem 0;
       display: flex;
       align-items: center;
 
@@ -143,7 +143,7 @@
         inset: 0;
         top: 0;
         left: 0;
-        border-bottom: 1px solid #2a2a2a;
+        border-bottom: 0.03rem solid #2a2a2a;
         pointer-events: none;
       }
 
@@ -151,12 +151,12 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        height: 1px;
+        height: 0.03rem;
         /* mouse hover light */
         background: radial-gradient(
           circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-          #eb8971 80px,
-          transparent 50px
+          #eb8971 3rem,
+          transparent 1.5rem
         );
         background-attachment: fixed;
         mask: linear-gradient(#2a2a2a, #2a2a2a) 100% 100% / 100%
@@ -175,33 +175,34 @@
         font-weight: 300;
 
         .card {
-          height: 80%;
+          height: 5rem;
           aspect-ratio: 3 / 1.8;
-          margin-right: 40px;
-          border-radius: 10px;
-          border: 1px solid #4a4a4a;
+          margin-right: 1.5rem;
+          border-radius: 0.5rem;
+          outline: 0.06rem solid #4a4a4a;
           background: #2a2a2a;
         }
 
         .content-wrapper {
           .create-date {
-            font-size: 12px;
+            font-size: 0.35rem;
             color: #8a8a8a;
           }
           .title {
             font-family: $open-sans;
             font-weight: 500;
-            font-size: 18px;
+            font-size: 0.6rem;
             color: #fff;
-            margin-top: 10px;
+            margin-top: 0.4rem;
           }
 
           .content {
             width: 100%;
             max-width: 100%;
             color: #8a8a8a;
-            font-size: 16px;
-            margin-top: 10px;
+            line-height: 0.8rem;
+            font-size: 0.45rem;
+            margin-top: 0.4rem;
           }
 
           .readmore-btn {
@@ -209,13 +210,12 @@
             display: block;
             font-family: $open-sans;
             font-weight: 300;
-            font-size: 15px;
+            font-size: 0.45rem;
             text-transform: capitalize;
-            text-decoration-thickness: 0.6px;
-            text-underline-offset: 3px;
+            text-decoration-thickness: 0.02rem;
+            text-underline-offset: 0.06rem;
             color: #fff;
-            margin-top: 15px;
-            border-radius: 50px;
+            margin-top: 0.4rem;
             transition: 0.5s;
 
             &:hover {
@@ -225,5 +225,327 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .news-body {
+    padding: 4.2rem 3rem 3rem 3rem;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hot-topic {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      .topic {
+        .card {
+          border-radius: 1rem;
+        }
+      }
+    }
+
+    .news-list {
+      .news {
+        padding: 1rem 0;
+        height: 7rem;
+
+        .news-content {
+          .card {
+            margin-right: 1rem;
+          }
+          .content-wrapper {
+            .create-date {
+              font-size: 0.45rem;
+            }
+            .title {
+              font-size: 0.7rem;
+              margin-top: 0.4rem;
+            }
+
+            .content {
+              line-height: 1rem;
+              font-size: 0.5rem;
+              margin-top: 0.4rem;
+            }
+
+            .readmore-btn {
+              font-size: 0.55rem;
+              margin-top: 0.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .news-body {
+    padding: 4.2rem 2.5rem 3rem 2.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hot-topic {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      .topic {
+        .card {
+          border-radius: 1rem;
+        }
+
+        .content-wrapper {
+          .create-date {
+            font-size: 0.5rem;
+          }
+          .title {
+            font-size: 0.7rem;
+            margin-top: 0.4rem;
+          }
+
+          .content {
+            line-height: 1rem;
+            font-size: 0.5rem;
+            margin-top: 0.4rem;
+          }
+
+          .readmore-btn {
+            font-size: 0.55rem;
+          }
+        }
+      }
+    }
+
+    .news-list {
+      .news {
+        width: 100%;
+        height: fit-content;
+        padding: 0.8rem 0;
+
+        .news-content {
+          .card {
+            margin-right: 1rem;
+          }
+          .content-wrapper {
+            .create-date {
+              font-size: 0.45rem;
+            }
+            .title {
+              font-size: 0.6rem;
+              margin-top: 0.4rem;
+            }
+
+            .content {
+              line-height: 1rem;
+              font-size: 0.55rem;
+              margin-top: 0.4rem;
+            }
+
+            .readmore-btn {
+              font-size: 0.55rem;
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .news-body {
+    padding: 5rem 2rem 3rem 2rem;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .news-body {
+    padding: 5rem 1.5rem 3rem 1.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hot-topic {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      .topic {
+        .card {
+          border-radius: 1rem;
+        }
+
+        .content-wrapper {
+          .create-date {
+            font-size: 0.45rem;
+          }
+          .title {
+            font-size: 0.7rem;
+            margin-top: 0.4rem;
+          }
+
+          .content {
+            line-height: 0.8rem;
+            font-size: 0.5rem;
+            margin-top: 0.4rem;
+          }
+
+          .readmore-btn {
+            font-size: 0.55rem;
+          }
+        }
+      }
+    }
+
+    .news-list {
+      .news {
+        width: 100%;
+        height: fit-content;
+        padding: 0.8rem 0;
+
+        .news-content {
+          .card {
+            margin-right: 1rem;
+          }
+          .content-wrapper {
+            .create-date {
+              font-size: 0.45rem;
+            }
+            .title {
+              font-size: 0.6rem;
+              margin-top: 0.4rem;
+            }
+
+            .content {
+              line-height: 1rem;
+              font-size: 0.55rem;
+              margin-top: 0.4rem;
+            }
+
+            .readmore-btn {
+              font-size: 0.55rem;
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .news-body {
+    padding: 5rem 3rem 3rem 3rem;
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hot-topic {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+
+      .topic {
+        .card {
+          width: 100%;
+          border-radius: 1rem;
+        }
+
+        .content-wrapper {
+          margin-top: 1rem;
+
+          .create-date {
+            font-size: 0.55rem;
+          }
+
+          .title {
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+          }
+
+          .content {
+            line-height: 1rem;
+            font-size: 0.6rem;
+            margin-top: 0.7rem;
+          }
+
+          .readmore-btn {
+            font-size: 0.65rem;
+            margin-top: 0.7rem;
+          }
+        }
+      }
+    }
+
+    .news-list {
+      .news {
+        width: 100%;
+        height: fit-content;
+        padding: 1.5rem 0;
+
+        .news-content {
+          display: flex;
+          flex-direction: column;
+
+          .card {
+            margin-right: 0;
+            border-radius: 1rem;
+            width: 100%;
+            height: fit-content;
+            aspect-ratio: 2 / 1.1;
+          }
+
+          .content-wrapper {
+            margin-top: 1rem;
+
+            .create-date {
+              font-size: 0.55rem;
+            }
+            .title {
+              font-size: 0.8rem;
+              margin-top: 0.8rem;
+            }
+
+            .content {
+              line-height: 1rem;
+              font-size: 0.6rem;
+              margin-top: 0.7rem;
+            }
+
+            .readmore-btn {
+              font-size: 0.65rem;
+              margin-top: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .news-body {
+    padding: 5rem 2rem 3rem 2rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .news-body {
+    padding: 5rem 1.5rem 3rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .news-body {
+    padding: 5rem 1rem 3rem 1rem;
   }
 }

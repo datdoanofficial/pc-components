@@ -228,7 +228,7 @@ const Overview: React.FC<OverviewProps> = ({
             {/* action */}
             <div className="action">
               <div className="filter">
-                <span className="bi--filter icon"></span> Filter
+                <span className="bi--filter"></span> Filter
               </div>
               <div className="ellipsis-btn">
                 <span className="ph--dots-three-outline-thin"></span>

@@ -447,7 +447,7 @@ const Login: React.FC = () => {
                 <div className="text">
                   <h2>Reset Your Password</h2>
                   <p id="txt-reset-password">
-                    Enter your email to receive a security code
+                    Enter email to receive a security code
                   </p>
                 </div>
               </div>
@@ -682,6 +682,12 @@ const Login: React.FC = () => {
                         >
                           Sign In
                         </a>
+                      </span>
+                      <span
+                        className="back-to-methods"
+                        onClick={handleBackToMethodRegisClick}
+                      >
+                        Back to all methods
                       </span>
                     </div>
                   </div>
