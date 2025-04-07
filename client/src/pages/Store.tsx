@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Range, getTrackBackground } from "react-range";
 import "../styles/pages/Store.scss";
 
-import prdImg_Demo from "../assets/images/products/aorus_geforce_rtx4080_xtreme_waterforce.png";
-import prdLogo_Demo from "../assets/images/products/prd_logo_demo.png";
+import prdImg_Demo from "../assets/images/products/aorus_geforce_rtx4080_xtreme_waterforce.webp";
+import prdLogo_Demo from "../assets/images/products/prd_logo_demo.webp";
 
 type Props = {};
 

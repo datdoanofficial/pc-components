@@ -1,9 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using server.Data;
 using server.Models;
-using System;
-using System.Linq;
 
 namespace server.Seeders
 {
@@ -92,6 +88,212 @@ namespace server.Seeders
                 new ImageGallery { ImageID = 2, ProductID = 1, ImagePath = "images/products/product1/image2.jpg" },
                 new ImageGallery { ImageID = 3, ProductID = 1, ImagePath = "images/products/product2/image1.jpg" },
                 new ImageGallery { ImageID = 4, ProductID = 1, ImagePath = "images/products/product2/image2.jpg" }
+            );
+
+            // Seed data for Customers table
+            modelBuilder.Entity<Customer>().HasData(
+                new Customer
+                {
+                    CustomerID = 1,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1990, 5, 15),
+                    Gender = "Male",
+                    Expenditure = 0,
+                    Membership = "Basic",
+                    Status = "Active",
+                    Username = "johndoe",
+                    Email = "johndoe@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 2,
+                    FirstName = "Jane",
+                    LastName = "Smith",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1985, 7, 20),
+                    Gender = "Female",
+                    Expenditure = 6000,
+                    Membership = "Silver",
+                    Status = "Active",
+                    Username = "janesmith",
+                    Email = "janesmith@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 3,
+                    FirstName = "Michael",
+                    LastName = "Johnson",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1978, 3, 10),
+                    Gender = "Male",
+                    Expenditure = 25000,
+                    Membership = "VIP",
+                    Status = "Active",
+                    Username = "michaeljohnson",
+                    Email = "michaeljohnson@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 4,
+                    FirstName = "Emily",
+                    LastName = "Davis",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1992, 8, 25),
+                    Gender = "Female",
+                    Expenditure = 0,
+                    Membership = "Basic",
+                    Status = "Active",
+                    Username = "emilydavis",
+                    Email = "emilydavis@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 5,
+                    FirstName = "David",
+                    LastName = "Wilson",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1988, 11, 5),
+                    Gender = "Male",
+                    Expenditure = 7000,
+                    Membership = "Silver",
+                    Status = "Active",
+                    Username = "davidwilson",
+                    Email = "davidwilson@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 6,
+                    FirstName = "Sophia",
+                    LastName = "Brown",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1995, 2, 14),
+                    Gender = "Female",
+                    Expenditure = 15000,
+                    Membership = "Silver",
+                    Status = "Active",
+                    Username = "sophiabrown",
+                    Email = "sophiabrown@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 7,
+                    FirstName = "Chris",
+                    LastName = "Evans",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1982, 6, 13),
+                    Gender = "Male",
+                    Expenditure = 30000,
+                    Membership = "VIP",
+                    Status = "Active",
+                    Username = "chrisevans",
+                    Email = "chrisevans@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 8,
+                    FirstName = "Natalie",
+                    LastName = "Portman",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1981, 6, 9),
+                    Gender = "Female",
+                    Expenditure = 0,
+                    Membership = "Basic",
+                    Status = "Active",
+                    Username = "natalieportman",
+                    Email = "natalieportman@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 9,
+                    FirstName = "Robert",
+                    LastName = "Downey",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1965, 4, 4),
+                    Gender = "Male",
+                    Expenditure = 500,
+                    Membership = "Basic",
+                    Status = "Active",
+                    Username = "robertdowney",
+                    Email = "robertdowney@example.com",
+                    Password = "password123"
+                },
+                new Customer
+                {
+                    CustomerID = 10,
+                    FirstName = "Scarlett",
+                    LastName = "Johansson",
+                    StartDate = DateTime.UtcNow,
+                    Birthday = new DateTime(1984, 11, 22),
+                    Gender = "Female",
+                    Expenditure = 22000,
+                    Membership = "VIP",
+                    Status = "Active",
+                    Username = "scarlettjohansson",
+                    Email = "scarlettjohansson@example.com",
+                    Password = "password123"
+                }
+            );
+
+            // Seed data for Orders table
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    OrderID = 1,
+                    CustomerID = 1,
+                    OrderDate = DateTime.UtcNow,
+                    ShipDate = DateTime.UtcNow.AddDays(2),
+                    ShipAddress = "123 Main St, Anytown, USA",
+                    Invoice = 599.99m,
+                    Destination = "Domestic",
+                    MethodPayment = "Credit Card",
+                    Items = 1,
+                    Status = "Delivered",
+                    Customer = null // Set navigation property to null
+                },
+                new Order
+                {
+                    OrderID = 2,
+                    CustomerID = 2,
+                    OrderDate = DateTime.UtcNow,
+                    ShipDate = DateTime.UtcNow.AddDays(3),
+                    ShipAddress = "456 Elm St, Othertown, USA",
+                    Invoice = 1200.00m,
+                    Destination = "Domestic",
+                    MethodPayment = "PayPal",
+                    Items = 2,
+                    Status = "Dispatched",
+                    Customer = null // Set navigation property to null
+                }
+            );
+
+            // Seed data for OrderDetails table
+            modelBuilder.Entity<OrderDetail>().HasData(
+                new OrderDetail
+                {
+                    OrderDetailID = 1,
+                    OrderID = 1,
+                    ProductID = 1,
+                    Quantity = 1,
+                    UnitPrice = 599.99m
+                },
+                new OrderDetail
+                {
+                    OrderDetailID = 2,
+                    OrderID = 2,
+                    ProductID = 1,
+                    Quantity = 2,
+                    UnitPrice = 600.00m
+                }
             );
         }
     }

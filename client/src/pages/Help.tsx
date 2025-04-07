@@ -3,9 +3,9 @@ import "../styles/pages/Help.scss";
 
 import MouseMoveHandler from "../components/common/MouseMoveHandler";
 
-import purchaseSupport from "../assets/images/help-page/purchase-sp.png";
-import accountSupport from "../assets/images/help-page/account-sp.png";
-import systemSupport from "../assets/images/help-page/system-sp.png";
+import purchaseSupport from "../assets/images/help-page/purchase-sp.webp";
+import accountSupport from "../assets/images/help-page/account-sp.webp";
+import systemSupport from "../assets/images/help-page/system-sp.webp";
 
 type Props = {};
 

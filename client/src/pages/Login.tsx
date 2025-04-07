@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import "../styles/pages/Login.scss";
 import { Link } from "react-router-dom";
 
-import logoIcon from "../assets/images/login-page/logo.png";
-import fbIcon from "../assets/images/login-page/fb-icon.png";
-import ggIcon from "../assets/images/login-page/gg-icon.png";
-import wechatIcon from "../assets/images/login-page/wechat-icon.png";
-import twitchIcon from "../assets/images/login-page/twitch-icon.png";
+import logoIcon from "../assets/images/login-page/logo.webp";
+import fbIcon from "../assets/images/login-page/fb-icon.webp";
+import ggIcon from "../assets/images/login-page/gg-icon.webp";
+import wechatIcon from "../assets/images/login-page/wechat-icon.webp";
+import twitchIcon from "../assets/images/login-page/twitch-icon.webp";
 
-import nextinOption from "../assets/images/login-page/nextin-option.png";
-import fbOption from "../assets/images/login-page/fb-option.png";
-import ggOption from "../assets/images/login-page/gg-option.png";
-import wechatOption from "../assets/images/login-page/wechat-option.png";
-import twitchOption from "../assets/images/login-page/twitch-option.png";
+import nextinOption from "../assets/images/login-page/nextin-option.webp";
+import fbOption from "../assets/images/login-page/fb-option.webp";
+import ggOption from "../assets/images/login-page/gg-option.webp";
+import wechatOption from "../assets/images/login-page/wechat-option.webp";
+import twitchOption from "../assets/images/login-page/twitch-option.webp";
 
 const Login: React.FC = () => {
   const [isSignIn, setIsSignIn] = useState(true);

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "../styles/pages/ProductDetails.scss";
 
-import product_demo_1 from "../assets/images/products/product_demo_01.png";
-import product_demo_2 from "../assets/images/products/product_demo_02.png";
-import product_demo_3 from "../assets/images/products/product_demo_03.png";
-import product_demo_4 from "../assets/images/products/product_demo_04.png";
+import product_demo_1 from "../assets/images/products/product_demo_01.webp";
+import product_demo_2 from "../assets/images/products/product_demo_02.webp";
+import product_demo_3 from "../assets/images/products/product_demo_03.webp";
+import product_demo_4 from "../assets/images/products/product_demo_04.webp";
 
-import rtx4070ti_demo from "../assets/images/product-details/4070ti-demo.png";
-import rtx4090_demo from "../assets/images/product-details/4090-demo.png";
-import rtx4090msi_demo from "../assets/images/product-details/4090msi-demo.png";
+import rtx4070ti_demo from "../assets/images/product-details/4070ti-demo.webp";
+import rtx4090_demo from "../assets/images/product-details/4090-demo.webp";
+import rtx4090msi_demo from "../assets/images/product-details/4090msi-demo.webp";
 
-import product_des from "../assets/images/product-details/product-demo-01.png";
-import product_bg from "../assets/images/product-details/bg-demo.png";
-import feature_img from "../assets/images/product-details/geforce-rtx-40.png";
+import product_des from "../assets/images/product-details/product-demo-01.webp";
+import product_bg from "../assets/images/product-details/bg-demo.webp";
+import feature_img from "../assets/images/product-details/geforce-rtx-40.webp";
 
 import feature_icon_1 from "../assets/images/product-details/icon-1.svg";
 import feature_icon_2 from "../assets/images/product-details/icon-2.svg";
@@ -23,7 +23,7 @@ import feature_icon_6 from "../assets/images/product-details/icon-6.svg";
 import feature_icon_7 from "../assets/images/product-details/icon-7.svg";
 import feature_icon_8 from "../assets/images/product-details/icon-8.svg";
 
-import hdmi_logo from "../assets/images/product-details/hdmi_logo.png";
+import hdmi_logo from "../assets/images/product-details/hdmi_logo.webp";
 
 import QuantityBtn from "../components/common/QuantityBtn";
 

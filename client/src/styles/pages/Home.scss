@@ -567,10 +567,10 @@ body {
     .number-sliding {
       position: absolute;
       top: 50%;
-      right: 0.3rem;
+      right: 10px;
       transform: translate(-50%, -50%);
-      width: 1.8rem;
-      height: 6rem;
+      width: 60px;
+      height: 200px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -590,20 +590,20 @@ body {
 
       .number:nth-child(1),
       .number:nth-child(5) {
-        font-size: 0.4rem;
+        font-size: 14px;
       }
 
       .number:nth-child(2),
       .number:nth-child(4) {
-        font-size: 0.5rem;
+        font-size: 16px;
       }
 
       .number:nth-child(2) {
-        margin-bottom: 0.8rem;
+        margin-bottom: 30px;
       }
 
       .number:nth-child(4) {
-        margin-top: 0.8rem;
+        margin-top: 30px;
       }
 
       .number.active {
@@ -613,7 +613,7 @@ body {
         transform: translate(-50%, -50%);
         width: 100%;
         height: 30px;
-        font-size: 0.6rem;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -629,11 +629,13 @@ body {
         @keyframes number01 {
           from {
             transform: translateY(140%);
-            font-size: 0.5rem;
+            -webkit-transform: translateY(140%);
+            font-size: 16px;
           }
           to {
             transform: translateY(0%);
-            font-size: 0.4rem;
+            -webkit-transform: translateY(0%);
+            font-size: 14px;
           }
         }
       }
@@ -644,11 +646,13 @@ body {
         @keyframes number02 {
           from {
             transform: translateY(100%);
-            font-size: 0.6rem;
+            -webkit-transform: translateY(100%);
+            font-size: 20px;
           }
           to {
             transform: translateY(-25%);
-            font-size: 0.5rem;
+            -webkit-transform: translateY(-25%);
+            font-size: 16px;
           }
         }
       }
@@ -659,11 +663,13 @@ body {
         @keyframes number03 {
           from {
             transform: translateY(175%);
-            font-size: 0.5rem;
+            -webkit-transform: translateY(175%);
+            font-size: 16px;
           }
           to {
             transform: translateY(0%);
-            font-size: 0.6rem;
+            -webkit-transform: translateY(0%);
+            font-size: 20px;
           }
         }
       }
@@ -674,11 +680,13 @@ body {
         @keyframes number04 {
           from {
             transform: translateY(100%);
-            font-size: 0.4rem;
+            -webkit-transform: translateY(100%);
+            font-size: 14px;
           }
           to {
             transform: translateY(-45%);
-            font-size: 0.5rem;
+            -webkit-transform: translateY(-45%);
+            font-size: 16px;
           }
         }
       }
@@ -689,9 +697,10 @@ body {
         @keyframes number05 {
           from {
             position: absolute;
-            bottom: -0.8rem;
+            bottom: -30px;
             left: 50%;
             transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
             font-size: 0;
             opacity: 0;
           }
@@ -700,7 +709,8 @@ body {
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.4rem;
+            -webkit-transform: translateX(-50%);
+            font-size: 14px;
             opacity: 1;
           }
         }
@@ -714,7 +724,7 @@ body {
         @keyframes number01Down {
           from {
             position: absolute;
-            top: -0.8rem;
+            top: -30px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 0;
@@ -725,7 +735,7 @@ body {
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.4rem;
+            font-size: 14px;
             opacity: 1;
           }
         }
@@ -737,11 +747,11 @@ body {
         @keyframes number02Down {
           from {
             transform: translateY(-100%);
-            font-size: 0.4rem;
+            font-size: 14px;
           }
           to {
             transform: translateY(45%);
-            font-size: 0.5rem;
+            font-size: 16px;
           }
         }
       }
@@ -752,11 +762,11 @@ body {
         @keyframes number03Down {
           from {
             transform: translateY(-175%);
-            font-size: 0.5rem;
+            font-size: 16px;
           }
           to {
             transform: translateY(0%);
-            font-size: 0.6rem;
+            font-size: 20px;
           }
         }
       }
@@ -767,11 +777,11 @@ body {
         @keyframes number04Down {
           from {
             transform: translateY(-100%);
-            font-size: 0.6rem;
+            font-size: 20px;
           }
           to {
             transform: translateY(25%);
-            font-size: 0.5rem;
+            font-size: 16px;
           }
         }
       }
@@ -782,11 +792,11 @@ body {
         @keyframes number05Down {
           from {
             transform: translateY(-140%);
-            font-size: 0.5rem;
+            font-size: 16px;
           }
           to {
             transform: translateY(0%);
-            font-size: 0.4rem;
+            font-size: 14px;
           }
         }
       }

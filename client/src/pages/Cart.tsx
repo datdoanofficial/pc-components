@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/pages/Cart.scss";
 import QuantityBtn from "../components/common/QuantityBtn";
-import icon_empty_cart from "../assets/images/cart-page/aww.png"; // Update the path to the correct location
+import icon_empty_cart from "../assets/images/cart-page/aww.webp"; // Update the path to the correct location
 
 type Props = {
   cartProducts: any[];

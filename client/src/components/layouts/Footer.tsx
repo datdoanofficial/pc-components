@@ -2,8 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useRef } from "react";
 import "./Footer.scss";
 
-import logo from "../../assets/images/logo.png";
-import tagname from "../../assets/images/datdoan.png";
+import logo from "../../assets/images/logo.webp";
+import tagname from "../../assets/images/datdoan.webp";
 
 type Props = {};
 

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../styles/pages/Contact.scss";
 import MouseMoveHandler from "../components/common/MouseMoveHandler";
 import VanillaTilt from "../styles/common/tilt";
-import mapImg from "../assets/images/contact-page/map.png";
+import mapImg from "../assets/images/contact-page/map.webp";
 
 type Props = {};
 

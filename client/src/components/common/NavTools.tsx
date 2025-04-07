@@ -3,12 +3,12 @@ import "./NavTools.scss";
 import { Link, useNavigate } from "react-router-dom";
 import QuantityBtn from "./QuantityBtn";
 
-import icon_empty_cart from "../../assets/images/cart-page/aww.png";
+import icon_empty_cart from "../../assets/images/cart-page/aww.webp";
 
-import product_demo from "../../assets/images/product-details/4070ti-demo.png";
-import product_demo2 from "../../assets/images/product-details/4090-demo.png";
-import product_demo3 from "../../assets/images/product-details/4090msi-demo.png";
-import product_demo4 from "../../assets/images/product-details/4080wf.png";
+import product_demo from "../../assets/images/product-details/4070ti-demo.webp";
+import product_demo2 from "../../assets/images/product-details/4090-demo.webp";
+import product_demo3 from "../../assets/images/product-details/4090msi-demo.webp";
+import product_demo4 from "../../assets/images/product-details/4080wf.webp";
 
 // Define the Product interface
 interface Product {

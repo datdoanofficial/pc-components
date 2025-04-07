@@ -150,9 +150,6 @@ namespace server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CateListID"));
 
-                    b.Property<int?>("CategoriesCategoryID")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
@@ -165,8 +162,6 @@ namespace server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CateListID");
-
-                    b.HasIndex("CategoriesCategoryID");
 
                     b.HasIndex("CategoryID");
 
@@ -406,6 +401,212 @@ namespace server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("server.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Expenditure")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Membership")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerID");
+
+                    b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerID = 1,
+                            Birthday = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "johndoe@example.com",
+                            Expenditure = 0m,
+                            FirstName = "John",
+                            Gender = "Male",
+                            LastName = "Doe",
+                            Membership = "Basic",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(1990),
+                            Status = "Active",
+                            Username = "johndoe"
+                        },
+                        new
+                        {
+                            CustomerID = 2,
+                            Birthday = new DateTime(1985, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "janesmith@example.com",
+                            Expenditure = 6000m,
+                            FirstName = "Jane",
+                            Gender = "Female",
+                            LastName = "Smith",
+                            Membership = "Silver",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2000),
+                            Status = "Active",
+                            Username = "janesmith"
+                        },
+                        new
+                        {
+                            CustomerID = 3,
+                            Birthday = new DateTime(1978, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "michaeljohnson@example.com",
+                            Expenditure = 25000m,
+                            FirstName = "Michael",
+                            Gender = "Male",
+                            LastName = "Johnson",
+                            Membership = "VIP",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2000),
+                            Status = "Active",
+                            Username = "michaeljohnson"
+                        },
+                        new
+                        {
+                            CustomerID = 4,
+                            Birthday = new DateTime(1992, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "emilydavis@example.com",
+                            Expenditure = 0m,
+                            FirstName = "Emily",
+                            Gender = "Female",
+                            LastName = "Davis",
+                            Membership = "Basic",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2000),
+                            Status = "Active",
+                            Username = "emilydavis"
+                        },
+                        new
+                        {
+                            CustomerID = 5,
+                            Birthday = new DateTime(1988, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "davidwilson@example.com",
+                            Expenditure = 7000m,
+                            FirstName = "David",
+                            Gender = "Male",
+                            LastName = "Wilson",
+                            Membership = "Silver",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2010),
+                            Status = "Active",
+                            Username = "davidwilson"
+                        },
+                        new
+                        {
+                            CustomerID = 6,
+                            Birthday = new DateTime(1995, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "sophiabrown@example.com",
+                            Expenditure = 15000m,
+                            FirstName = "Sophia",
+                            Gender = "Female",
+                            LastName = "Brown",
+                            Membership = "Silver",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2010),
+                            Status = "Active",
+                            Username = "sophiabrown"
+                        },
+                        new
+                        {
+                            CustomerID = 7,
+                            Birthday = new DateTime(1982, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "chrisevans@example.com",
+                            Expenditure = 30000m,
+                            FirstName = "Chris",
+                            Gender = "Male",
+                            LastName = "Evans",
+                            Membership = "VIP",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2010),
+                            Status = "Active",
+                            Username = "chrisevans"
+                        },
+                        new
+                        {
+                            CustomerID = 8,
+                            Birthday = new DateTime(1981, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "natalieportman@example.com",
+                            Expenditure = 0m,
+                            FirstName = "Natalie",
+                            Gender = "Female",
+                            LastName = "Portman",
+                            Membership = "Basic",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2020),
+                            Status = "Active",
+                            Username = "natalieportman"
+                        },
+                        new
+                        {
+                            CustomerID = 9,
+                            Birthday = new DateTime(1965, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "robertdowney@example.com",
+                            Expenditure = 500m,
+                            FirstName = "Robert",
+                            Gender = "Male",
+                            LastName = "Downey",
+                            Membership = "Basic",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2020),
+                            Status = "Active",
+                            Username = "robertdowney"
+                        },
+                        new
+                        {
+                            CustomerID = 10,
+                            Birthday = new DateTime(1984, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "scarlettjohansson@example.com",
+                            Expenditure = 22000m,
+                            FirstName = "Scarlett",
+                            Gender = "Female",
+                            LastName = "Johansson",
+                            Membership = "VIP",
+                            Password = "password123",
+                            StartDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2020),
+                            Status = "Active",
+                            Username = "scarlettjohansson"
+                        });
+                });
+
             modelBuilder.Entity("server.Models.ImageGallery", b =>
                 {
                     b.Property<int>("ImageID")
@@ -454,6 +655,127 @@ namespace server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("server.Models.Order", b =>
+                {
+                    b.Property<int>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Invoice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Items")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MethodPayment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ShipAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ShipDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderID = 1,
+                            CustomerID = 1,
+                            Destination = "Domestic",
+                            Invoice = 599.99m,
+                            Items = 1,
+                            MethodPayment = "Credit Card",
+                            OrderDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2050),
+                            ShipAddress = "123 Main St, Anytown, USA",
+                            ShipDate = new DateTime(2024, 11, 29, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2050),
+                            Status = "Delivered"
+                        },
+                        new
+                        {
+                            OrderID = 2,
+                            CustomerID = 2,
+                            Destination = "Domestic",
+                            Invoice = 1200.00m,
+                            Items = 2,
+                            MethodPayment = "PayPal",
+                            OrderDate = new DateTime(2024, 11, 27, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2060),
+                            ShipAddress = "456 Elm St, Othertown, USA",
+                            ShipDate = new DateTime(2024, 11, 30, 10, 26, 28, 322, DateTimeKind.Utc).AddTicks(2060),
+                            Status = "Dispatched"
+                        });
+                });
+
+            modelBuilder.Entity("server.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("OrderDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailID"));
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderDetailID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderDetailID = 1,
+                            OrderID = 1,
+                            ProductID = 1,
+                            Quantity = 1,
+                            UnitPrice = 599.99m
+                        },
+                        new
+                        {
+                            OrderDetailID = 2,
+                            OrderID = 2,
+                            ProductID = 1,
+                            Quantity = 2,
+                            UnitPrice = 600.00m
+                        });
+                });
+
             modelBuilder.Entity("server.Models.Product", b =>
                 {
                     b.Property<int>("ProductID")
@@ -475,6 +797,7 @@ namespace server.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -529,11 +852,11 @@ namespace server.Migrations
                             BestSeller = true,
                             BrandID = 4,
                             CategoryID = 2,
-                            CreatedDate = new DateTime(2024, 10, 23, 9, 57, 48, 738, DateTimeKind.Local).AddTicks(6970),
+                            CreatedDate = new DateTime(2024, 11, 27, 17, 26, 28, 322, DateTimeKind.Local).AddTicks(1940),
                             Description = "16-core, 24-thread processor with up to 6.0 GHz boost clock",
                             Discount = 0m,
                             Guarantee = "36 Months",
-                            ModifiedDate = new DateTime(2024, 10, 23, 9, 57, 48, 738, DateTimeKind.Local).AddTicks(6970),
+                            ModifiedDate = new DateTime(2024, 11, 27, 17, 26, 28, 322, DateTimeKind.Local).AddTicks(1960),
                             Price = 599.99m,
                             ProductCode = "INT-I9-14900K",
                             ProductName = "Intel Core i9-14900K",
@@ -545,12 +868,8 @@ namespace server.Migrations
 
             modelBuilder.Entity("server.Models.CategoriesList", b =>
                 {
-                    b.HasOne("server.Models.Categories", null)
-                        .WithMany("CategoriesList")
-                        .HasForeignKey("CategoriesCategoryID");
-
                     b.HasOne("server.Models.Categories", "Category")
-                        .WithMany()
+                        .WithMany("CategoriesList")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -565,6 +884,36 @@ namespace server.Migrations
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("server.Models.Order", b =>
+                {
+                    b.HasOne("server.Models.Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("server.Models.OrderDetail", b =>
+                {
+                    b.HasOne("server.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("server.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
@@ -587,6 +936,16 @@ namespace server.Migrations
             modelBuilder.Entity("server.Models.Categories", b =>
                 {
                     b.Navigation("CategoriesList");
+                });
+
+            modelBuilder.Entity("server.Models.Customer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("server.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("server.Models.Product", b =>

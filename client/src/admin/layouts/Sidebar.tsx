@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.webp";
 import { NavLink } from "react-router-dom";
 import "./Sidebar.scss";
 

@@ -1,45 +1,45 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_URL_API,
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: false, // Change to false for now
   timeout: 30000,
-  withCredentials: true, // Add this for CORS
 });
 
+// Add request interceptor with better error handling
 axiosClient.interceptors.request.use(
   (config) => {
-    // Add any request interceptors here
+    console.log("Making request to:", config.url);
     return config;
   },
   (error) => {
+    console.error("Request error:", error);
     return Promise.reject(error);
   }
 );
 
+// Add response interceptor with better error handling
 axiosClient.interceptors.response.use(
   (response) => {
     return response.data;
   },
   (error) => {
     if (error.response) {
-      console.error("Error response:", {
-        status: error.response.status,
-        data: error.response.data,
-        headers: error.response.headers,
-      });
+      console.error(
+        "Response error:",
+        error.response.status,
+        error.response.data
+      );
     } else if (error.request) {
-      console.error("Error request:", error.request);
+      console.error("Request error:", error.request);
     } else {
-      console.error("Error message:", error.message);
+      console.error("Error:", error.message);
     }
-
     return Promise.reject(
-      new Error(
-        "An error occurred while processing your request. Please try again later."
-      )
+      new Error("An error occurred while processing your request")
     );
   }
 );

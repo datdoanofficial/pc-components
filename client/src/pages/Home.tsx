@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../styles/pages/Home.scss";
 
-import itemPC from "../assets/images/landing-page/pc-aio.png";
-import itemLaptop from "../assets/images/landing-page/laptop.png";
-import itemKeyboard from "../assets/images/landing-page/keyboard.png";
-import itemPS from "../assets/images/landing-page/ps.png";
-import itemChair from "../assets/images/landing-page/chair.png";
+import itemPC from "../assets/images/landing-page/pc-aio.webp";
+import itemLaptop from "../assets/images/landing-page/laptop.webp";
+import itemKeyboard from "../assets/images/landing-page/keyboard.webp";
+import itemPS from "../assets/images/landing-page/ps.webp";
+import itemChair from "../assets/images/landing-page/chair.webp";
 
 type Props = {};
 
