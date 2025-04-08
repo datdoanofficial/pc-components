@@ -21,31 +21,31 @@ function App() {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
   const [quantities, setQuantities] = useState<number[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [showWelcomeAlert, setShowWelcomeAlert] = useState(true);
+  const [showWelcomeAlert, setShowWelcomeAlert] = useState(false);
 
   // Check if it's first visit
-  // useEffect(() => {
-  //   // Get session token for this tab
-  //   const sessionToken = sessionStorage.getItem("tabSession");
-  //   // Get flag for whether user has seen alert this browser session
-  //   const hasSeenAlert = sessionStorage.getItem("hasSeenAlert");
+  useEffect(() => {
+    // Get session token for this tab
+    const sessionToken = sessionStorage.getItem("tabSession");
+    // Get flag for whether user has seen alert this browser session
+    const hasSeenAlert = sessionStorage.getItem("hasSeenAlert");
 
-  //   if (!sessionToken) {
-  //     // New tab/window - set session token
-  //     sessionStorage.setItem("tabSession", Math.random().toString());
+    if (!sessionToken) {
+      // New tab/window - set session token
+      sessionStorage.setItem("tabSession", Math.random().toString());
 
-  //     // Check if user has seen alert this browser session
-  //     if (!hasSeenAlert) {
-  //       setShowWelcomeAlert(true);
-  //       sessionStorage.setItem("hasSeenAlert", "true");
-  //     }
-  //   }
+      // Check if user has seen alert this browser session
+      if (!hasSeenAlert) {
+        setShowWelcomeAlert(true);
+        sessionStorage.setItem("hasSeenAlert", "true");
+      }
+    }
 
-  //   // Cleanup event listeners
-  //   return () => {
-  //     sessionStorage.removeItem("tabSession");
-  //   };
-  // }, []);
+    // Cleanup event listeners
+    return () => {
+      sessionStorage.removeItem("tabSession");
+    };
+  }, []);
 
   const handleRemoveProduct = (productId: number) => {
     const productIndex = cartProducts.findIndex(
