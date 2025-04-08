@@ -32,6 +32,49 @@ const Login: React.FC = () => {
     password: "",
   });
 
+  // In handleSubmit function
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      console.log("Attempting login with:", {
+        email: signInValues.email,
+        password: signInValues.password,
+      });
+
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: signInValues.email,
+            password: signInValues.password,
+          }),
+        }
+      );
+
+      console.log("Response status:", response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful:", data);
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.customer));
+        window.location.href = "/admin";
+      } else {
+        const error = await response.json();
+        console.error("Login failed:", error);
+        alert(error.message || "Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Unable to connect to server. Please try again later.");
+    }
+  };
+
   const [isRegisFormValid, setIsRegisFormValid] = useState(false);
   const [isAgree, setIsAgree] = useState(false);
   const [regisValues, setRegisValues] = useState({
@@ -270,6 +313,7 @@ const Login: React.FC = () => {
                 className="sign-in-form form-input"
                 id="login-frm"
                 method="post"
+                onSubmit={handleSubmit}
               >
                 <div className="form-contain">
                   {/* input fields */}

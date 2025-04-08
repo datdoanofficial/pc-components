@@ -2,7 +2,7 @@
 
 .store-page {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   position: relative;
 
   .text-information {
@@ -21,10 +21,11 @@
     overflow: hidden;
 
     span {
-      position: relative;
+      position: absolute; // Change from relative to absolute
       width: 100%;
       padding-left: 3.7rem;
       top: 58%;
+      transform: translateY(-50%); // Add transform to center vertically
       font-family: "Roboto", sans-serif;
       font-weight: 100;
       font-size: 0.6rem;
@@ -35,7 +36,7 @@
 
     .title {
       position: relative;
-      top: 62%;
+      top: 65%;
       padding-left: 3.5rem;
       font-family: "Roboto", sans-serif;
       font-weight: 500;
@@ -167,13 +168,11 @@
 
       span {
         padding-left: 3rem;
-        top: 58%;
         font-size: 0.6rem;
         line-height: 1.5rem;
       }
 
       .title {
-        top: 62%;
         padding-left: 2.9rem;
         font-size: 2.5rem;
       }
@@ -207,13 +206,11 @@
 
       span {
         padding-left: 2.5rem;
-        top: 58%;
         font-size: 0.6rem;
         line-height: 1.5rem;
       }
 
       .title {
-        top: 62%;
         padding-left: 2.4rem;
         font-size: 2.3rem;
       }
@@ -246,14 +243,15 @@
       height: 70vh;
 
       span {
+        top: 62%;
         padding-left: 2.2rem;
-        top: 58%;
         font-size: 0.6rem;
+        font-weight: 400;
         line-height: 1.5rem;
       }
 
       .title {
-        top: 62%;
+        top: 70%;
         padding-left: 2.1rem;
         font-size: 2.2rem;
       }
@@ -286,7 +284,7 @@
 
       span {
         padding-left: 2.6rem;
-        top: 58%;
+        display: none;
         font-size: 0.68rem;
         line-height: 1.5rem;
       }
@@ -307,15 +305,7 @@
     .text-information {
       height: 70vh;
 
-      span {
-        padding-left: 2.6rem;
-        top: 58%;
-        font-size: 0.62rem;
-        line-height: 1.5rem;
-      }
-
       .title {
-        top: 62%;
         padding-left: 2.5rem;
         font-size: 2.6rem;
         line-height: 3.5rem;
@@ -346,15 +336,7 @@
     .text-information {
       height: 70vh;
 
-      span {
-        padding-left: 2.4rem;
-        top: 58%;
-        font-size: 0.6rem;
-        line-height: 1.5rem;
-      }
-
       .title {
-        top: 62%;
         padding-left: 2.3rem;
       }
     }
@@ -405,14 +387,7 @@
   @media screen and (max-width: 375px) {
     // text information
     .text-information {
-      span {
-        padding-left: 1.6rem;
-        line-height: 1.5rem;
-        font-size: 0.52rem;
-      }
-
       .title {
-        top: 62%;
         font-size: 2.2rem;
         line-height: 3rem;
         padding-left: 1.5rem;
@@ -450,6 +425,10 @@
           display: flex;
           font-size: 0.5rem;
           align-items: center;
+
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+          }
 
           span {
             color: #5a5a5a;
@@ -613,6 +592,10 @@
               transition: 0.5s;
               cursor: pointer;
 
+              @media screen and (max-width: 768px) {
+                font-weight: 400;
+              }
+
               &:hover {
                 background-color: #2a2a2a;
               }
@@ -637,6 +620,10 @@
               text-decoration: none;
               transition: 0.5s;
 
+              @media screen and (max-width: 768px) {
+                font-weight: 400;
+              }
+
               &:hover {
                 color: #6a6a6a;
               }
@@ -647,6 +634,10 @@
               font-size: 0.5rem;
               font-weight: 400;
               color: $text-color;
+
+              @media screen and (max-width: 768px) {
+                font-weight: 500;
+              }
             }
           }
         }
@@ -1108,6 +1099,10 @@
         transition: 0.5s;
         cursor: pointer;
 
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+        }
+
         &:hover {
           background-color: $hover-color;
         }
@@ -1263,6 +1258,10 @@
               font-weight: 400;
               font-size: 0.55rem;
               margin: 0.8rem 0;
+
+              @media screen and (max-width: 768px) {
+                font-weight: 500;
+              }
             }
 
             .slider {
@@ -1288,6 +1287,10 @@
                 font-size: 0.5rem;
                 color: #ffffff;
                 margin-right: 0.1rem;
+
+                @media screen and (max-width: 768px) {
+                  font-weight: 500;
+                }
               }
             }
 
@@ -1301,6 +1304,10 @@
               color: $text-color;
               border: none;
               outline: none;
+
+              @media screen and (max-width: 768px) {
+                font-weight: 500;
+              }
             }
 
             .input-max {
@@ -1322,6 +1329,10 @@
               color: #8a8a8a;
               transition: 0.5s;
               cursor: pointer;
+
+              @media screen and (max-width: 768px) {
+                font-weight: 400;
+              }
 
               p {
                 transition: 0.5s;

@@ -31,6 +31,10 @@
         font-weight: 300;
         color: $text-color;
 
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+        }
+
         span {
           color: #65c971;
           text-transform: uppercase;
@@ -77,9 +81,12 @@
       padding-right: 1rem;
       font-size: 0.5rem;
       font-weight: 300;
-      font-weight: 300;
       font-family: $open-sans;
       color: #000;
+
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+      }
 
       &::placeholder {
         text-transform: uppercase;
@@ -144,6 +151,10 @@
             font-weight: 300;
             color: #fff;
             margin-top: 0.3rem;
+
+            @media screen and (max-width: 768px) {
+              font-weight: 400;
+            }
           }
         }
       }
@@ -210,6 +221,10 @@
         position: relative;
         font-family: "Pontano Sans", sans-serif;
         font-weight: 300;
+
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+        }
 
         &::before {
           content: "";

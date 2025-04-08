@@ -76,6 +76,10 @@
           font-weight: 300;
           font-size: 0.4rem;
           color: #8a8a8a;
+
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+          }
         }
 
         .title {
@@ -93,6 +97,10 @@
           color: #8a8a8a;
           line-height: 0.8rem;
           margin-top: 0.7rem;
+
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+          }
         }
 
         .readmore-btn {
@@ -109,6 +117,12 @@
           margin-top: 0.7rem;
           transition: 0.5s;
           z-index: 1;
+
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
 
           &:hover {
             text-decoration: none;
@@ -174,6 +188,10 @@
         font-family: $open-sans;
         font-weight: 300;
 
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+        }
+
         .card {
           height: 5rem;
           aspect-ratio: 3 / 1.8;
@@ -217,6 +235,12 @@
             color: #fff;
             margin-top: 0.4rem;
             transition: 0.5s;
+
+            @media screen and (max-width: 768px) {
+              font-weight: 400;
+              text-decoration-thickness: 1px;
+              text-underline-offset: 3px;
+            }
 
             &:hover {
               text-decoration: none;

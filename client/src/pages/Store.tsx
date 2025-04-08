@@ -115,6 +115,7 @@ const Store = (props: Props) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFilterVisible]);
 
   // Add inside component before return

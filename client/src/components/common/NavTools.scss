@@ -352,6 +352,9 @@
       color: $text-color;
       font-size: 0.3rem;
       border-radius: 50%;
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+      }
     }
   }
 
@@ -413,6 +416,10 @@
       visibility: hidden;
       transform: translateY(-1rem);
       transition: all 0.3s ease-in-out;
+
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+      }
 
       ul li {
         list-style: none;
@@ -513,7 +520,7 @@
       }
 
       .menu-links {
-        padding: 0.2rem 0.5rem;
+        padding: 1rem 0.5rem;
         font-size: 0.75rem;
         transform: translateY(-1rem);
 

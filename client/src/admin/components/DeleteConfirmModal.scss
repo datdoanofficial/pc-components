@@ -1,0 +1,78 @@
+@import "../../styles/common/root.scss";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.delete-modal-content {
+  background-color: #161616;
+  padding: 40px;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 400px;
+  font-family: $open-sans;
+
+  h2 {
+    color: #fff;
+    font-size: 26px;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+
+  p {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 30px;
+    white-space: wrap;
+
+    &.warning {
+      color: #ff6b6b;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 0.3rem;
+      font-family: $open-sans;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &.delete-btn {
+        background-color: #ff6b6b;
+        color: #fff;
+
+        &:hover {
+          background-color: darken(#ff6b6b, 10%);
+        }
+      }
+
+      &.cancel-btn {
+        background-color: #2a2a2a;
+        color: #fff;
+
+        &:hover {
+          background-color: darken(#2a2a2a, 10%);
+        }
+      }
+    }
+  }
+}

@@ -4,9 +4,14 @@ import "./TableHeader.scss";
 interface TableHeaderProps {
   title: string;
   sortOptions: { value: string; label: string }[];
+  onAddClick: () => void;
 }
 
-const TableHeader: React.FC<TableHeaderProps> = ({ title, sortOptions }) => {
+const TableHeader: React.FC<TableHeaderProps> = ({
+  title,
+  sortOptions,
+  onAddClick,
+}) => {
   return (
     <div className="header-wrapper">
       {/* toolbar */}
@@ -37,7 +42,7 @@ const TableHeader: React.FC<TableHeaderProps> = ({ title, sortOptions }) => {
           Export
         </button>
         {/* add button */}
-        <button className="add-btn">
+        <button className="add-btn" onClick={onAddClick}>
           <span className="ic--round-plus icon"></span>
           New Customer
         </button>

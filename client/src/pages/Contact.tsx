@@ -38,7 +38,7 @@ const Contact = (props: Props) => {
               className="address"
               rel="noopener noreferrer"
             >
-              01 Unknown, District 10
+              01 Unknown, Phu Nhuan District
               <br />
               Ho Chi Minh City, Viet Nam
             </a>

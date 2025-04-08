@@ -15,13 +15,20 @@ import vip_member_05 from "../../assets/images/admin-page/yangmi-avt.png";
 import vip_member_06 from "../../assets/images/admin-page/duchun-avt.png";
 import vip_member_07 from "../../assets/images/admin-page/zhangxinyu-avt.png";
 
-interface Customer {
+import AddCustomerModal from "../components/AddCustomerModal";
+import EditCustomerModal from "../components/EditCustomerModal";
+import ViewCustomerModal from "../components/ViewCustomerModal";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
+
+export interface Customer {
   customerID: number;
   firstName: string;
   lastName: string;
   startDate: string;
   birthday: string;
   gender: string;
+  email: string;
+  username: string;
   membership: string;
   status: string;
   expenditure: string;
@@ -32,11 +39,116 @@ const Customers = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const customersPerPage = 6;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [customerToDelete, setCustomerToDelete] = useState<number | null>(null);
+
+  // handle delete
+  const handleDelete = async (customerId: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:7058/api/customers/${customerId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.ok) {
+        // Update the local state to remove the deleted customer
+        setCustomers((prevCustomers) =>
+          prevCustomers.filter((customer) => customer.customerID !== customerId)
+        );
+        setIsDeleteModalOpen(false);
+        setCustomerToDelete(null);
+      } else {
+        const error = await response.json();
+        console.error("Failed to delete customer:", error);
+      }
+    } catch (error) {
+      console.error("Error deleting customer:", error);
+    }
+  };
+
+  const confirmDelete = async () => {
+    if (customerToDelete) {
+      try {
+        const response = await fetch(
+          `http://localhost:7058/api/customers/${customerToDelete}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (response.ok) {
+          setCustomers(
+            customers.filter(
+              (customer) => customer.customerID !== customerToDelete
+            )
+          );
+          setIsDeleteModalOpen(false);
+          setCustomerToDelete(null);
+        }
+      } catch (error) {
+        console.error("Error deleting customer:", error);
+      }
+    }
+  };
+
+  // Handle Add Customer
+  const handleAddCustomer = (newCustomer: Customer) => {
+    setCustomers([...customers, newCustomer]);
+  };
+
+  // Add these state variables at the top of the Customers component
+  const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(
+    null
+  );
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+
+  // Add these handler functions
+  const handleEdit = async (customerId: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:7058/api/customers/${customerId}`
+      );
+      if (response.ok) {
+        const customer = await response.json();
+        setSelectedCustomer(customer);
+        setIsEditModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error fetching customer:", error);
+    }
+  };
+
+  const handleView = async (customerId: number) => {
+    try {
+      const response = await fetch(
+        `http://localhost:7058/api/customers/${customerId}`
+      );
+      if (response.ok) {
+        const customer = await response.json();
+        setSelectedCustomer(customer);
+        setIsViewModalOpen(true);
+      }
+    } catch (error) {
+      console.error("Error fetching customer:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await fetch("https://localhost:7058/api/customers");
+        // Use HTTP instead of HTTPS since your server is running on HTTP
+        const response = await fetch("http://localhost:7058/api/customers", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Add CORS headers
+            Accept: "application/json",
+          },
+        });
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -161,7 +273,16 @@ const Customers = () => {
       {/* customer tbl */}
       <div className="tbl-container">
         {/* header */}
-        <TableHeader title="All Customers" sortOptions={sortOptions} />
+        <TableHeader
+          title="All Customers"
+          sortOptions={sortOptions}
+          onAddClick={() => setIsModalOpen(true)}
+        />
+        <AddCustomerModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onAdd={handleAddCustomer}
+        />
         {/* table */}
         <div className="table">
           <table>
@@ -208,15 +329,22 @@ const Customers = () => {
                   <td className="action-btn">
                     <ActionButton
                       type="edit"
-                      onClick={() => console.log("Edit", customer.customerID)}
+                      onClick={() => {
+                        setSelectedCustomer(customer);
+                        setIsEditModalOpen(true);
+                      }}
                     />
                     <ActionButton
                       type="delete"
-                      onClick={() => console.log("Delete", customer.customerID)}
+                      onClick={() => {
+                        setCustomerToDelete(customer.customerID);
+                        setIsDeleteModalOpen(true);
+                      }}
                     />
-                    <ActionButton
-                      type="view"
-                      onClick={() => console.log("View", customer.customerID)}
+                    <ViewCustomerModal
+                      isOpen={isViewModalOpen}
+                      onClose={() => setIsViewModalOpen(false)}
+                      customer={selectedCustomer}
                     />
                   </td>
                 </tr>
@@ -224,6 +352,45 @@ const Customers = () => {
             </tbody>
           </table>
         </div>
+        {/* Modals outside of the mapping */}
+        <EditCustomerModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          customer={selectedCustomer}
+          onUpdate={(updatedCustomer) => {
+            setCustomers((prevCustomers) =>
+              prevCustomers.map((c) =>
+                c.customerID === updatedCustomer.customerID
+                  ? updatedCustomer
+                  : c
+              )
+            );
+            setIsEditModalOpen(false);
+          }}
+        />
+
+        <DeleteConfirmModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          onConfirm={() => customerToDelete && handleDelete(customerToDelete)}
+          customerName={
+            customers.find((c) => c.customerID === customerToDelete)
+              ? `${
+                  customers.find((c) => c.customerID === customerToDelete)
+                    ?.firstName
+                } ${
+                  customers.find((c) => c.customerID === customerToDelete)
+                    ?.lastName
+                }`
+              : ""
+          }
+        />
+
+        <ViewCustomerModal
+          isOpen={isViewModalOpen}
+          onClose={() => setIsViewModalOpen(false)}
+          customer={selectedCustomer}
+        />
         <div className="pagination">
           {pageNumbers.map((number) => (
             <button

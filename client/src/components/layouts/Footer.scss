@@ -57,6 +57,10 @@
         display: flex;
         align-items: center;
 
+        @media screen and (max-width: 768px) {
+          font-weight: 400 !important;
+        }
+
         // tagname
         .tagname {
           width: 25%;
@@ -101,6 +105,10 @@
       font-size: 0.5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
+
+      @media screen and (max-width: 768px) {
+        font-weight: 400;
+      }
 
       // in4
       .infor {
@@ -216,6 +224,10 @@
         line-height: 0.8rem;
         color: #8a8a8a;
         margin-bottom: 0.8rem;
+
+        @media screen and (max-width: 768px) {
+          font-weight: 400;
+        }
       }
 
       .mail-form {
@@ -236,6 +248,10 @@
           font-size: 0.45rem;
           font-family: $open-sans;
           font-weight: 300;
+
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+          }
         }
 
         button {

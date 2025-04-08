@@ -1,0 +1,79 @@
+@import "../../styles/common/root.scss";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #161616;
+  padding: 40px;
+  border-radius: 0.5rem;
+  width: 90%;
+  max-width: 500px;
+
+  h2 {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 30px;
+    font-family: $open-sans;
+    font-weight: 500;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    input,
+    select {
+      width: 100%;
+      height: 100%;
+      padding: 15px 20px;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 0.3rem;
+      color: #fff;
+      font-family: $open-sans;
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-family: $open-sans;
+      transition: 0.3s;
+
+      &.submit-btn {
+        background-color: $primary-color;
+        color: #fff;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+
+      &.cancel-btn {
+        background-color: #2a2a2a;
+        color: #fff;
+
+        &:hover {
+          background-color: darken(#2a2a2a, 10%);
+        }
+      }
+    }
+  }
+}
